@@ -4255,18 +4255,18 @@ var EMBEDDED_DB = {
 // EMBEDDED_DATA_END
 
 function loadDB(){
-  // 1. ລອງໂຫຼດຈາກ embedded data ກ່ອນ
+  // 1. ລອງ localStorage ກ່ອນສະເໝີ (ຂໍ້ມູນຫຼ້າສຸດຈາກຜູ້ໃຊ້)
+  try{const r=localStorage.getItem(SK); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
+  // 2. Legacy localStorage
+  try{const r=localStorage.getItem("fin_v6"); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
+  // 3. ຖ້າ localStorage ຫວ່າງເປົ່າ => ໃຊ້ EMBEDDED_DB ເປັນຂໍ້ມູນເລີ່ມຕົ້ນ ແລ້ວ seed ໃສ່ localStorage
   if(EMBEDDED_DB && EMBEDDED_DB.users && EMBEDDED_DB.transactions){
-    // sync to localStorage ເຜື່ອໃຊ້ຊົ່ວຄາວ
-    try{localStorage.setItem(SK, JSON.stringify(EMBEDDED_DB));}catch{}
     const d=JSON.parse(JSON.stringify(EMBEDDED_DB));
     if(!d.savings) d.savings={kip:[],thb:[],usd:[]};
+    // seed localStorage ດ້ວຍຂໍ້ມູນເລີ່ມຕົ້ນ ເພື່ອໃຫ້ບັນທຶກຕໍ່ໄດ້ທັນທີ
+    try{localStorage.setItem(SK, JSON.stringify(d));}catch{}
     return d;
   }
-  // 2. ລອງ localStorage
-  try{const r=localStorage.getItem(SK); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
-  // 3. Legacy
-  try{const r=localStorage.getItem("fin_v6"); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
   return defData();
 }
 
