@@ -188,6 +188,9 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
   #bottom-nav{padding-bottom:max(6px,env(safe-area-inset-bottom))}
 }
 </style>
+<!-- ===================== FIREBASE SDK ===================== -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -4254,27 +4257,69 @@ var EMBEDDED_DB = {
 };
 // EMBEDDED_DATA_END
 
-function loadDB(){
-  // 1. ລອງ localStorage ກ່ອນສະເໝີ (ຂໍ້ມູນຫຼ້າສຸດຈາກຜູ້ໃຊ້)
-  try{const r=localStorage.getItem(SK); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
-  // 2. Legacy localStorage
-  try{const r=localStorage.getItem("fin_v6"); if(r){const d=JSON.parse(r);if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}catch{}
-  // 3. ຖ້າ localStorage ຫວ່າງເປົ່າ => ໃຊ້ EMBEDDED_DB ເປັນຂໍ້ມູນເລີ່ມຕົ້ນ ແລ້ວ seed ໃສ່ localStorage
-  if(EMBEDDED_DB && EMBEDDED_DB.users && EMBEDDED_DB.transactions){
-    const d=JSON.parse(JSON.stringify(EMBEDDED_DB));
-    if(!d.savings) d.savings={kip:[],thb:[],usd:[]};
-    // seed localStorage ດ້ວຍຂໍ້ມູນເລີ່ມຕົ້ນ ເພື່ອໃຫ້ບັນທຶກຕໍ່ໄດ້ທັນທີ
-    try{localStorage.setItem(SK, JSON.stringify(d));}catch{}
-    return d;
+/* ===================== FIREBASE INIT ===================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyAXWM7zZ_LCRnKoktEQmMyq0FhPbQ6nJl0",
+  authDomain: "khen-finance-tracker.firebaseapp.com",
+  projectId: "khen-finance-tracker",
+  storageBucket: "khen-finance-tracker.firebasestorage.app",
+  messagingSenderId: "1044841991005",
+  appId: "1:1044841991005:web:b2912acf251cfc71bcb6b4",
+  measurementId: "G-N708BKVCE0"
+};
+firebase.initializeApp(firebaseConfig);
+const fdb = firebase.firestore();
+const DB_DOC = fdb.collection("finance").doc("mainDB");
+
+/* ===================== FIREBASE loadDB / saveDB ===================== */
+// DB ໃນ memory — ໂຫຼດຈາກ Firestore ຕອນເລີ່ມ, save ກັບ Firestore ເມື່ອມີການປ່ຽນແປງ
+// localStorage ຍັງໃຊ້ເປັນ cache ໃຫ້ offline ໄດ້
+
+async function loadDB(){
+  // ລອງ Firestore ກ່ອນ (cloud)
+  try {
+    const snap = await DB_DOC.get();
+    if(snap.exists){
+      const d = snap.data();
+      if(d && d.users && d.transactions){
+        if(!d.savings) d.savings={kip:[],thb:[],usd:[]};
+        // cache ໃສ່ localStorage
+        try{localStorage.setItem(SK, JSON.stringify(d));}catch{}
+        return d;
+      }
+    }
+    // Firestore ຫວ່າງ — migrate ຈາກ localStorage ຫຼື EMBEDDED_DB
+    let seedData = null;
+    try{const r=localStorage.getItem(SK);if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};seedData=d;}}}catch{}
+    if(!seedData && EMBEDDED_DB && EMBEDDED_DB.users && EMBEDDED_DB.transactions){
+      seedData = JSON.parse(JSON.stringify(EMBEDDED_DB));
+      if(!seedData.savings) seedData.savings={kip:[],thb:[],usd:[]};
+    }
+    if(!seedData) seedData = defData();
+    // ອັບໂຫລດ seed ຂຶ້ນ Firestore
+    await DB_DOC.set(seedData);
+    try{localStorage.setItem(SK, JSON.stringify(seedData));}catch{}
+    showToast("☁️ ອັບໂຫລດຂໍ້ມູນຂຶ້ນ Firebase ສຳເລັດ!","#15803d");
+    return seedData;
+  } catch(err){
+    console.warn("Firestore loadDB error:", err);
+    // Fallback: localStorage
+    try{const r=localStorage.getItem(SK);if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}}catch{}
+    try{const r=localStorage.getItem("fin_v6");if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}}catch{}
+    if(EMBEDDED_DB && EMBEDDED_DB.users){
+      const d=JSON.parse(JSON.stringify(EMBEDDED_DB));
+      if(!d.savings)d.savings={kip:[],thb:[],usd:[]};
+      return d;
+    }
+    return defData();
   }
-  return defData();
 }
 
 function saveDB(){
-  // ບັນທຶກໃສ່ localStorage ກ່ອນ (ໄວ)
+  // ບັນທຶກໃສ່ localStorage (ໄວ, offline-safe)
   try{localStorage.setItem(SK,JSON.stringify(DB));}catch{}
-  // ອັບເດດ EMBEDDED_DB ໃນ memory ດ້ວຍ
-  EMBEDDED_DB = JSON.parse(JSON.stringify(DB));
+  // ບັນທຶກຂຶ້ນ Firestore (async, ໃນ background)
+  DB_DOC.set(DB).catch(err=>console.warn("Firestore saveDB error:", err));
 }
 
 /* ===================== EXPORT HTML (ຝັງຂໍ້ມູນ) ===================== */
@@ -5772,31 +5817,49 @@ function resetExRates(){
 }
 
 /* ===================== RELOAD FIX: ຮັກສາ session ເມື່ອ reload ===================== */
-// ບັນທຶກ session key ໃສ່ sessionStorage ເພື່ອ restore ເມື່ອ reload
 window.addEventListener("beforeunload", function(){
-  if(CU){
-    try{ sessionStorage.setItem("fin_session_user", JSON.stringify(CU)); }catch{}
-  }
+  if(CU){ try{ sessionStorage.setItem("fin_session_user", JSON.stringify(CU)); }catch{} }
 });
 
-(function(){
+(async function(){
   loadExRates();
+
+  // ສະແດງ loading screen
+  var loginWrap = document.getElementById("login-wrap");
+  var appWrap   = document.getElementById("app");
+  if(loginWrap) loginWrap.style.display = "none";
+  if(appWrap)   appWrap.style.display   = "none";
+
+  // ສ້າງ loading overlay
+  var loadDiv = document.createElement("div");
+  loadDiv.id = "firebase-loading";
+  loadDiv.style.cssText = "position:fixed;inset:0;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;color:#fff;font-family:'Phetsarath OT',Arial,sans-serif";
+  loadDiv.innerHTML = '<div style="font-size:52px;margin-bottom:16px">💰</div><h2 style="font-size:18px;margin-bottom:8px">ລະບົບລາຍຮັບ-ລາຍຈ່າຍ</h2><p style="color:#93c5fd;font-size:13px;margin-bottom:24px">ກຳລັງໂຫຼດຂໍ້ມູນຈາກ Firebase...</p><div style="width:180px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden"><div id="load-bar" style="width:0%;height:100%;background:#60a5fa;border-radius:4px;transition:width .5s"></div></div>';
+  document.body.appendChild(loadDiv);
+
+  var bar = document.getElementById("load-bar");
+  if(bar) bar.style.width = "30%";
+
   try {
-    DB = loadDB();
+    DB = await loadDB();
   } catch(e) {
     DB = defData();
   }
-  // ກວດສອບ session ທີ່ຍັງໃຊ້ຢູ່ (ກໍລະນີ reload / refresh)
+
+  if(bar) bar.style.width = "90%";
+  await new Promise(r=>setTimeout(r,300));
+  if(bar) bar.style.width = "100%";
+  await new Promise(r=>setTimeout(r,200));
+  loadDiv.remove();
+
+  // ກວດສອບ session ທີ່ຍັງໃຊ້ຢູ່ (ກໍລະນີ reload)
   try {
     const savedUser = sessionStorage.getItem("fin_session_user");
     if(savedUser){
       const usr = JSON.parse(savedUser);
-      // ກວດວ່າ user ຍັງມີໃນ DB
       const found = DB.users.find(u=>u.id===usr.id && u.username===usr.username);
       if(found){
         CU = found;
-        var loginWrap = document.getElementById("login-wrap");
-        var appWrap   = document.getElementById("app");
         if(loginWrap) loginWrap.style.display = "none";
         if(appWrap)   appWrap.style.display   = "flex";
         document.getElementById("sb-uname").textContent="👤 "+CU.name;
@@ -5810,15 +5873,12 @@ window.addEventListener("beforeunload", function(){
       }
     }
   } catch(e){}
-  // ສະແດງໜ້າ Login ຕາມປົກກະຕິ
-  var loginWrap = document.getElementById("login-wrap");
-  var appWrap   = document.getElementById("app");
+
+  // ສະແດງໜ້າ Login
   if(loginWrap) loginWrap.style.display = "flex";
   if(appWrap)   appWrap.style.display   = "none";
 })();
-// ຖ້າ browser ບໍ່ຮອງຮັບ fetch ໃຫ້ fallback
-if(typeof fetch==="undefined"){window.fetch=function(u){return Promise.reject(new Error("fetch not supported"));};}
-</script>
+if(typeof fetch==="undefined"){window.fetch=function(u){return Promise.reject(new Error("fetch not supported"));};}</script>
 
 
 </body></html>
