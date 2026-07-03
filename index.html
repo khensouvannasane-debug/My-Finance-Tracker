@@ -5,10 +5,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Phetsarath+OT&amp;display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f0f4f8;--sidebar:#1e2d45;--primary:#2563eb;--green:#15803d;--red:#dc2626;--purple:#7c3aed;--text:#1e293b;--border:#e2e8f0;--card:#fff;--topbar:#fff;--shadow:0 2px 8px rgba(0,0,0,.08);}
+:root{
+  --bg:#f0f4f8;--sidebar:#1e2d45;--primary:#2563eb;--green:#15803d;--red:#dc2626;
+  --purple:#7c3aed;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;
+  --card:#fff;--topbar:#fff;--shadow:0 2px 8px rgba(0,0,0,.08);
+}
 body{font-family:'Phetsarath OT',Arial,sans-serif;background:var(--bg);min-height:100vh;font-size:15px;color:var(--text)}
 input,select,button,textarea{font-family:'Phetsarath OT',Arial,sans-serif}
-::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px}
+
+/* ---- LAYOUT ---- */
 #app{display:flex;min-height:100vh;position:relative}
 #sidebar{width:240px;min-width:240px;background:var(--sidebar);color:#fff;display:flex;flex-direction:column;transition:transform .28s ease,width .28s ease;z-index:200}
 #sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199}
@@ -16,80 +23,169 @@ input,select,button,textarea{font-family:'Phetsarath OT',Arial,sans-serif}
 #main{flex:1;display:flex;flex-direction:column;min-width:0;max-width:100%}
 #topbar{background:var(--topbar);padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:10}
 #content{padding:14px;flex:1;overflow-y:auto}
+
+/* ---- SIDEBAR ---- */
 .sb-brand{padding:16px 14px 12px;border-bottom:1px solid #2d4060}
 .sb-brand h2{font-size:16px;font-weight:bold}
 .sb-brand p{font-size:12px;color:#94a3b8;margin-top:3px}
 .sb-body{flex:1;padding-bottom:10px;overflow-y:auto}
-.sb-sec-head{padding:10px 14px 4px;font-size:11px;color:#64748b;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;text-transform:uppercase;letter-spacing:.5px}
-.sb-item{padding:9px 14px;cursor:pointer;border-left:3px solid transparent;font-size:13px;display:flex;align-items:center;gap:7px;transition:background .15s;white-space:nowrap}
+.sb-sec-head{padding:10px 14px 4px;font-size:11px;color:#64748b;font-weight:bold;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;user-select:none;text-transform:uppercase;letter-spacing:.5px}
+.sb-item{padding:9px 14px;cursor:pointer;border-left:3px solid transparent;font-size:13px;
+  display:flex;align-items:center;gap:7px;transition:background .15s;white-space:nowrap}
 .sb-item:hover{background:rgba(255,255,255,.07)}
 .sb-item.active{background:#2563eb;border-left-color:#60a5fa}
 .sb-footer{padding:10px;border-top:1px solid #2d4060}
-.dk-inp{width:100%;background:#2d3f58;border:1px solid #3d5070;border-radius:7px;color:#fff;padding:7px 9px;font-size:13px;box-sizing:border-box}
+.dk-inp{width:100%;background:#2d3f58;border:1px solid #3d5070;border-radius:7px;color:#fff;
+  padding:7px 9px;font-size:13px;box-sizing:border-box}
+
+/* ---- CARDS ---- */
 .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .sum-card{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);text-align:center}
 .sum-card .lbl{font-size:12px}
 .sum-card .val{font-size:17px;font-weight:bold;margin-top:4px}
+
+/* ---- FORM ---- */
 label.fl{font-size:13px;color:#555;display:block;margin-bottom:3px}
-input[type=text],input[type=number],input[type=password],input[type=date],input[type=month],select{display:block;width:100%;padding:9px 11px;border-radius:8px;border:1px solid var(--border);margin-bottom:10px;font-size:14px;background:#fff;-webkit-appearance:none;appearance:none}
-.btn-primary{display:block;width:100%;padding:11px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:4px}
-.btn-secondary{display:block;width:100%;padding:10px;background:#e2e8f0;color:#333;border:none;border-radius:8px;cursor:pointer;font-size:14px}
-.btn-icon{border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px}
-.btn-red{background:#fee2e2;color:#dc2626}.btn-blue{background:#dbeafe;color:#1d4ed8}
-.type-btn{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer;font-size:13px}
+input[type=text],input[type=number],input[type=password],input[type=date],input[type=month],select{
+  display:block;width:100%;padding:9px 11px;border-radius:8px;border:1px solid var(--border);
+  margin-bottom:10px;font-size:14px;background:#fff;-webkit-appearance:none;appearance:none}
+input[type=number]{-moz-appearance:textfield}
+.btn-primary{display:block;width:100%;padding:11px;background:var(--primary);color:#fff;border:none;
+  border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:4px;transition:background .15s}
+.btn-primary:hover,.btn-primary:active{background:#1d4ed8}
+.btn-secondary{display:block;width:100%;padding:10px;background:#e2e8f0;color:#333;border:none;
+  border-radius:8px;cursor:pointer;font-size:14px;transition:background .15s}
+.btn-secondary:active{background:#cbd5e1}
+.btn-icon{border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;touch-action:manipulation}
+.btn-red{background:#fee2e2;color:#dc2626}
+.btn-blue{background:#dbeafe;color:#1d4ed8}
+.type-btn{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer;font-size:13px;transition:background .15s;touch-action:manipulation}
 .sub-select{border-color:#a5b4fc!important;background:#f5f3ff!important}
 .err{color:#dc2626;font-size:13px;margin-bottom:6px}
+
+/* ---- TABLE ---- */
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{padding:9px 10px;text-align:left;font-weight:bold;border:1px solid #e5e7eb;background:#e8f0fe}
 td{padding:8px 10px;border:1px solid #f3f4f6}
 .ovx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---- BADGES ---- */
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:12px}
 .badge-sub{background:#ede9fe;color:#7c3aed;padding:2px 9px;border-radius:10px;font-size:12px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;border-radius:16px;font-size:13px}
 .bar-wrap{background:#f0f0f0;border-radius:6px;height:7px;margin-top:4px}
 .bar-fill{border-radius:6px;height:7px;transition:width .5s}
-.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:400}
-.modal-box{background:#fff;border-radius:14px;padding:22px 20px;width:100%;max-width:440px;max-height:92vh;overflow-y:auto;box-shadow:0 4px 30px rgba(0,0,0,.2);animation:slideUp .25s ease}
+
+/* ---- MODAL ---- */
+.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);
+  display:flex;align-items:flex-end;justify-content:center;z-index:400;padding:0}
+.modal-box{background:#fff;border-radius:18px 18px 0 0;padding:22px 20px;width:100%;max-width:520px;
+  max-height:92vh;overflow-y:auto;box-shadow:0 -4px 30px rgba(0,0,0,.2);animation:slideUp .25s ease}
 @keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-handle{width:40px;height:4px;background:#d1d5db;border-radius:4px;margin:0 auto 16px}
+@media(min-width:600px){
+  .modal-bg{align-items:center}
+  .modal-box{border-radius:14px;max-width:440px}
+}
+
+/* ---- CAT MANAGER ---- */
 .cat-box{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
 .cat-head{display:flex;align-items:center;padding:10px 13px;cursor:pointer}
 .cat-body{padding:11px 14px;background:#fafafa}
 .add-row{display:flex;gap:8px;margin-bottom:12px;padding:10px 12px;background:#f8faff;border-radius:9px;align-items:center}
 .add-row input{margin:0;flex:1;font-size:13px}
-.add-row button{margin:0;padding:8px 12px;font-size:13px;width:auto}
+.add-row button{margin:0;padding:8px 12px;font-size:13px;white-space:nowrap;width:auto}
+.tab-btn{flex:1;padding:9px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;transition:background .15s;touch-action:manipulation}
+
+/* ---- CAT QUICK-ADD ---- */
 .cat-add-inline{display:flex;gap:6px;margin-bottom:10px}
 .cat-add-inline input{margin:0;flex:1;font-size:13px;padding:8px 10px}
-.cat-add-inline button{margin:0;padding:8px 12px;font-size:13px;width:auto;border-radius:8px;border:none;cursor:pointer}
-#login-wrap{min-height:100vh;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;align-items:center;justify-content:center;padding:16px}
+.cat-add-inline button{margin:0;padding:8px 12px;font-size:13px;width:auto;white-space:nowrap;border-radius:8px;border:none;cursor:pointer}
+
+/* ---- LOGIN ---- */
+#login-wrap{min-height:100vh;background:linear-gradient(135deg,#1e3a5f,#2563eb);
+  display:flex;align-items:center;justify-content:center;padding:16px}
 #login-box{background:#fff;border-radius:18px;padding:30px 24px;width:100%;max-width:380px;box-shadow:0 8px 32px rgba(0,0,0,.25)}
 .login-logo{text-align:center;margin-bottom:20px}
-#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:6px 0 max(6px,env(safe-area-inset-bottom));z-index:150}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 4px;cursor:pointer;color:#64748b;font-size:10px;border:none;background:none}
+.hint-box{margin-top:12px;padding:11px;background:#f8faff;border-radius:9px;font-size:13px;color:#666}
+
+/* ---- BOTTOM NAV (Mobile) ---- */
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);
+  padding:6px 0 max(6px,env(safe-area-inset-bottom));z-index:150;box-shadow:0 -2px 8px rgba(0,0,0,.08)}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 4px;
+  cursor:pointer;touch-action:manipulation;color:#64748b;font-size:10px;border:none;background:none}
 .bnav-item.active{color:var(--primary)}
-.bnav-icon{font-size:20px}
-#more-menu{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;padding:16px;z-index:350;animation:slideUp .2s ease}
+.bnav-item svg,.bnav-icon{font-size:20px}
+
+/* ---- BOTTOM MORE MENU ---- */
+#more-menu{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;
+  padding:16px;z-index:350;box-shadow:0 -4px 20px rgba(0,0,0,.15);animation:slideUp .2s ease}
 #more-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:349}
-.more-item{display:flex;align-items:center;gap:12px;padding:13px 8px;font-size:15px;cursor:pointer;border-bottom:1px solid #f1f5f9}
+.more-item{display:flex;align-items:center;gap:12px;padding:13px 8px;font-size:15px;cursor:pointer;
+  border-radius:10px;transition:background .15s;border-bottom:1px solid #f1f5f9}
+.more-item:last-child{border-bottom:none}
+.more-item:active{background:#f0f4f8}
+
+/* ---- DASHBOARD TABS ---- */
+.dash-tab-bar{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px}
+.dash-tab{padding:7px 16px;border:none;border-radius:20px;cursor:pointer;font-size:13px;
+  background:#e2e8f0;color:#555;white-space:nowrap;transition:all .15s;font-family:'Phetsarath OT',Arial,sans-serif}
+.dash-tab.active{background:var(--primary);color:#fff;font-weight:bold}
+
+/* ---- REPORT FILTER ---- */
 .report-filter{background:#fff;border-radius:12px;padding:14px;box-shadow:var(--shadow);margin-bottom:14px}
+.report-filter select{margin-bottom:6px}
+.filter-row{display:flex;gap:8px;align-items:flex-end}
+.filter-row>*{flex:1;margin-bottom:0}
+
+/* ---- SUMMARY ROWS ---- */
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px}
+.sum-row:last-child{border-bottom:none}
+
+/* ---- EXPORT/IMPORT BAR ---- */
 .data-bar{background:#1e2d45;color:#fff;border-radius:10px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .data-bar span{flex:1;font-size:13px}
-.data-bar button{padding:8px 14px;border:none;border-radius:7px;cursor:pointer;font-size:13px}
+.data-bar button{padding:8px 14px;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Phetsarath OT',Arial,sans-serif;white-space:nowrap}
+
+/* ---- MONTHLY DASHBOARD ---- */
 .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:14px}
-.month-tile{background:#fff;border-radius:10px;padding:12px;box-shadow:var(--shadow);cursor:pointer}
+.month-tile{background:#fff;border-radius:10px;padding:12px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.month-tile:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .month-tile.selected{border:2px solid var(--primary)}
 .month-tile .mt-name{font-size:12px;color:#555;margin-bottom:5px}
 .month-tile .mt-inc{font-size:13px;font-weight:bold;color:var(--green)}
 .month-tile .mt-exp{font-size:13px;font-weight:bold;color:var(--red)}
 .month-tile .mt-bal{font-size:11px;color:#888;margin-top:3px}
+
+/* ---- RESPONSIVE ---- */
 @media(max-width:767px){
   #sidebar{position:fixed;height:100%;transform:translateX(-100%);left:0;top:0}
   #sidebar.open{transform:translateX(0)}
-  #sidebar.open~#sidebar-overlay{display:block}
+  #sidebar-overlay{display:block;pointer-events:none;opacity:0;transition:opacity .28s}
+  #sidebar.open~#sidebar-overlay{pointer-events:auto;opacity:1}
   #main{margin-left:0 !important}
   #bottom-nav{display:flex}
   #content{padding-bottom:80px}
-  .grid3,.grid2{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
+  .sum-card .val{font-size:14px}
+  #topbar{padding:9px 12px}
+  .card{padding:13px}
+}
+@media(min-width:768px){
+  .grid3{grid-template-columns:repeat(3,1fr)}
+  .modal-bg{align-items:center}
+}
+@media(max-width:400px){
+  .grid3{grid-template-columns:1fr}
+  body{font-size:14px}
+}
+/* Safe area for iPhone notch */
+@supports(padding-bottom:env(safe-area-inset-bottom)){
+  #bottom-nav{padding-bottom:max(6px,env(safe-area-inset-bottom))}
 }
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -98,17 +194,18 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
 </head>
 <body>
 
-<div id="login-wrap" style="display:none;">
+<div id="login-wrap" style="display: none;">
   <div id="login-box">
     <div class="login-logo">
       <div style="font-size:44px">💰</div>
       <h2 style="color:#1e3a5f;font-size:20px;margin:8px 0 4px">ລະບົບລາຍຮັບ-ລາຍຈ່າຍ</h2>
+      <p style="color:#888;font-size:13px">Financial Management System</p>
     </div>
     <div id="form-login">
-      <label class="fl">ອີເມວ ຫຼື ຊື່ຜູ້ໃຊ້</label>
-      <input type="text" id="l-user" placeholder="username" onkeydown="if(event.key==='Enter')doLogin()">
+      <label class="fl">ຊື່ຜູ້ໃຊ້</label>
+      <input type="text" id="l-user" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
       <label class="fl">ລະຫັດຜ່ານ</label>
-      <input type="password" id="l-pass" placeholder="password" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="l-pass" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
       <p id="l-err" class="err" style="display:none"></p>
       <button class="btn-primary" onclick="doLogin()">🔐 ເຂົ້າສູ່ລະບົບ</button>
       <p style="text-align:center;font-size:14px;color:#555;margin-top:14px">
@@ -117,9 +214,9 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
     </div>
     <div id="form-reg" style="display:none">
       <h3 style="color:#1e3a5f;margin-bottom:14px;font-size:17px">ສ້າງບັນຊີໃໝ່</h3>
-      <label class="fl">ຊື່-ນາມສະກຸນ</label><input type="text" id="r-name">
-      <label class="fl">ຊື່ຜູ້ໃຊ້ (ໃສ່ khen ຫຼື ຊື່ເດີມ)</label><input type="text" id="r-user">
-      <label class="fl">ລະຫັດຜ່ານໃໝ່ (6 ຕົວຂຶ້ນໄປ)</label><input type="password" id="r-pass">
+      <label class="fl">ຊື່-ນາມສະກຸນ</label><input type="text" id="r-name" placeholder="ຊື່ຂອງທ່ານ">
+      <label class="fl">ຊື່ຜູ້ໃຊ້ (ສຳຄັນ! ໃສ່ khen ຄືເກົ່າເພື່ອດຶງຂໍ້ມູນ)</label><input type="text" id="r-user" placeholder="username" autocomplete="username">
+      <label class="fl">ລະຫັດຜ່ານໃໝ່ (6 ຕົວຂຶ້ນໄປ)</label><input type="password" id="r-pass" placeholder="password" autocomplete="new-password">
       <p id="r-err" class="err" style="display:none"></p>
       <button class="btn-primary" onclick="doRegister()">✅ ສ້າງບັນຊີ</button>
       <button class="btn-secondary" style="margin-top:8px" onclick="showReg(false)">← ກັບຄືນ</button>
@@ -127,95 +224,130 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
   </div>
 </div>
 
-<div id="app" style="display:none;">
+<div id="app" style="display: flex;">
   <div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
   <div id="sidebar">
     <div id="sb-inner">
-      <div class="sb-brand"><h2>💰 ການເງິນ</h2><p id="sb-uname">👤 khen</p></div>
+      <div class="sb-brand">
+        <h2>💰 ການເງິນ</h2>
+        <p id="sb-uname">👤 khen</p>
+      </div>
       <div class="sb-body">
         <div class="sb-item active" data-menu="dashboard" onclick="goMenu('dashboard');closeSidebar()">🏠 Dashboard ລວມ</div>
         <div class="sb-item" data-menu="dashboard_month" onclick="goMenu('dashboard_month');closeSidebar()">📊 Dashboard ປະຈຳເດືອນ</div>
         <div class="sb-item" data-menu="add_tx" onclick="goMenu('add_tx');closeSidebar()">➕ ເພີ່ມລາຍການ</div>
-        
-        <div class="sb-sec-head" onclick="toggleSec('sec-week')"><span>📅 ປະຈຳອາທິດ</span><span id="arr-sec-week">▼</span></div>
+
+        <div class="sb-sec-head" onclick="toggleSec('sec-week')">
+          <span>📅 ປະຈຳອາທິດ</span><span id="arr-sec-week">▼</span>
+        </div>
         <div id="sec-week" style="padding:6px 14px 7px">
           <input type="date" class="dk-inp" id="inp-week" oninput="onWeekChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="week" onclick="goMenu('week');closeSidebar()" id="lbl-week" style="padding-left:8px;font-size:12px">🗓</div>
+          <div class="sb-item" data-menu="week" onclick="goMenu('week');closeSidebar()" id="lbl-week" style="padding-left:8px;font-size:12px">🗓 5/31/2026 – 6/7/2026</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-month')"><span>📆 ປະຈຳເດືອນ</span><span id="arr-sec-month">▼</span></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-month')">
+          <span>📆 ປະຈຳເດືອນ</span><span id="arr-sec-month">▼</span>
+        </div>
         <div id="sec-month" style="padding:6px 14px 7px">
           <input type="month" class="dk-inp" id="inp-month" oninput="onMonthChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="month" onclick="goMenu('month');closeSidebar()" id="lbl-month" style="padding-left:8px;font-size:12px">📌</div>
+          <div class="sb-item" data-menu="month" onclick="goMenu('month');closeSidebar()" id="lbl-month" style="padding-left:8px;font-size:12px">📌 ມິຖຸນາ 2026</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-year')"><span>🗃 ປະຈຳປີ</span><span id="arr-sec-year">▼</span></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-year')">
+          <span>🗃 ປະຈຳປີ</span><span id="arr-sec-year">▼</span>
+        </div>
         <div id="sec-year" style="padding:6px 14px 7px">
-          <input type="number" class="dk-inp" id="inp-year" oninput="onYearChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="year" onclick="goMenu('year');closeSidebar()" id="lbl-year" style="padding-left:8px;font-size:12px">📂</div>
+          <input type="number" class="dk-inp" id="inp-year" min="2000" max="2099" oninput="onYearChange()" style="margin-bottom:7px">
+          <div class="sb-item" data-menu="year" onclick="goMenu('year');closeSidebar()" id="lbl-year" style="padding-left:8px;font-size:12px">📂 ປີ 2026</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-report')"><span>📑 ລາຍງານ</span><span id="arr-sec-report">▼</span></div>
-        <div id="sec-report"><div class="sb-item" data-menu="report" onclick="goMenu('report');closeSidebar()">🔍 ສ້າງລາຍງານ</div></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-report')">
+          <span>📑 ລາຍງານ</span><span id="arr-sec-report">▼</span>
+        </div>
+        <div id="sec-report">
+          <div class="sb-item" data-menu="report" onclick="goMenu('report');closeSidebar()">🔍 ສ້າງລາຍງານ</div>
+        </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-data')"><span>💾 ຂໍ້ມູນ</span><span id="arr-sec-data">▼</span></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-data')">
+          <span>💾 ຂໍ້ມູນ</span><span id="arr-sec-data">▼</span>
+        </div>
         <div id="sec-data">
           <div class="sb-item" onclick="exportHTMLFile();closeSidebar()">📤 Export HTML (ຍ້າຍເຄື່ອງ)</div>
-          <div class="sb-item" onclick="document.getElementById('import-file').click();closeSidebar()">📥 Import ຂໍ້ມູນ</div>
+          <div class="sb-item" onclick="document.getElementById('import-file').click();closeSidebar()">📥 📥 Import ຂໍ້ມູນ</div>
         </div>
 
         <div id="sb-admin-sec" style="display:none">
-          <div class="sb-sec-head" onclick="toggleSec('sec-admin')"><span>👑 Admin</span><span id="arr-sec-admin">▼</span></div>
+          <div class="sb-sec-head" onclick="toggleSec('sec-admin')">
+            <span>👑 Admin</span><span id="arr-sec-admin">▼</span>
+          </div>
           <div id="sec-admin">
             <div class="sb-item" data-menu="admin_users" onclick="goMenu('admin_users');closeSidebar()">👥 ຈັດການຜູ້ໃຊ້</div>
             <div class="sb-item" data-menu="admin_cats" onclick="goMenu('admin_cats');closeSidebar()">🏷 ຈັດການໝວດໝູ່</div>
           </div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-savings')"><span>🏦 ເງິນອອມ</span><span id="arr-sec-savings">▼</span></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-savings')">
+          <span>🏦 ເງິນອອມ</span><span id="arr-sec-savings">▼</span>
+        </div>
         <div id="sec-savings">
           <div class="sb-item" data-menu="savings_kip" onclick="goMenu('savings_kip');closeSidebar()">🇱🇦 ເງິນກີບ</div>
           <div class="sb-item" data-menu="savings_thb" onclick="goMenu('savings_thb');closeSidebar()">🇹🇭 ເງິນບາດ</div>
           <div class="sb-item" data-menu="savings_usd" onclick="goMenu('savings_usd');closeSidebar()">🇺🇸 ເງິນໂດລາ</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-exchange')"><span>💱 ອັດຕາແລກປ່ຽນ</span><span id="arr-sec-exchange">▼</span></div>
-        <div id="sec-exchange"><div class="sb-item" data-menu="exchange" onclick="goMenu('exchange');closeSidebar()">🔄 ຄຳນວນອັດຕາແລກປ່ຽນ</div></div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-exchange')">
+          <span>💱 ອັດຕາແລກປ່ຽນ</span><span id="arr-sec-exchange">▼</span>
+        </div>
+        <div id="sec-exchange">
+          <div class="sb-item" data-menu="exchange" onclick="goMenu('exchange');closeSidebar()">🔄 ຄຳນວນອັດຕາແລກປ່ຽນ</div>
+        </div>
       </div>
       <div class="sb-footer">
-        <button onclick="doLogout()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px;cursor:pointer">🚪 ອອກຈາກລະບົບ</button>
+        <button onclick="doLogout()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px;cursor:pointer;font-size:14px;font-family:'Phetsarath OT',Arial,sans-serif">🚪 ອອກຈາກລະບົບ</button>
       </div>
     </div>
   </div>
 
   <div id="main">
     <div id="topbar">
-      <button onclick="toggleSidebar()" style="background:none;border:none;font-size:24px;cursor:pointer">☰</button>
+      <button onclick="toggleSidebar()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#1e3a5f;padding:2px 6px;touch-action:manipulation">☰</button>
       <span id="topbar-title" style="font-weight:bold;color:#1e3a5f;font-size:15px;flex:1">📊 Dashboard ລວມ</span>
-      <button onclick="goMenu('add_tx')" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:7px 12px;cursor:pointer">➕</button>
+      <button onclick="goMenu('add_tx')" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;font-family:'Phetsarath OT',Arial,sans-serif;touch-action:manipulation">➕</button>
     </div>
     <div id="content"></div>
   </div>
 
   <nav id="bottom-nav">
-    <button class="bnav-item active" id="bn-dashboard" onclick="goMenu('dashboard')"><span class="bnav-icon">🏠</span><span>Dashboard</span></button>
-    <button class="bnav-item" id="bn-add_tx" onclick="goMenu('add_tx')"><span class="bnav-icon">➕</span><span>ເພີ່ມ</span></button>
-    <button class="bnav-item" id="bn-month" onclick="goMenu('month')"><span class="bnav-icon">📆</span><span>ເດືອນ</span></button>
-    <button class="bnav-item" id="bn-report" onclick="goMenu('report')"><span class="bnav-icon">📑</span><span>ລາຍງານ</span></button>
-    <button class="bnav-item" id="bn-more" onclick="openMore()"><span class="bnav-icon">⋯</span><span>ເພີ່ມເຕີມ</span></button>
+    <button class="bnav-item active" id="bn-dashboard" onclick="goMenu('dashboard')">
+      <span class="bnav-icon">🏠</span><span>Dashboard</span>
+    </button>
+    <button class="bnav-item" id="bn-add_tx" onclick="goMenu('add_tx')">
+      <span class="bnav-icon">➕</span><span>ເພີ່ມ</span>
+    </button>
+    <button class="bnav-item" id="bn-month" onclick="goMenu('month')">
+      <span class="bnav-icon">📆</span><span>ເດືອນ</span>
+    </button>
+    <button class="bnav-item" id="bn-report" onclick="goMenu('report')">
+      <span class="bnav-icon">📑</span><span>ລາຍງານ</span>
+    </button>
+    <button class="bnav-item" id="bn-more" onclick="openMore()">
+      <span class="bnav-icon">⋯</span><span>ເພີ່ມເຕີມ</span>
+    </button>
   </nav>
 </div>
 
 <input type="file" id="import-file" accept=".html,.json" style="display:none" onchange="importData(event)">
 
-<div id="edit-modal" class="modal-bg">
+<div id="edit-modal" class="modal-bg" style="display:none">
   <div class="modal-box">
-    <h3 style="color:#1e3a5f;margin-bottom:14px">✏️ ແກ້ໄຂລາຍການ</h3>
-    <label class="fl">ຈຳນວນເງິນ</label><input type="number" id="e-amount">
+    <div class="modal-handle"></div>
+    <h3 style="color:#1e3a5f;margin-bottom:14px;font-size:16px">✏️ ແກ້ໄຂລາຍການ</h3>
+    <label class="fl">ຈຳນວນເງິນ</label><input type="number" id="e-amount" inputmode="decimal">
     <label class="fl">ໝວດໝູ່</label><select id="e-cat" onchange="renderEditSub()"></select>
     <label class="fl">ໝວດຍ່ອຍ</label><select id="e-sub" class="sub-select"></select>
     <label class="fl">ວັນທີ</label><input type="date" id="e-date">
-    <label class="fl">ໝາຍເຫດ</label><input type="text" id="e-note">
+    <label class="fl">ໝາຍເຫດ</label><input type="text" id="e-note" placeholder="ໝາຍເຫດ">
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn-primary" onclick="saveEdit()">💾 ບັນທຶກ</button>
       <button class="btn-secondary" onclick="closeEdit()">ຍົກເລີກ</button>
@@ -225,33 +357,4323 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
 
 <div id="more-overlay" onclick="closeMore()"></div>
 <div id="more-menu">
-  <div style="font-weight:bold;color:#1e3a5f;margin-bottom:12px">⋯ ເພີ່ມເຕີມ</div>
+  <div style="font-weight:bold;color:#1e3a5f;margin-bottom:12px;font-size:15px">⋯ ເພີ່ມເຕີມ</div>
   <div class="more-item" onclick="goMenu('dashboard_month');closeMore()">📊 Dashboard ປະຈຳເດືອນ</div>
   <div class="more-item" onclick="goMenu('week');closeMore()">📅 ສະຫຼຸບປະຈຳອາທິດ</div>
   <div class="more-item" onclick="goMenu('year');closeMore()">🗃 ສະຫຼຸບປະຈຳປີ</div>
-  <div class="more-item" onclick="exportHTMLFile();closeMore()">📤 Export HTML</div>
-  <div class="more-item" onclick="document.getElementById('import-file').click();closeMore()">📥 Import ຂໍ້ມູນ</div>
+  <div class="more-item" onclick="exportHTMLFile();closeMore()">📤 Export HTML (ຍ້າຍເຄື່ອງ)</div>
+  <div class="more-item" onclick="document.getElementById('import-file').click();closeMore()">📥 📥 Import ຂໍ້ມູນ</div>
   <div id="more-admin-item" style="display:none">
     <div class="more-item" onclick="goMenu('admin_users');closeMore()">👥 ຈັດການຜູ້ໃຊ້</div>
     <div class="more-item" onclick="goMenu('admin_cats');closeMore()">🏷 ຈັດການໝວດໝູ່</div>
   </div>
-  <div style="margin-top:10px"><button onclick="doLogout();closeMore()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:11px">🚪 ອອກຈາກລະບົບ</button></div>
+  <div class="more-item" onclick="goMenu('savings_kip');closeMore()">🏦🇱🇦 ເງິນອອມ (ກີບ)</div>
+  <div class="more-item" onclick="goMenu('savings_thb');closeMore()">🏦🇹🇭 ເງິນອອມ (ບາດ)</div>
+  <div class="more-item" onclick="goMenu('savings_usd');closeMore()">🏦🇺🇸 ເງິນອອມ (ໂດລາ)</div>
+  <div class="more-item" onclick="goMenu('exchange');closeMore()">💱 ຄຳນວນອັດຕາແລກປ່ຽນ</div>
+  <div style="margin-top:10px"><button onclick="doLogout();closeMore()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;font-size:14px;font-family:'Phetsarath OT',Arial,sans-serif">🚪 ອອກຈາກລະບົບ</button></div>
 </div>
 
 <script>
-/* ===================== INIT & FIREBASE ===================== */
+/* ===================== DATA ===================== */
 const SK="fin_v7";
 const MONTHS=["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ"];
+
 function defData(){
   return {
-    users:[], categories:{income:[{name:"ເງິນເດືອນ",subs:[]},{name:"ເງິນອຶ່ນໆ",subs:[]}],expense:[{name:"ອາຫານ",subs:[]},{name:"ອຸປະກອນເຄື່ອງໃຊ້",subs:[]}]},
-    transactions:[], nextId:1, savings:{kip:[],thb:[],usd:[]}
+    users:[],
+    categories:{income:[],expense:[]},
+    transactions:[],
+    nextId:1,
+    savings:{kip:[],thb:[],usd:[]}
   };
 }
-let DB, CU, curMenu="dashboard", weekDate="", monthDate="", yearDate="", topTab="expense", editId=null, catExpand={}, reportFilter={type:"",cat:"",sub:"",period:"month",monthVal:"",yearVal:""};
 
+let DB, CU, curMenu="dashboard";
+let weekDate="", monthDate="", yearDate="";
+let topTab="expense", editId=null;
+let catExpand={};
+let dashTab="all";
+let reportFilter={type:"",cat:"",sub:"",period:"month",monthVal:"",yearVal:""};
+
+// EMBEDDED_DATA_START
+var EMBEDDED_DB = {
+  "transactions": [
+    {
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-01",
+      "type": "expense",
+      "amount": 80000,
+      "id": 1,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ 0546"
+    },
+    {
+      "note": "ຄ່າເຮັດ passport",
+      "userId": 1779937218244,
+      "id": 2,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-04-01",
+      "type": "expense",
+      "amount": 860000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "type": "expense",
+      "amount": 136000,
+      "date": "2026-04-03",
+      "category": "ນ້ຳມັນ",
+      "sub": "",
+      "id": 3
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນສັກວັກຊິນ",
+      "amount": 340000,
+      "type": "income",
+      "date": "2026-04-03",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນສັກວັກຊິນ",
+      "id": 4
+    },
+    {
+      "note": "ເງິນຄຣິິນິກ (ຄ)",
+      "userId": 1779937218244,
+      "id": 5,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "date": "2026-04-03",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 80000
+    },
+    {
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-04-03",
+      "amount": 500000,
+      "type": "income",
+      "id": 6,
+      "sub": "ເງິນສັກວັກຊິນ",
+      "userId": 1779937218244,
+      "note": "ເງິນສັກວັກຊິນ"
+    },
+    {
+      "id": 7,
+      "sub": "ນ້ຳດື່ມ",
+      "date": "2026-04-04",
+      "category": "ເຄື່ອງດື່ມ",
+      "amount": 10000,
+      "type": "expense",
+      "note": "ນ້ຳດື່ມ",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-04-04",
+      "category": "ຄ່າເດີນທາງ",
+      "amount": 301200,
+      "type": "expense",
+      "id": 8,
+      "sub": "ຄ່າທາງ",
+      "userId": 1779937218244,
+      "note": "ເສຍຄ່າທາງລົດ Prado"
+    },
+    {
+      "id": 9,
+      "sub": "ນ້ຳມັນເຄື່ອງ",
+      "date": "2026-04-04",
+      "category": "ນ້ຳມັນ",
+      "amount": 840000,
+      "type": "expense",
+      "note": "ນ້ຳມັນເຄື່ອງລົດ Prado",
+      "userId": 1779937218244
+    },
+    {
+      "id": 10,
+      "sub": "ສ້ອມແປງເຄື່ອງສຽງ",
+      "category": "ສ້ອມແປງ",
+      "date": "2026-04-04",
+      "type": "expense",
+      "amount": 2500000,
+      "note": "ສ້ອມແປງແອັມ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້ ເດີນທາງກັບບາ້ນ",
+      "userId": 1779937218244,
+      "sub": "ນ້ຳມັນລົດ prado",
+      "id": 11,
+      "type": "expense",
+      "amount": 2500000,
+      "date": "2026-04-04",
+      "category": "ນ້ຳມັນ"
+    },
+    {
+      "note": "່ປ່ຽນຢາງໃນ",
+      "userId": 1779937218244,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 12,
+      "type": "expense",
+      "amount": 90000,
+      "date": "2026-04-04",
+      "category": "ສ້ອມແປງ"
+    },
+    {
+      "amount": 110000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-04",
+      "sub": "ນ້ຳດື່ມ",
+      "id": 13,
+      "userId": 1779937218244,
+      "note": "ນ້ຳດື່ມຕຸກ 20 ລິດ"
+    },
+    {
+      "id": 14,
+      "sub": "ນ້ຳມັນລົດ prado",
+      "date": "2026-04-05",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 1000000,
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ສົ້ມປາໂດ + ປາແຫ້ງ",
+      "userId": 1779937218244,
+      "sub": "ຊື້ເຄື່ອງກິນ",
+      "id": 15,
+      "amount": 350000,
+      "type": "expense",
+      "date": "2026-04-05",
+      "category": "ອາຫານ"
+    },
+    {
+      "note": "ຄ່າເບຍ",
+      "userId": 1779937218244,
+      "sub": "ເບຍ",
+      "id": 16,
+      "amount": 150000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-07"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
+      "type": "expense",
+      "amount": 500000,
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-08",
+      "sub": "ນ້ຳມັນລົດ prado",
+      "id": 17
+    },
+    {
+      "sub": "ກາເຟດຳ ຜົງ",
+      "id": 18,
+      "amount": 100000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-08",
+      "note": "ຊື້ກາເຟດຳ ຖົງ",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ຄ່າດ່ານ",
+      "id": 19,
+      "amount": 140000,
+      "type": "expense",
+      "date": "2026-04-08",
+      "category": "ອື່ນໆ",
+      "note": "ເສຍຄ່າດ່ານ ໄປ - ກັບ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ຊ່ວຍເບຍຄຳແມ້ວ ຕ້ອນຮັບ",
+      "userId": 1779937218244,
+      "id": 20,
+      "sub": "ເບຍ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-09",
+      "type": "expense",
+      "amount": 500000
+    },
+    {
+      "sub": "",
+      "id": 21,
+      "amount": 525000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-10",
+      "note": "ຊື້ນ້ຳມັນໃຫ້ພໍ່",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
+      "userId": 1779937218244,
+      "id": 22,
+      "sub": "ນ້ຳມັນລົດ prado",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-10",
+      "type": "expense",
+      "amount": 1500000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເຕີມເນັດໂທລະສັບ",
+      "type": "expense",
+      "amount": 50000,
+      "date": "2026-04-10",
+      "category": "ອິນເຕີເນັດ",
+      "sub": "ເນັດໂທລະສັບ",
+      "id": 23
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
+      "date": "2026-04-12",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 1500000,
+      "id": 24,
+      "sub": "ນ້ຳມັນລົດ prado"
+    },
+    {
+      "note": "ຊື້ເລກ",
+      "userId": 1779937218244,
+      "id": 25,
+      "sub": "ຊື້ເລກ",
+      "date": "2026-04-13",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 22000
+    },
+    {
+      "note": "ເງິນອຸດໜູນກອງເລຂາ",
+      "userId": 1779937218244,
+      "sub": "ເງິນກອງເລຂາ",
+      "id": 26,
+      "amount": 700000,
+      "type": "income",
+      "date": "2026-04-13",
+      "category": "ເງິນອຶ່ນໆ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-15",
+      "type": "expense",
+      "amount": 300000,
+      "id": 27,
+      "sub": "ນ້ຳມັນລົດ prado"
+    },
+    {
+      "note": "ຊື້ 3 ຊັ້ນໄປກິນຄຣີນິກເມຍ",
+      "userId": 1779937218244,
+      "id": 28,
+      "sub": "ອາຫານແລງ",
+      "date": "2026-04-15",
+      "category": "ອາຫານ",
+      "amount": 347000,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-04-15",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 230000,
+      "id": 29,
+      "sub": ""
+    },
+    {
+      "note": "ເບຍ + ເປັດເຮືອນອ້າຍຕຸ້ຍ",
+      "userId": 1779937218244,
+      "id": 30,
+      "sub": "ເບຍ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-17",
+      "type": "expense",
+      "amount": 460000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ອາຫານກວາງ",
+      "amount": 60000,
+      "type": "expense",
+      "date": "2026-04-18",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 31
+    },
+    {
+      "category": "ອາຫານ",
+      "date": "2026-04-18",
+      "amount": 210000,
+      "type": "expense",
+      "id": 32,
+      "sub": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "note": "ຊື້ແນວກິນອອກຕະຫຼາດ"
+    },
+    {
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-21",
+      "type": "expense",
+      "amount": 100000,
+      "id": 33,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 34,
+      "amount": 200000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-04-21",
+      "note": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 35,
+      "amount": 80000,
+      "type": "income",
+      "date": "2026-04-22",
+      "category": "ເງິນອຶ່ນໆ"
+    },
+    {
+      "id": 36,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-22",
+      "amount": 80000,
+      "type": "expense",
+      "note": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-04-23",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "amount": 376338,
+      "type": "expense",
+      "id": 37,
+      "sub": "ຄ່າໄຟ",
+      "userId": 1779937218244,
+      "note": "ຄ່າໄຟຟ້າເດືອນ 03/2026"
+    },
+    {
+      "date": "2026-04-23",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "amount": 64000,
+      "type": "expense",
+      "id": 38,
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "userId": 1779937218244,
+      "note": "ຄ່າຂົນສົ່ງມີໄຊມາແຕ່ໄທ"
+    },
+    {
+      "note": "ຊື້ເລກ",
+      "userId": 1779937218244,
+      "sub": "ຊື້ເລກ",
+      "id": 39,
+      "amount": 20000,
+      "type": "expense",
+      "date": "2026-04-23",
+      "category": "ອື່ນໆ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນອ້າຍຕຽນໃຫ້",
+      "type": "income",
+      "amount": 200000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-04-23",
+      "sub": "",
+      "id": 40
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-24",
+      "amount": 138000,
+      "type": "expense",
+      "id": 41,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "type": "expense",
+      "amount": 30000,
+      "date": "2026-04-24",
+      "category": "ອື່ນໆ",
+      "sub": "ຕັດຜົມ",
+      "id": 42,
+      "userId": 1779937218244,
+      "note": "ຄ່າຕັດຜົມ"
+    },
+    {
+      "date": "2026-04-24",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 200000,
+      "id": 43,
+      "sub": "ເງິນຄຣີນິກ",
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເຕີມເນັດໂທລະສັບ",
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-04-24",
+      "amount": 50000,
+      "type": "expense",
+      "id": 44,
+      "sub": "ເນັດໂທລະສັບ"
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 45,
+      "type": "income",
+      "amount": 3000000,
+      "date": "2026-04-24",
+      "category": "ເງິນອຶ່ນໆ",
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນສັກວັກຊິນ",
+      "type": "income",
+      "amount": 1500000,
+      "date": "2026-04-24",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນສັກວັກຊິນ",
+      "id": 46
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນຍາມ",
+      "type": "income",
+      "amount": 200000,
+      "date": "2026-04-24",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຍາມ",
+      "id": 47
+    },
+    {
+      "note": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 48,
+      "type": "expense",
+      "amount": 500000,
+      "date": "2026-04-25",
+      "category": "ອາຫານ"
+    },
+    {
+      "type": "expense",
+      "amount": 400000,
+      "category": "ອື່ນໆ",
+      "date": "2026-04-26",
+      "sub": "",
+      "id": 49,
+      "userId": 1779937218244,
+      "note": "ຂື້ນເຮືອນໃໝ່ນາງແອ"
+    },
+    {
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "id": 50,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-04-26",
+      "amount": 137000,
+      "type": "expense"
+    },
+    {
+      "id": 51,
+      "sub": "ເສຍຄ່າທາງ",
+      "category": "ອື່ນໆ",
+      "date": "2026-04-26",
+      "type": "expense",
+      "amount": 20520,
+      "note": "ຄ່າທາງລົດ wavei 0546",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເສຍຄ່າລົງທະບຽນ Canva",
+      "date": "2026-04-27",
+      "category": "ອື່ນໆ",
+      "amount": 334375,
+      "type": "expense",
+      "id": 52,
+      "sub": ""
+    },
+    {
+      "sub": "ຊື້ເລກ",
+      "id": 53,
+      "type": "expense",
+      "amount": 15000,
+      "date": "2026-04-27",
+      "category": "ອື່ນໆ",
+      "note": "ຊື້ເລກ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຂົ້າທ່ຽງກັບໝູ່",
+      "category": "ອາຫານ",
+      "date": "2026-04-27",
+      "amount": 40000,
+      "type": "expense",
+      "id": 54,
+      "sub": "ເຂົ້າສວຍ"
+    },
+    {
+      "id": 55,
+      "sub": "ເຂົ້າສວຍ",
+      "category": "ອາຫານ",
+      "date": "2026-04-28",
+      "amount": 30000,
+      "type": "expense",
+      "note": "ເຂົ້າທ່ຽງ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ຫົວເຈະາເພດານ",
+      "userId": 1779937218244,
+      "id": 56,
+      "sub": "",
+      "date": "2026-04-28",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 40000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນສັກວັກຊິນ",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-04-28",
+      "type": "income",
+      "amount": 300000,
+      "id": 57,
+      "sub": "ເງິນສັກວັກຊິນ"
+    },
+    {
+      "note": "ເງິນສັກວັກຊິນ",
+      "userId": 1779937218244,
+      "id": 58,
+      "sub": "ເງິນສັກວັກຊິນ",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-04-28",
+      "amount": 210000,
+      "type": "income"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ອອກເງິນກັນຄ່າປ້ອງກັນບົດ",
+      "type": "expense",
+      "amount": 246000,
+      "category": "ອື່ນໆ",
+      "date": "2026-04-28",
+      "sub": "",
+      "id": 59
+    },
+    {
+      "sub": "ເຂົ້າສວຍ",
+      "id": 60,
+      "type": "expense",
+      "amount": 40000,
+      "date": "2026-04-28",
+      "category": "ອາຫານ",
+      "note": "ກິນເຂົ້າສວຍຍາມ",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-04-29",
+      "category": "ນ້ຳມັນ",
+      "amount": 100000,
+      "type": "expense",
+      "id": 61,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "amount": 11000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-04-29",
+      "sub": "ນ້ຳດື່ມ",
+      "id": 62,
+      "userId": 1779937218244,
+      "note": "ນ້ຳດື່ມ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "type": "income",
+      "amount": 300000,
+      "date": "2026-04-29",
+      "category": "ເງິນຄຣີນິກ (ຄ)",
+      "sub": "",
+      "id": 63
+    },
+    {
+      "note": "ຜ້າກັນຝົນ 3 ຄົນ",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 64,
+      "type": "expense",
+      "amount": 450000,
+      "date": "2026-04-29",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້"
+    },
+    {
+      "sub": "ເຂົ້າສວຍ",
+      "id": 65,
+      "amount": 100000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-04-30",
+      "note": "ເຂົ້າສວຍ",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 66,
+      "amount": 600000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-04-30",
+      "note": "ເງິນຄຣິນິກ (ຄ)",
+      "userId": 1779937218244
+    },
+    {
+      "id": 67,
+      "sub": "ເງິນເດືອນພື້ນຖານ",
+      "category": "ເງິນເດືອນ",
+      "date": "2026-04-30",
+      "amount": 7500000,
+      "type": "income",
+      "note": "ເງິນເດືອນ 04/2026",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 50000,
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-01-01",
+      "sub": "ເບຍ",
+      "id": 68,
+      "userId": 1779937218244,
+      "note": "ຈ່າຍຄ່າເບຍໃຫ້ຄຳແມ້ວ"
+    },
+    {
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-01-01",
+      "amount": 250000,
+      "type": "expense",
+      "id": 69,
+      "sub": "ເບຍ",
+      "userId": 1779937218244,
+      "note": "ກິນເບຍປີໃໝ່ສາກົນ"
+    },
+    {
+      "type": "income",
+      "amount": 1000000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-01",
+      "sub": "ເງິນຄຣີນິກ",
+      "id": 70,
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ"
+    },
+    {
+      "category": "ສ້ອມແປງ",
+      "date": "2026-01-01",
+      "type": "expense",
+      "amount": 130000,
+      "id": 71,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": "ສ້ອມແປງລົດຈັກຄັນຟ້າ"
+    },
+    {
+      "note": "ເງິນສັກວັກຊິນ",
+      "userId": 1779937218244,
+      "sub": "ເງິນສັກວັກຊິນ",
+      "id": 72,
+      "type": "income",
+      "amount": 125000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-01"
+    },
+    {
+      "date": "2026-01-02",
+      "category": "ອາຫານ",
+      "amount": 230000,
+      "type": "expense",
+      "id": 73,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຄ່າຊີ້ນງົວ"
+    },
+    {
+      "note": "ຄ່າຊື້ເລກ",
+      "userId": 1779937218244,
+      "id": 74,
+      "sub": "ຊື້ເລກ",
+      "category": "ອື່ນໆ",
+      "date": "2026-01-02",
+      "amount": 10000,
+      "type": "expense"
+    },
+    {
+      "sub": "ອາຫານທ່ຽງ",
+      "id": 75,
+      "amount": 100000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-01-02",
+      "note": "ກິນເຂົ້າກັບໝູ່",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 39000,
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-01-03",
+      "sub": "",
+      "id": 76,
+      "userId": 1779937218244,
+      "note": "ອຸປະກອນທໍ່ນໍ້າ"
+    },
+    {
+      "category": "ອື່ນໆ",
+      "date": "2026-01-03",
+      "amount": 90000,
+      "type": "expense",
+      "id": 77,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຊື້ແນວກິນເຮືອນອ້າຍຕຸ້ຍ"
+    },
+    {
+      "amount": 160000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-04",
+      "sub": "ເງິນສັກວັກຊິນ",
+      "id": 78,
+      "userId": 1779937218244,
+      "note": "ເງິນສັກວັກຊິນ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "amount": 70000,
+      "type": "expense",
+      "date": "2026-01-05",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 79
+    },
+    {
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-01-05",
+      "amount": 73000,
+      "type": "expense",
+      "id": 80,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ອຸປະກອນທໍ່ນ້ຳ"
+    },
+    {
+      "category": "ອື່ນໆ",
+      "date": "2026-01-07",
+      "type": "expense",
+      "amount": 40000,
+      "id": 81,
+      "sub": "ຊື້ເລກ",
+      "userId": 1779937218244,
+      "note": "ຊື້ເລກ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຊື້ນ້ຳດື່ມ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-01-07",
+      "type": "expense",
+      "amount": 10000,
+      "id": 82,
+      "sub": "ນ້ຳດື່ມ"
+    },
+    {
+      "amount": 2359471,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-01-08",
+      "sub": "ກ້ອງວົງຈອນປິດ",
+      "id": 83,
+      "userId": 1779937218244,
+      "note": "ຊື້ເຄື່ອງກ້ອງ NVR + ກ້ອງ 1 ໂຕ"
+    },
+    {
+      "type": "expense",
+      "amount": 165000,
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-01-08",
+      "sub": "ເບຍ",
+      "id": 84,
+      "userId": 1779937218244,
+      "note": "ເບຍ"
+    },
+    {
+      "id": 85,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-08",
+      "type": "expense",
+      "amount": 80000,
+      "note": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 86,
+      "amount": 250000,
+      "type": "expense",
+      "date": "2026-01-08",
+      "category": "ອາຫານ"
+    },
+    {
+      "id": 87,
+      "sub": "ເງິນໂບນັດທ້າຍປີ",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-09",
+      "amount": 3000000,
+      "type": "income",
+      "note": "ເງິນໂບນັດບໍລິສັດໃຫ້",
+      "userId": 1779937218244
+    },
+    {
+      "amount": 300000,
+      "type": "expense",
+      "date": "2026-01-09",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 88,
+      "userId": 1779937218244,
+      "note": "ໃຫ້ນ້ອງ"
+    },
+    {
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-10",
+      "type": "income",
+      "amount": 1000000,
+      "id": 89,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ (ຄ)"
+    },
+    {
+      "note": "ຜູກແຂນລູກອ້າຍແໜ້ນ",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 90,
+      "amount": 450000,
+      "type": "expense",
+      "category": "ອື່ນໆ",
+      "date": "2026-01-10"
+    },
+    {
+      "category": "ຄ່າຂົນສົ່ງ",
+      "date": "2026-01-11",
+      "type": "expense",
+      "amount": 15000,
+      "id": 91,
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "userId": 1779937218244,
+      "note": "ຄ່າຂົນສົ່ງມີໄຊ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເກີບມື 2",
+      "date": "2026-01-12",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 500000,
+      "id": 92,
+      "sub": "ເກີບມື 2"
+    },
+    {
+      "id": 93,
+      "sub": "ອາຫານທ່ຽງ",
+      "category": "ອາຫານ",
+      "date": "2026-01-12",
+      "type": "expense",
+      "amount": 44000,
+      "note": "ກິນເຂົ້າສວຍ",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ເຂົ້າສານ",
+      "date": "2026-01-12",
+      "amount": 650000,
+      "type": "expense",
+      "id": 94,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຊື້ເຂົ້າສານນຳອ້າຍໃບ 1 ເປົາ"
+    },
+    {
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 95,
+      "amount": 78000,
+      "type": "expense",
+      "date": "2026-01-12",
+      "category": "ນ້ຳມັນ",
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 96,
+      "type": "income",
+      "amount": 200000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-13"
+    },
+    {
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 97,
+      "type": "expense",
+      "amount": 175000,
+      "date": "2026-01-13",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "note": "ຄ່າຂົນສົ່ງມີໄຊ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ 0546",
+      "amount": 80000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-13",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 98
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "type": "income",
+      "amount": 1625000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-14",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 99
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "amount": 70000,
+      "type": "expense",
+      "date": "2026-01-15",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 100
+    },
+    {
+      "note": "ຄ່າຂົນສົ່ງມີໄຊ",
+      "userId": 1779937218244,
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 101,
+      "amount": 113000,
+      "type": "expense",
+      "date": "2026-01-15",
+      "category": "ຄ່າຂົນສົ່ງ"
+    },
+    {
+      "sub": "ເນັດໂທລະສັບ",
+      "id": 102,
+      "type": "expense",
+      "amount": 10000,
+      "date": "2026-01-15",
+      "category": "ອິນເຕີເນັດ",
+      "note": "ເຕີມເນັດໂທລະສັບ",
+      "userId": 1779937218244
+    },
+    {
+      "id": 103,
+      "sub": "ອາຫານທ່ຽງ",
+      "category": "ອາຫານ",
+      "date": "2026-01-15",
+      "type": "expense",
+      "amount": 50000,
+      "note": "ກິນເຂົ້າສວຍ",
+      "userId": 1779937218244
+    },
+    {
+      "type": "income",
+      "amount": 100000,
+      "date": "2026-01-15",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຍາມ",
+      "id": 104,
+      "userId": 1779937218244,
+      "note": "ເງິນຍາມ"
+    },
+    {
+      "note": "ນ້ຳດື່ມ",
+      "userId": 1779937218244,
+      "id": 105,
+      "sub": "ນ້ຳດື່ມ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-01-16",
+      "amount": 10000,
+      "type": "expense"
+    },
+    {
+      "note": "ເຂົ້າສວຍ",
+      "userId": 1779937218244,
+      "sub": "ອາຫານທ່ຽງ",
+      "id": 106,
+      "type": "expense",
+      "amount": 27000,
+      "category": "ອາຫານ",
+      "date": "2026-01-16"
+    },
+    {
+      "type": "income",
+      "amount": 3100000,
+      "date": "2026-01-16",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 107,
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ (ຄ)"
+    },
+    {
+      "type": "expense",
+      "amount": 35000,
+      "category": "ອາຫານ",
+      "date": "2026-01-16",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 108,
+      "userId": 1779937218244,
+      "note": "ຊື້ຜັກ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າຂົນສົ່ງມີໄຊ",
+      "date": "2026-01-17",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "amount": 102000,
+      "type": "expense",
+      "id": 109,
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ"
+    },
+    {
+      "date": "2026-01-18",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 250000,
+      "id": 110,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຮາດດິດກ້ອງວົງຈອນປິດ"
+    },
+    {
+      "date": "2026-01-19",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 96000,
+      "id": 111,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຫົວແລນ ກ້ອງວົງຈອນປິດ"
+    },
+    {
+      "id": 112,
+      "sub": "ນ້ຳດື່ມ",
+      "date": "2026-01-19",
+      "category": "ເຄື່ອງດື່ມ",
+      "type": "expense",
+      "amount": 45000,
+      "note": "ນ້ຳດື່ມ 1 ແພັກ",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-01-19",
+      "category": "ສ້ອມແປງ",
+      "amount": 5000,
+      "type": "expense",
+      "id": 113,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": "ເຄັ່ງໂສ້"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າຂົນສົ່ງມີໄຊ",
+      "amount": 9000,
+      "type": "expense",
+      "date": "2026-01-21",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 114
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 115,
+      "amount": 100000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-21",
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244,
+      "id": 116,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "date": "2026-01-21",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 80000
+    },
+    {
+      "sub": "",
+      "id": 117,
+      "type": "expense",
+      "amount": 500000,
+      "date": "2026-01-21",
+      "category": "ອື່ນໆ",
+      "note": "ກິນທານ",
+      "userId": 1779937218244
+    },
+    {
+      "id": 118,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "date": "2026-01-21",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 414000,
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "id": 119,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-21",
+      "amount": 70000,
+      "type": "expense"
+    },
+    {
+      "sub": "ນ້ຳດື່ມ",
+      "id": 120,
+      "type": "expense",
+      "amount": 80000,
+      "date": "2026-01-22",
+      "category": "ເຄື່ອງດື່ມ",
+      "note": "ນ້ຳດື່ມຕຸກ 20 ລິດ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "amount": 1200000,
+      "type": "income",
+      "date": "2026-01-22",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 121
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຫົວອາຫານ 1 ເປົາ + ຮຳ + ແນວໃສ່ນ້ຳໄກ່",
+      "category": "ອື່ນໆ",
+      "date": "2026-01-23",
+      "type": "expense",
+      "amount": 359000,
+      "id": 122,
+      "sub": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນທານນຳອ້າຍ",
+      "category": "ອື່ນໆ",
+      "date": "2026-01-24",
+      "type": "expense",
+      "amount": 500000,
+      "id": 123,
+      "sub": ""
+    },
+    {
+      "sub": "",
+      "id": 124,
+      "type": "expense",
+      "amount": 20000,
+      "date": "2026-01-24",
+      "category": "ເຄື່ອງດື່ມ",
+      "note": "ນ້ຳອ້ອຍ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-24",
+      "amount": 75000,
+      "type": "expense",
+      "id": 125,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "id": 126,
+      "sub": "ໂທລະສັບ",
+      "category": "ສ້ອມແປງ",
+      "date": "2026-01-24",
+      "amount": 650000,
+      "type": "expense",
+      "note": "ປ່ຽນໜ້າຈໍໂທລະສັບໄອໂຟນ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າໄຟຟ້າເດືອນ 12/2025",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "date": "2026-01-25",
+      "amount": 231025,
+      "type": "expense",
+      "id": 127,
+      "sub": "ຄ່າໄຟ"
+    },
+    {
+      "date": "2026-01-25",
+      "category": "ອາຫານ",
+      "amount": 200000,
+      "type": "expense",
+      "id": 128,
+      "sub": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "note": "ອອກຕະຫຼາດ"
+    },
+    {
+      "type": "expense",
+      "amount": 30000,
+      "category": "ອາຫານ",
+      "date": "2026-01-26",
+      "sub": "ອາຫານທ່ຽງ",
+      "id": 129,
+      "userId": 1779937218244,
+      "note": "ເຂົ້າປຽກສວຍ"
+    },
+    {
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 130,
+      "amount": 10000,
+      "type": "expense",
+      "date": "2026-01-26",
+      "category": "ສ້ອມແປງ",
+      "note": "ສ້ອມແປງລົດຄັນຟ້າ",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 131,
+      "amount": 50000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-26",
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-28",
+      "type": "expense",
+      "amount": 74000,
+      "id": 132,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "note": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 133,
+      "amount": 200000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-01-28"
+    },
+    {
+      "note": "ຊື້ຜ້າຢາງ + ແໜ",
+      "userId": 1779937218244,
+      "id": 134,
+      "sub": "",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-01-28",
+      "amount": 110000,
+      "type": "expense"
+    },
+    {
+      "id": 135,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-01-28",
+      "type": "expense",
+      "amount": 250000,
+      "note": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຮຳໄກ່ 1 ສອບ",
+      "type": "expense",
+      "amount": 115000,
+      "category": "ອື່ນໆ",
+      "date": "2026-01-29",
+      "sub": "",
+      "id": 136
+    },
+    {
+      "date": "2026-01-30",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 220000,
+      "id": 137,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ຊື້ນ້ຳຂື້ນ Case + ເຂົ້າສວຍ"
+    },
+    {
+      "type": "expense",
+      "amount": 250000,
+      "date": "2026-01-12",
+      "category": "ອາຫານ",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 138,
+      "userId": 1779937218244,
+      "note": "ອອກຕະຫຼາດ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ 0546",
+      "amount": 50000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-01-30",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 139
+    },
+    {
+      "id": 140,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-01",
+      "amount": 60000,
+      "type": "expense",
+      "note": "ຄ່າຝາກລົດບຸນດົງຄວຍ",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-02-01",
+      "category": "ສ້ອມແປງ",
+      "amount": 4000,
+      "type": "expense",
+      "id": 141,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": "ຄ່າສູບລົດ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຍິງປຸ້ມເປົ້າ ບຸນດົງຄວຍ",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-01",
+      "type": "expense",
+      "amount": 20000,
+      "id": 142,
+      "sub": ""
+    },
+    {
+      "id": 143,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-01",
+      "amount": 20000,
+      "type": "expense",
+      "note": "ຊື້ປີ້ງປາມືກແຫ້ງ ບຸນດົງຄວຍ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນລົດ 0546",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-02-02",
+      "type": "expense",
+      "amount": 77000,
+      "id": 144,
+      "sub": "ນ້ຳມັນລົດ 0546"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 145,
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "date": "2026-02-02",
+      "amount": 238000,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 1000000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-02",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 146
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເຂົ້າສວຍຫ້ອງການ",
+      "type": "expense",
+      "amount": 38000,
+      "category": "ອາຫານ",
+      "date": "2026-02-02",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 147
+    },
+    {
+      "id": 148,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-02-02",
+      "amount": 230000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "income",
+      "amount": 120000,
+      "date": "2026-02-04",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 149
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 30000,
+      "category": "ຄ່າຂົນສົ່ງ",
+      "date": "2026-02-04",
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 150
+    },
+    {
+      "note": "ເງິນກອງຫຼອນບ້ານ",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 151,
+      "type": "expense",
+      "amount": 70000,
+      "date": "2026-02-04",
+      "category": "ອື່ນໆ"
+    },
+    {
+      "note": "ຊື້ເຂົ້າໜຽວ",
+      "userId": 1779937218244,
+      "id": 152,
+      "sub": "",
+      "date": "2026-02-05",
+      "category": "ອາຫານ",
+      "type": "expense",
+      "amount": 30000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ປ່ຽນຢາງໃນ",
+      "amount": 80000,
+      "type": "expense",
+      "date": "2026-02-05",
+      "category": "ສ້ອມແປງ",
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 153
+    },
+    {
+      "date": "2026-02-05",
+      "category": "ເງິນອຶ່ນໆ",
+      "amount": 502000,
+      "type": "income",
+      "id": 154,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 155,
+      "type": "income",
+      "amount": 1000000,
+      "date": "2026-02-06",
+      "category": "ເງິນອຶ່ນໆ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ໂຄຣໂລນນີເວຍ",
+      "type": "expense",
+      "amount": 49000,
+      "date": "2026-02-06",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "sub": "",
+      "id": 156
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຜ້າກັນແສງ",
+      "amount": 60000,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-02-08",
+      "sub": "",
+      "id": 157
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 270000,
+      "date": "2026-02-08",
+      "category": "ເຄື່ອງດື່ມ",
+      "sub": "ເບຍ",
+      "id": 158
+    },
+    {
+      "sub": "ເງິນຍາມ",
+      "id": 159,
+      "type": "income",
+      "amount": 140000,
+      "date": "2026-02-08",
+      "category": "ເງິນອຶ່ນໆ",
+      "note": "ເງິນໄປຍາມໂຮງໝໍ",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 75000,
+      "date": "2026-02-09",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 160,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "sub": "",
+      "id": 161,
+      "amount": 70000,
+      "type": "expense",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-09",
+      "note": "ຊື້ຕົ້ນໄມ້ມາປູກ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ກິນທານນຳພໍ່ປິກ",
+      "userId": 1779937218244,
+      "id": 162,
+      "sub": "",
+      "date": "2026-02-09",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 150000
+    },
+    {
+      "id": 163,
+      "sub": "ອອກຕະຫຼາດ",
+      "date": "2026-02-09",
+      "category": "ອາຫານ",
+      "amount": 260000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "income",
+      "amount": 400000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-10",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 164
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-02-10",
+      "category": "ອາຫານ",
+      "amount": 150000,
+      "type": "expense",
+      "id": 165,
+      "sub": "ອອກຕະຫຼາດ"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 166,
+      "sub": "ນ້ຳດື່ມ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-02-10",
+      "type": "expense",
+      "amount": 36000
+    },
+    {
+      "type": "expense",
+      "amount": 25000,
+      "category": "ອື່ນໆ",
+      "date": "2026-02-10",
+      "sub": "",
+      "id": 167,
+      "userId": 1779937218244,
+      "note": "ຊື້ແໜມາລ້ຽງ"
+    },
+    {
+      "category": "ອາຫານ",
+      "date": "2026-02-11",
+      "type": "expense",
+      "amount": 220000,
+      "id": 168,
+      "sub": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຂົ້າກັບໝູ່",
+      "amount": 50000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-02-12",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 169
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເງິນຍາມໂຮງໝໍ",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-12",
+      "type": "income",
+      "amount": 50000,
+      "id": 170,
+      "sub": "ເງິນຍາມ"
+    },
+    {
+      "date": "2026-02-13",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 80000,
+      "id": 171,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 500000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-13",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 172
+    },
+    {
+      "id": 173,
+      "sub": "ເບຍ",
+      "date": "2026-02-13",
+      "category": "ເຄື່ອງດື່ມ",
+      "amount": 250000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-13",
+      "amount": 260000,
+      "type": "income",
+      "id": 174,
+      "sub": "ເງິນສັກວັກຊິນ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຊື້ຕົ້ນໄມ້ມາປູກ",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-14",
+      "amount": 15000,
+      "type": "expense",
+      "id": 175,
+      "sub": ""
+    },
+    {
+      "amount": 46000,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-02-14",
+      "sub": "",
+      "id": 176,
+      "userId": 1779937218244,
+      "note": "ຊື້ສາຍ VGA"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຊ່ວຍແບ່ງນ້ຳໃຈ",
+      "amount": 100000,
+      "type": "expense",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-14",
+      "sub": "",
+      "id": 177
+    },
+    {
+      "category": "ນ້ຳມັນ",
+      "date": "2026-02-15",
+      "amount": 70000,
+      "type": "expense",
+      "id": 178,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "id": 179,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-02-15",
+      "amount": 300000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ຄ່າກວດ",
+      "id": 180,
+      "amount": 200000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-16"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ເບຍ",
+      "id": 181,
+      "type": "expense",
+      "amount": 300000,
+      "date": "2026-02-17",
+      "category": "ເຄື່ອງດື່ມ"
+    },
+    {
+      "sub": "",
+      "id": 182,
+      "amount": 50000,
+      "type": "expense",
+      "date": "2026-02-17",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "note": "ຄ່າຊື້ເຫຼັກປີ້ງ",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 26000,
+      "date": "2026-02-17",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "sub": "",
+      "id": 183,
+      "userId": 1779937218244,
+      "note": "ຈ່າຍຄ່າຖ່ານໄມ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າຂົນສົ່ງເຄື່ອງສຽງມາແຕ່ບ້ານ",
+      "amount": 960000,
+      "type": "expense",
+      "date": "2026-02-17",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 184
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 185,
+      "type": "income",
+      "amount": 200000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-18"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຂ່າຍສາຍ VGA",
+      "type": "income",
+      "amount": 70000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-18",
+      "sub": "",
+      "id": 186
+    },
+    {
+      "note": "ຄ່ານ້ຳດື່ມຕຸກໃຫຍ່",
+      "userId": 1779937218244,
+      "sub": "ຄ່ານ້ຳ",
+      "id": 187,
+      "amount": 50000,
+      "type": "expense",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "date": "2026-02-18"
+    },
+    {
+      "amount": 85000,
+      "type": "expense",
+      "category": "ສ້ອມແປງ",
+      "date": "2026-02-18",
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 188,
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນເຄື່ອງ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າເຄື່ອງເມຍ",
+      "type": "expense",
+      "amount": 99000,
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-02-18",
+      "sub": "",
+      "id": 189
+    },
+    {
+      "id": 190,
+      "sub": "",
+      "date": "2026-02-20",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 1000000,
+      "note": "ບັດດອງ ນ.ລັດ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 191,
+      "sub": "ເງິນຍາມ",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-20",
+      "type": "income",
+      "amount": 150000
+    },
+    {
+      "id": 192,
+      "sub": "",
+      "date": "2026-02-21",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 200000,
+      "note": "ມັດແຂນເຮືອນອ້າຍຍອດ",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ນ້ຳດື່ມ",
+      "id": 193,
+      "type": "expense",
+      "amount": 10000,
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-02-21",
+      "note": "ຊື້ນ້ຳດື່ມຫົວເສືອ",
+      "userId": 1779937218244
+    },
+    {
+      "amount": 10000,
+      "type": "expense",
+      "date": "2026-02-21",
+      "category": "ສ້ອມແປງ",
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 194,
+      "userId": 1779937218244,
+      "note": "ເຄັ່ງໂສ້"
+    },
+    {
+      "note": "ອ້າຍຍອດໃຫ້ຄ່າເຄື່ອງສຽງ",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 195,
+      "amount": 200000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-02-21"
+    },
+    {
+      "type": "income",
+      "amount": 350000,
+      "date": "2026-02-21",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 196,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-02-22",
+      "type": "expense",
+      "amount": 300000,
+      "id": 197,
+      "sub": "ເບຍ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-02-22",
+      "category": "ນ້ຳມັນ",
+      "amount": 80000,
+      "type": "expense",
+      "id": 198,
+      "sub": "ນ້ຳມັນລົດ 0546"
+    },
+    {
+      "id": 199,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-02-22",
+      "type": "expense",
+      "amount": 150000,
+      "note": "ຊື້ເຄື່ອງໄປເຮືອນກຳ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າໄຟຟ້າ ເດືອນ 01/2026",
+      "type": "expense",
+      "amount": 204530,
+      "date": "2026-02-24",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "sub": "ຄ່າໄຟ",
+      "id": 200
+    },
+    {
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 201,
+      "amount": 73000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-02-24",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "id": 202,
+      "sub": "ເນັດໂທລະສັບ",
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-02-24",
+      "type": "expense",
+      "amount": 40000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ກິນເຂົ້າສວຍກັບໝູ່",
+      "userId": 1779937218244,
+      "sub": "ເຂົ້າສວຍ",
+      "id": 203,
+      "type": "expense",
+      "amount": 50000,
+      "date": "2026-02-24",
+      "category": "ອາຫານ"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ເບຍ",
+      "id": 204,
+      "amount": 120000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-02-25"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຮຳໄກ່ 1 ສອບ",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-02-26",
+      "amount": 115000,
+      "type": "expense",
+      "id": 205,
+      "sub": ""
+    },
+    {
+      "amount": 70000,
+      "type": "expense",
+      "date": "2026-02-26",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 206,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "sub": "ເຂົ້າສວຍ",
+      "id": 207,
+      "amount": 80000,
+      "type": "expense",
+      "date": "2026-02-26",
+      "category": "ອາຫານ",
+      "note": "ກິນເຂົ້າກັບໝູ່",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 208,
+      "sub": "ຕັດຜົມ",
+      "date": "2026-02-27",
+      "category": "ສຸຂະພາບ",
+      "amount": 70000,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຝີ",
+      "amount": 50000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-02-27",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 209
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 210,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-02-27",
+      "type": "expense",
+      "amount": 50000
+    },
+    {
+      "amount": 7000000,
+      "type": "income",
+      "date": "2026-02-28",
+      "category": "ເງິນເດືອນ",
+      "sub": "ເງິນເດືອນພື້ນຖານ",
+      "id": 211,
+      "userId": 1779937218244,
+      "note": "ເງິນເດືອນ 02/2026"
+    },
+    {
+      "date": "2026-02-28",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 3100000,
+      "id": 212,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ເສື່ອນອນອັດສູນຍາກາດ"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 213,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-02-18",
+      "type": "expense",
+      "amount": 73000
+    },
+    {
+      "type": "income",
+      "amount": 50000,
+      "date": "2026-02-26",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຍາມ",
+      "id": 214,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 215,
+      "amount": 230000,
+      "type": "expense",
+      "date": "2026-03-01",
+      "category": "ອາຫານ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ເຂົ້າໜົມ + ນ້ຳ",
+      "userId": 1779937218244,
+      "id": 216,
+      "sub": "",
+      "date": "2026-03-02",
+      "category": "ອາຫານ",
+      "amount": 17000,
+      "type": "expense"
+    },
+    {
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 217,
+      "type": "expense",
+      "amount": 120000,
+      "category": "ອາຫານ",
+      "date": "2026-03-02",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-03-04",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 70000,
+      "id": 218,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 219,
+      "amount": 200000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-06",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-03-07",
+      "category": "ອາຫານ",
+      "amount": 230000,
+      "type": "expense",
+      "id": 220,
+      "sub": "ອອກຕະຫຼາດ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 221,
+      "sub": "ເນັດໂທລະສັບ",
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-03-07",
+      "amount": 10000,
+      "type": "expense"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 222,
+      "sub": "ເບຍ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-03-09",
+      "amount": 320000,
+      "type": "expense"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 223,
+      "sub": "ອິນເຕີເນັດບ້ານ",
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-03-09",
+      "type": "expense",
+      "amount": 500000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-03-10",
+      "category": "ເຄື່ອງດື່ມ",
+      "amount": 280000,
+      "type": "expense",
+      "id": 224,
+      "sub": "ເບຍ"
+    },
+    {
+      "date": "2026-03-10",
+      "category": "ນ້ຳມັນ",
+      "amount": 100000,
+      "type": "expense",
+      "id": 225,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "ຄ່າກວດເລືອດເອື້ອຍ + ເຄນ",
+      "userId": 1779937218244,
+      "id": 226,
+      "sub": "ຄ່າກວດສຸຂະພາບ",
+      "category": "ສຸຂະພາບ",
+      "date": "2026-03-10",
+      "type": "expense",
+      "amount": 700000
+    },
+    {
+      "note": "ຫົວອາຫານໄກ່ນ້ອຍ",
+      "userId": 1779937218244,
+      "id": 227,
+      "sub": "",
+      "date": "2026-03-10",
+      "category": "ອື່ນໆ",
+      "amount": 46000,
+      "type": "expense"
+    },
+    {
+      "id": 228,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-03-10",
+      "type": "expense",
+      "amount": 200000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-03-10",
+      "category": "ນ້ຳມັນ",
+      "amount": 70000,
+      "type": "expense",
+      "id": 229,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-03-10",
+      "category": "ອາຫານ",
+      "amount": 200000,
+      "type": "expense",
+      "id": 230,
+      "sub": "ອອກຕະຫຼາດ"
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 231,
+      "type": "income",
+      "amount": 1500000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-11",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "amount": 20000,
+      "type": "expense",
+      "category": "ສ້ອມແປງ",
+      "date": "2026-03-11",
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 232,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "sub": "ຊື້ເລກ",
+      "id": 233,
+      "type": "expense",
+      "amount": 20000,
+      "date": "2026-03-11",
+      "category": "ອື່ນໆ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ນ້ຳດື່ມ",
+      "id": 234,
+      "amount": 46000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-03-12",
+      "note": "ນ້ຳດື່ມ 1 ແພັກ",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ສ້ອມແປງ",
+      "date": "2026-03-12",
+      "type": "expense",
+      "amount": 20000,
+      "id": 235,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "date": "2026-03-12",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 70000,
+      "id": 236,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "id": 237,
+      "sub": "",
+      "date": "2026-03-12",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 400000,
+      "note": "ບັດດອງອານິສາ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 20000,
+      "date": "2026-03-12",
+      "category": "ອາຫານ",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 238
+    },
+    {
+      "id": 239,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "date": "2026-03-13",
+      "category": "ສ້ອມແປງ",
+      "amount": 1370368,
+      "type": "expense",
+      "note": "ອາໄຫຼ່ລົດຈັກຄັນຟ້າ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 217000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-13",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 240
+    },
+    {
+      "date": "2026-03-13",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 50000,
+      "id": 241,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "ເກືອ 10 + ແປ້ງນົວ 40",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 242,
+      "type": "expense",
+      "amount": 50000,
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-03-14"
+    },
+    {
+      "amount": 240000,
+      "type": "income",
+      "date": "2026-03-14",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 243,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 244,
+      "type": "expense",
+      "amount": 397000,
+      "category": "ອາຫານ",
+      "date": "2026-03-14"
+    },
+    {
+      "sub": "",
+      "id": 245,
+      "amount": 180000,
+      "type": "expense",
+      "date": "2026-03-15",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "note": "ແຟບຊັກເຄື່ອງ",
+      "userId": 1779937218244
+    },
+    {
+      "type": "income",
+      "amount": 1000000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-15",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 246,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 17000,
+      "type": "expense",
+      "date": "2026-03-16",
+      "category": "ອື່ນໆ",
+      "sub": "ຊື້ເລກ",
+      "id": 247,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 55000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-16",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 248
+    },
+    {
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 249,
+      "amount": 75000,
+      "type": "expense",
+      "date": "2026-03-17",
+      "category": "ນ້ຳມັນ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-17",
+      "type": "income",
+      "amount": 200000,
+      "id": 250,
+      "sub": "ເງິນຄຣີນິກ"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 251,
+      "sub": "ເງິນສັກວັກຊິນ",
+      "date": "2026-03-18",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 190000
+    },
+    {
+      "amount": 347000,
+      "type": "income",
+      "date": "2026-03-19",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 252,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 149000,
+      "category": "ສ້ອມແປງ",
+      "date": "2026-03-19",
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "id": 253
+    },
+    {
+      "id": 254,
+      "sub": "",
+      "date": "2026-03-20",
+      "category": "ສຸຂະພາບ",
+      "amount": 500000,
+      "type": "expense",
+      "note": "ຊ່ວຍພູເຂົາ ເຂົ້າໂຮງໝໍ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 255,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-20",
+      "type": "expense",
+      "amount": 70000
+    },
+    {
+      "note": "ນ້ຳດື່ມຕຸກ 20 ລິດ",
+      "userId": 1779937218244,
+      "id": 256,
+      "sub": "ນ້ຳດື່ມ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-03-21",
+      "amount": 120000,
+      "type": "expense"
+    },
+    {
+      "amount": 70000,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-03-22",
+      "sub": "",
+      "id": 257,
+      "userId": 1779937218244,
+      "note": "ປ່ຽນກ໋ອກນ້ຳເພ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 345000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-03-22",
+      "sub": "ເບຍ",
+      "id": 258
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 105000,
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-22",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 259
+    },
+    {
+      "note": "ຄ່າໄຟຟ້າ ເດືອນ 02/2026",
+      "userId": 1779937218244,
+      "sub": "ຄ່າໄຟ",
+      "id": 260,
+      "type": "expense",
+      "amount": 222193,
+      "date": "2026-03-23",
+      "category": "ຄ່ານ້ຳ-ໄຟ"
+    },
+    {
+      "type": "expense",
+      "amount": 100000,
+      "category": "ອື່ນໆ",
+      "date": "2026-03-23",
+      "sub": "",
+      "id": 261,
+      "userId": 1779937218244,
+      "note": "ກິນທານນຳໝູ່"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຂົ້າລວມ",
+      "amount": 40000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-03-24",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 262
+    },
+    {
+      "type": "expense",
+      "amount": 60000,
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-24",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 263,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "id": 264,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "date": "2026-03-24",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 350000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ຊື້ເລກ",
+      "id": 265,
+      "type": "expense",
+      "amount": 25000,
+      "date": "2026-03-25",
+      "category": "ອື່ນໆ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-03-25",
+      "category": "ເງິນອຶ່ນໆ",
+      "type": "income",
+      "amount": 100000,
+      "id": 266,
+      "sub": "ເງິນຍາມ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 100000,
+      "type": "expense",
+      "date": "2026-03-26",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 267,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 3500000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-26",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 268,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຫົວອາຫານໄກ່ 1 ເປົາ",
+      "amount": 295000,
+      "type": "expense",
+      "date": "2026-03-27",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "sub": "",
+      "id": 269
+    },
+    {
+      "note": "ສຽບເອັນກິນເຮືອນສ່ຽວເພັດ",
+      "userId": 1779937218244,
+      "sub": "ອາຫານແລງ",
+      "id": 270,
+      "type": "expense",
+      "amount": 100000,
+      "date": "2026-03-27",
+      "category": "ອາຫານ"
+    },
+    {
+      "id": 271,
+      "sub": "ເນັດໂທລະສັບ",
+      "date": "2026-03-27",
+      "category": "ອິນເຕີເນັດ",
+      "amount": 50000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ນ້ຳດື່ມ 1 ແພັກ",
+      "userId": 1779937218244,
+      "id": 272,
+      "sub": "ນ້ຳດື່ມ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-03-27",
+      "amount": 46000,
+      "type": "expense"
+    },
+    {
+      "note": "ເຂົ້າປຽນຮ້ານຫຍຸຍ",
+      "userId": 1779937218244,
+      "sub": "ເຂົ້າສວຍ",
+      "id": 273,
+      "amount": 20000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-03-28"
+    },
+    {
+      "id": 274,
+      "sub": "ອອກຕະຫຼາດ",
+      "category": "ອາຫານ",
+      "date": "2026-03-28",
+      "type": "expense",
+      "amount": 340000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 80000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-29",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 275
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຂົ້າກັບໝູ່",
+      "type": "expense",
+      "amount": 70000,
+      "date": "2026-03-29",
+      "category": "ອາຫານ",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 276
+    },
+    {
+      "id": 277,
+      "sub": "",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-03-29",
+      "type": "expense",
+      "amount": 40000,
+      "note": "ເຄື່ອງທົ່ວໄປ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 85000,
+      "category": "ອາຫານ",
+      "date": "2026-03-30",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 278
+    },
+    {
+      "id": 279,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-31",
+      "type": "expense",
+      "amount": 100000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "date": "2026-03-31",
+      "category": "ເງິນອຶ່ນໆ",
+      "amount": 250000,
+      "type": "income",
+      "id": 280,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "ຊື້ Gemini",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 281,
+      "type": "expense",
+      "amount": 99000,
+      "date": "2026-03-31",
+      "category": "ອື່ນໆ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 1000000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-03-31",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 282
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-03-18",
+      "amount": 70000,
+      "type": "expense",
+      "id": 283,
+      "sub": "ນ້ຳມັນລົດ 0546"
+    },
+    {
+      "id": 284,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-01",
+      "amount": 1600000,
+      "type": "income",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 285,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "date": "2026-05-01",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 80000
+    },
+    {
+      "id": 286,
+      "sub": "ເຂົ້າສວຍ",
+      "category": "ອາຫານ",
+      "date": "2026-05-01",
+      "amount": 45000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 287,
+      "amount": 100000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-01",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 288,
+      "type": "expense",
+      "amount": 220000,
+      "category": "ອາຫານ",
+      "date": "2026-05-03"
+    },
+    {
+      "note": "ກິນເບຍ ກັບ ອ້າຍກຽງ",
+      "userId": 1779937218244,
+      "id": 289,
+      "sub": "ເບຍ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-04",
+      "amount": 790000,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-05-04",
+      "type": "expense",
+      "amount": 100000,
+      "id": 290,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-05-05",
+      "category": "ສ້ອມແປງ",
+      "amount": 15000,
+      "type": "expense",
+      "id": 291,
+      "sub": "ລົດຈັກຄັນຟ້າ"
+    },
+    {
+      "amount": 430000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-05",
+      "sub": "ເງິນຍາມ",
+      "id": 292,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "ບັດດອງຄົນໂຮງໝໍ",
+      "userId": 1779937218244,
+      "id": 293,
+      "sub": "",
+      "date": "2026-05-05",
+      "category": "ອື່ນໆ",
+      "amount": 200000,
+      "type": "expense"
+    },
+    {
+      "type": "expense",
+      "amount": 75000,
+      "category": "ອາຫານ",
+      "date": "2026-05-06",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 294,
+      "userId": 1779937218244,
+      "note": "ໄຂ່ 1 ແຕະ"
+    },
+    {
+      "id": 295,
+      "sub": "ຊື້ເລກ",
+      "category": "ອື່ນໆ",
+      "date": "2026-05-07",
+      "type": "expense",
+      "amount": 26000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-07",
+      "type": "income",
+      "amount": 200000,
+      "id": 296,
+      "sub": "ເງິນຍາມ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-05-07",
+      "type": "expense",
+      "amount": 176000,
+      "id": 297,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ເຄື່ອງໃຊ້ທົ່ວໄປ"
+    },
+    {
+      "id": 298,
+      "sub": "ເຂົ້າສວຍ",
+      "category": "ອາຫານ",
+      "date": "2026-03-08",
+      "amount": 30000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ເຂົ້າສວຍ",
+      "id": 299,
+      "type": "expense",
+      "amount": 65000,
+      "date": "2026-05-09",
+      "category": "ອາຫານ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 231000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-10",
+      "sub": "ນ້ຳດື່ມ",
+      "id": 300
+    },
+    {
+      "note": "ໃຫ້ນ້ອງ",
+      "userId": 1779937218244,
+      "id": 301,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-05-10",
+      "type": "expense",
+      "amount": 100000
+    },
+    {
+      "note": "ຜູກແຂນລູກອ້າຍເວີນ",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 302,
+      "type": "expense",
+      "amount": 200000,
+      "date": "2026-05-10",
+      "category": "ອື່ນໆ"
+    },
+    {
+      "amount": 95000,
+      "type": "expense",
+      "date": "2026-05-11",
+      "category": "ສຸຂະພາບ",
+      "sub": "",
+      "id": 303,
+      "userId": 1779937218244,
+      "note": "ຊື້ປະຈຳບ້ານ"
+    },
+    {
+      "id": 304,
+      "sub": "ເກີບມື 2",
+      "date": "2026-05-12",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "amount": 400000,
+      "type": "expense",
+      "note": "ເກີບມື 2 (2 ຄູ່)",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 305,
+      "amount": 100000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-05-12",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-12",
+      "amount": 41000,
+      "type": "expense",
+      "id": 306,
+      "sub": "ນ້ຳດື່ມ",
+      "userId": 1779937218244,
+      "note": "ນ້ຳດື່ມ 1 ແພັກ"
+    },
+    {
+      "type": "expense",
+      "amount": 12000,
+      "date": "2026-05-13",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 307,
+      "userId": 1779937218244,
+      "note": "ຊື້ຕົ້ນໄມ້ມາປູກຢູ່ບ້ານ"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "",
+      "id": 308,
+      "amount": 21000,
+      "type": "expense",
+      "date": "2026-05-14",
+      "category": "ເຄື່ອງດື່ມ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 400000,
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-14",
+      "sub": "ເບຍ",
+      "id": 309
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 50000,
+      "type": "income",
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-14",
+      "sub": "ເງິນຍາມ",
+      "id": 310
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 311,
+      "type": "expense",
+      "amount": 80000,
+      "category": "ນ້ຳມັນ",
+      "date": "2026-05-14"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ກິນເຂົ້າສວຍກັບໝູ່",
+      "date": "2026-05-14",
+      "category": "ອາຫານ",
+      "type": "expense",
+      "amount": 60000,
+      "id": 312,
+      "sub": "ເຂົ້າສວຍ"
+    },
+    {
+      "sub": "ດິນບ໋ອກ",
+      "id": 313,
+      "type": "expense",
+      "amount": 1250000,
+      "category": "ອຸປະກອນກໍ່ສ້າງ",
+      "date": "2026-05-17",
+      "note": "ດິນບ໋ອກເຮັດຄອກໄກ່",
+      "userId": 1779937218244
+    },
+    {
+      "amount": 660000,
+      "type": "expense",
+      "category": "ອຸປະກອນກໍ່ສ້າງ",
+      "date": "2026-05-17",
+      "sub": "ເຫຼັກ",
+      "id": 314,
+      "userId": 1779937218244,
+      "note": "ເຫຼັກຄອກໄກ່"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 150000,
+      "type": "expense",
+      "date": "2026-05-17",
+      "category": "ເຄື່ອງດື່ມ",
+      "sub": "ເບຍ",
+      "id": 315
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຕັດໂສ້",
+      "date": "2026-05-19",
+      "category": "ສ້ອມແປງ",
+      "type": "expense",
+      "amount": 20000,
+      "id": 316,
+      "sub": "ລົດຈັກຄັນຟ້າ"
+    },
+    {
+      "id": 317,
+      "sub": "ຊື້ເລກ",
+      "category": "ອື່ນໆ",
+      "date": "2026-05-19",
+      "amount": 15000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 20000,
+      "type": "expense",
+      "date": "2026-05-19",
+      "category": "ອາຫານ",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 318
+    },
+    {
+      "amount": 40000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-21",
+      "sub": "ນ້ຳດື່ມ",
+      "id": 319,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 130000,
+      "type": "expense",
+      "date": "2026-05-22",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 320,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 20000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-05-22",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 321,
+      "userId": 1779937218244,
+      "note": "ຊື້ຜັກ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ອ້າຍ ສ ໃຫ້",
+      "date": "2026-05-22",
+      "category": "ເງິນອຶ່ນໆ",
+      "amount": 200000,
+      "type": "income",
+      "id": 322,
+      "sub": ""
+    },
+    {
+      "id": 323,
+      "sub": "",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-05-24",
+      "type": "expense",
+      "amount": 2250000,
+      "note": "ຕູ້ແຊ່ນ້ຳ ເຢັນ + ຮ້ອນ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 50000,
+      "type": "expense",
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-05-25",
+      "sub": "ເນັດໂທລະສັບ",
+      "id": 324
+    },
+    {
+      "note": "ສະບູອາບນ້ຳ",
+      "userId": 1779937218244,
+      "id": 325,
+      "sub": "",
+      "date": "2026-05-25",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "type": "expense",
+      "amount": 32000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເຂົ້າປຸ້ນ",
+      "amount": 45000,
+      "type": "expense",
+      "date": "2026-05-25",
+      "category": "ອາຫານ",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 326
+    },
+    {
+      "date": "2026-05-26",
+      "category": "ສ້ອມແປງ",
+      "amount": 20000,
+      "type": "expense",
+      "id": 327,
+      "sub": "ນ້ຳມັນເຄື່ອງລົດຈັກ",
+      "userId": 1779937218244,
+      "note": "ຕັດໂສ້"
+    },
+    {
+      "type": "expense",
+      "amount": 210000,
+      "date": "2026-05-26",
+      "category": "ສ້ອມແປງ",
+      "sub": "ແປງລົດໃຫ້ນ້ອງ",
+      "id": 328,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 347787,
+      "type": "expense",
+      "date": "2026-05-26",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "sub": "ຄ່າໄຟ",
+      "id": 329,
+      "userId": 1779937218244,
+      "note": "ຄ່າໄຟຟ້າ ເດືອນ 4/2026"
+    },
+    {
+      "sub": "ຊື້ເລກ",
+      "id": 330,
+      "amount": 18000,
+      "type": "expense",
+      "category": "ອື່ນໆ",
+      "date": "2026-05-28",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 338000,
+      "date": "2026-05-31",
+      "category": "ອາຫານ",
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 331,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "type": "income",
+      "amount": 700000,
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-05-31",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 332,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 333,
+      "sub": "",
+      "date": "2026-05-31",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "amount": 400000,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຊື້ນົກແອ່ນນຳແມ່ສອນ",
+      "type": "expense",
+      "amount": 200000,
+      "date": "2026-05-31",
+      "category": "ອາຫານ",
+      "sub": "ອາຫານແລງ",
+      "id": 334
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 335,
+      "type": "expense",
+      "amount": 110000,
+      "date": "2026-06-01",
+      "category": "ນ້ຳມັນ"
+    },
+    {
+      "note": "ຫົວອາຫານໄກ່ນ້ອຍ 03 ໂລ",
+      "userId": 1779937218244,
+      "id": 336,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-01",
+      "type": "expense",
+      "amount": 42000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 80000,
+      "type": "expense",
+      "date": "2026-05-31",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 337
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳດື່ມຕຸກໃຫຍ່ 4 ຕຸກ",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-05-31",
+      "amount": 48000,
+      "type": "expense",
+      "id": 338,
+      "sub": "ນ້ຳດື່ມ"
+    },
+    {
+      "sub": "ນ້ຳມັນເຄື່ອງລົດຈັກ",
+      "id": 339,
+      "amount": 150000,
+      "type": "expense",
+      "date": "2026-06-02",
+      "category": "ສ້ອມແປງ",
+      "note": "ນ້ຳມັນເຄື່ອງລົດຈັກ 0546",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 340,
+      "sub": "ເຂົ້າສວຍ",
+      "date": "2026-06-03",
+      "category": "ອາຫານ",
+      "type": "expense",
+      "amount": 10000
+    },
+    {
+      "date": "2026-06-03",
+      "category": "ອຸປະກອນກໍ່ສ້າງ",
+      "amount": 150000,
+      "type": "expense",
+      "id": 341,
+      "sub": "ໄມ້",
+      "userId": 1779937218244,
+      "note": "ໄມ້ເຮັດລົກໄກ່"
+    },
+    {
+      "amount": 260000,
+      "type": "expense",
+      "date": "2026-06-03",
+      "category": "ເຄື່ອງດື່ມ",
+      "sub": "ເບຍ",
+      "id": 342,
+      "userId": 1779937218244,
+      "note": "ກິນເບຍເຮືອນອ້າຍເພັດ"
+    },
+    {
+      "amount": 100000,
+      "type": "expense",
+      "category": "ອຸປະກອນກໍ່ສ້າງ",
+      "date": "2026-06-04",
+      "sub": "ໄມ້",
+      "id": 343,
+      "userId": 1779937218244,
+      "note": "ໄມ້ເຮັດລົກໄກ່"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-05",
+      "amount": 18000,
+      "type": "expense",
+      "id": 344,
+      "sub": "ຊື້ເລກ"
+    },
+    {
+      "date": "2026-06-05",
+      "category": "ອາຫານ",
+      "amount": 13000,
+      "type": "expense",
+      "id": 345,
+      "sub": "ເຂົ້າສວຍ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-06-05",
+      "amount": 110000,
+      "type": "expense",
+      "id": 346,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "sub": "ເງິນເດືອນພື້ນຖານ",
+      "id": 347,
+      "amount": 7500000,
+      "type": "income",
+      "date": "2026-05-31",
+      "category": "ເງິນເດືອນ",
+      "note": "ເງິນເດືອນ 05/2026",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ນ້ຳກ້ອນແຊ່ປາ",
+      "amount": 10000,
+      "type": "expense",
+      "date": "2026-06-06",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 348
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-06-08",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 80000,
+      "id": 349,
+      "sub": "ນ້ຳມັນລົດ 0546"
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 350,
+      "sub": "ອອກຕະຫຼາດ",
+      "date": "2026-06-06",
+      "category": "ອາຫານ",
+      "amount": 155,
+      "type": "expense"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-08",
+      "type": "expense",
+      "amount": 24000,
+      "id": 352,
+      "sub": "ຊື້ເລກ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 70,
+      "date": "2026-06-08",
+      "category": "ອາຫານ",
+      "sub": "ເຂົ້າສວຍ",
+      "id": 353
+    },
+    {
+      "id": 354,
+      "sub": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-08",
+      "amount": 132000,
+      "type": "expense",
+      "note": "ຊື້ Gemini pro",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ອື່ນໆ",
+      "date": "2026-06-09",
+      "type": "expense",
+      "amount": 17000,
+      "id": 355,
+      "sub": "ຊື້ເລກ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "income",
+      "amount": 200000,
+      "date": "2026-06-09",
+      "category": "ເງິນອຶ່ນໆ",
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 356
+    },
+    {
+      "amount": 59000,
+      "type": "expense",
+      "date": "2026-06-10",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+      "id": 357,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "amount": 20000,
+      "type": "expense",
+      "date": "2026-06-10",
+      "category": "ຄ່າຂົນສົ່ງ",
+      "sub": "ຂົນສົ່ງ ລາວ - ຈີນ",
+      "id": 358,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຫົວອາຫານໄກ່ນ້ອຍ 5 ໂລ",
+      "type": "expense",
+      "amount": 65000,
+      "date": "2026-06-10",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 359
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ",
+      "id": 360,
+      "type": "income",
+      "amount": 1000000,
+      "date": "2026-06-11",
+      "category": "ເງິນອຶ່ນໆ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "type": "expense",
+      "amount": 85000,
+      "date": "2026-06-11",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 361,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "note": "ນ້ຳດື່ມຫົວເສືອ 1 ແພັກ",
+      "userId": 1779937218244,
+      "sub": "ນ້ຳດື່ມ",
+      "id": 362,
+      "amount": 44000,
+      "type": "expense",
+      "date": "2026-06-11",
+      "category": "ເຄື່ອງດື່ມ"
+    },
+    {
+      "id": 363,
+      "sub": "ລົດຈັກຄັນຟ້າ",
+      "category": "ສ້ອມແປງ",
+      "date": "2026-06-11",
+      "amount": 1082000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-06-11",
+      "type": "expense",
+      "amount": 50000,
+      "id": 364,
+      "sub": "ເບຍ",
+      "userId": 1779937218244,
+      "note": "ໃຫ້ເບຍຄຳແມ້ວ"
+    },
+    {
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 365,
+      "amount": 95000,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-06-12",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ຊື້ລາບ",
+      "userId": 1779937218244,
+      "id": 366,
+      "sub": "ເຂົ້າສວຍ",
+      "date": "2026-06-12",
+      "category": "ອາຫານ",
+      "type": "expense",
+      "amount": 50000
+    },
+    {
+      "note": "ຊື້ຊີ້ນເຮືອນອ້າຍຕຸ້ຍ",
+      "userId": 1779937218244,
+      "sub": "ເຂົ້າສວຍ",
+      "id": 367,
+      "amount": 100000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-06-13"
+    },
+    {
+      "type": "expense",
+      "amount": 100000,
+      "date": "2026-06-13",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 368,
+      "userId": 1779937218244,
+      "note": "ໃຫ້ນ້ອງ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 800000,
+      "type": "expense",
+      "date": "2026-06-14",
+      "category": "ການສຶກສາ",
+      "sub": "ຄ່າຮຽນ",
+      "id": 369
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "id": 370,
+      "sub": "ອອກຕະຫຼາດ",
+      "date": "2026-06-11",
+      "category": "ອາຫານ",
+      "type": "expense",
+      "amount": 200
+    },
+    {
+      "amount": 518000,
+      "type": "expense",
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-06-15",
+      "sub": "ເບຍ",
+      "id": 371,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "type": "expense",
+      "amount": 90000,
+      "date": "2026-06-15",
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "id": 372,
+      "userId": 1779937218244,
+      "note": "ຕົ້ນໄມ້"
+    },
+    {
+      "id": 373,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "date": "2026-06-16",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 110000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "",
+      "id": 374,
+      "amount": 35000,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-06-16",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "id": 375,
+      "sub": "ເຂົ້າສວຍ",
+      "date": "2026-06-17",
+      "category": "ອາຫານ",
+      "amount": 30000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "note": "",
+      "userId": 1779937218244,
+      "sub": "ອອກຕະຫຼາດ",
+      "id": 376,
+      "amount": 75000,
+      "type": "expense",
+      "category": "ອາຫານ",
+      "date": "2026-06-16"
+    },
+    {
+      "note": "ຜູກແຂນລູກໂອໄດ",
+      "userId": 1779937218244,
+      "id": 377,
+      "sub": "",
+      "date": "2026-06-18",
+      "category": "ອື່ນໆ",
+      "type": "expense",
+      "amount": 100000
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເຫຼັກບົດຜັກ",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-06-19",
+      "amount": 21242,
+      "type": "expense",
+      "id": 378,
+      "sub": ""
+    },
+    {
+      "sub": "ນ້ຳດື່ມ",
+      "id": 379,
+      "type": "expense",
+      "amount": 37000,
+      "date": "2026-06-19",
+      "category": "ເຄື່ອງດື່ມ",
+      "note": "ນ້ຳດື່ມ 1 ແພັກ",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ເສື້ອຜ້າ ແອັບຈີນ",
+      "amount": 198000,
+      "type": "expense",
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-06-19",
+      "sub": "",
+      "id": 380
+    },
+    {
+      "category": "ເງິນອຶ່ນໆ",
+      "date": "2026-06-19",
+      "amount": 2000000,
+      "type": "income",
+      "id": 381,
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "date": "2026-06-19",
+      "category": "ນ້ຳມັນ",
+      "type": "expense",
+      "amount": 100000,
+      "id": 382,
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
+    },
+    {
+      "sub": "ນ້ຳດື່ມ",
+      "id": 383,
+      "type": "expense",
+      "amount": 36000,
+      "date": "2026-06-19",
+      "category": "ເຄື່ອງດື່ມ",
+      "note": "ນ້ຳດື່ມຕຸກໃຫຍ່ 3 ຕຸກ",
+      "userId": 1779937218244
+    },
+    {
+      "sub": "ເງິນຄຣີນິກ (ຄ)",
+      "id": 384,
+      "type": "income",
+      "amount": 1000000,
+      "date": "2026-06-22",
+      "category": "ເງິນອຶ່ນໆ",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "id": 385,
+      "sub": "ອອກຕະຫຼາດ",
+      "date": "2026-06-21",
+      "category": "ອາຫານ",
+      "amount": 400000,
+      "type": "expense",
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 280000,
+      "category": "ເຄື່ອງດື່ມ",
+      "date": "2026-06-22",
+      "sub": "ເບຍ",
+      "id": 386
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຫົວອາຫານໄກ່ນ້ອຍ",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-23",
+      "amount": 68000,
+      "type": "expense",
+      "id": 387,
+      "sub": ""
+    },
+    {
+      "category": "ອິນເຕີເນັດ",
+      "date": "2026-06-24",
+      "amount": 50000,
+      "type": "expense",
+      "id": 388,
+      "sub": "ເນັດໂທລະສັບ",
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "userId": 1779937218244,
+      "note": "ຄ່າໄຟເດືອນ 05/2026",
+      "date": "2026-06-24",
+      "category": "ຄ່ານ້ຳ-ໄຟ",
+      "type": "expense",
+      "amount": 413137,
+      "id": 389,
+      "sub": "ຄ່າໄຟ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "amount": 625000,
+      "type": "expense",
+      "date": "2026-06-24",
+      "category": "ເຄື່ອງດື່ມ",
+      "sub": "ເບຍ",
+      "id": 390
+    },
+    {
+      "amount": 100000,
+      "type": "expense",
+      "date": "2026-06-25",
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "id": 391,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "id": 392,
+      "sub": "ເຂົ້າສວຍ",
+      "category": "ອາຫານ",
+      "date": "2026-06-25",
+      "type": "expense",
+      "amount": 90000,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "id": 393,
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-06-17",
+      "type": "expense",
+      "amount": 100,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "amount": 100,
+      "type": "expense",
+      "category": "ນ້ຳມັນ",
+      "date": "2026-06-22",
+      "sub": "ນ້ຳມັນລົດ 0546",
+      "id": 394,
+      "userId": 1779937218244,
+      "note": ""
+    },
+    {
+      "id": 395,
+      "sub": "ຄ່າຮຽນ",
+      "date": "2026-06-18",
+      "category": "ການສຶກສາ",
+      "type": "expense",
+      "amount": 90,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "id": 396,
+      "sub": "ຄ່າຮຽນ",
+      "category": "ການສຶກສາ",
+      "date": "2026-06-22",
+      "type": "expense",
+      "amount": 100,
+      "note": "",
+      "userId": 1779937218244
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "type": "expense",
+      "amount": 113000,
+      "category": "ການສຶກສາ",
+      "date": "2026-06-25",
+      "sub": "ຄ່າຮຽນ",
+      "id": 397
+    },
+    {
+      "sub": "",
+      "id": 398,
+      "type": "expense",
+      "amount": 202000,
+      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
+      "date": "2026-06-27",
+      "note": "ເຄື່ອງເດັກເກີດໃໝ່ລູກອ້າຍມີ",
+      "userId": 1779937218244
+    },
+    {
+      "note": "ກິນເບຍຢູ່ເຮືອນ",
+      "userId": 1779937218244,
+      "id": 399,
+      "sub": "ເບຍ",
+      "date": "2026-06-27",
+      "category": "ເຄື່ອງດື່ມ",
+      "amount": 281000,
+      "type": "expense"
+    },
+    {
+      "category": "ນ້ຳມັນ",
+      "date": "2026-06-29",
+      "amount": 60000,
+      "type": "expense",
+      "id": 400,
+      "sub": "",
+      "userId": 1779937218244,
+      "note": "ນ້ຳມັນຕັດຫຍ້າ"
+    },
+    {
+      "userId": 1779937218244,
+      "note": "",
+      "category": "ອື່ນໆ",
+      "date": "2026-06-29",
+      "amount": 24000,
+      "type": "expense",
+      "id": 401,
+      "sub": "ຊື້ເລກ"
+    },
+    {
+      "id": 402,
+      "userId": 1779937218244,
+      "type": "expense",
+      "amount": 90000,
+      "category": "ນ້ຳມັນ",
+      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
+      "note": "",
+      "date": "2026-06-29"
+    },
+    {
+      "id": 403,
+      "userId": 1779937218244,
+      "type": "expense",
+      "amount": 40000,
+      "category": "ອື່ນໆ",
+      "sub": "",
+      "note": "ຕັດຜົມ",
+      "date": "2026-06-29"
+    },
+    {
+      "id": 404,
+      "userId": 1779937218244,
+      "type": "expense",
+      "amount": 260000,
+      "category": "ອາຫານ",
+      "sub": "ອອກຕະຫຼາດ",
+      "note": "",
+      "date": "2026-07-03"
+    }
+  ],
+  "nextId": 405,
+  "savings": {
+    "kip": [],
+    "usd": [],
+    "thb": []
+  },
+  "users": [
+    {
+      "name": "ຜູ້ດູແລລະບົບ",
+      "username": "admin",
+      "role": "admin",
+      "id": 1,
+      "password": "admin123"
+    },
+    {
+      "password": "user123",
+      "id": 2,
+      "role": "user",
+      "username": "user1",
+      "name": "ຜູ້ໃຊ້ທົ່ວໄປ"
+    },
+    {
+      "password": "123",
+      "id": 1779937218244,
+      "role": "user",
+      "username": "khen",
+      "name": "khen"
+    },
+    {
+      "id": 1782300055054,
+      "password": "444555",
+      "name": "Ting",
+      "username": "Ting",
+      "role": "user"
+    },
+    {
+      "id": 1783004887742,
+      "username": "Scrub",
+      "password": "112233",
+      "name": "Scrub&soub",
+      "role": "user"
+    },
+    {
+      "id": 1783005101918,
+      "username": "Scrub123",
+      "password": "scrub1122",
+      "name": "SOUP",
+      "role": "user"
+    }
+  ],
+  "categories": {
+    "income": [
+      {
+        "name": "ເງິນເດືອນ",
+        "subs": [
+          "ເງິນເດືອນພື້ນຖານ",
+          "ໂບນັດ",
+          "ເງິນລ່ວງເວລາ"
+        ]
+      },
+      {
+        "subs": [
+          "ຄ່າຈ້າງລາຍວັນ",
+          "ຄ່າຈ້າງໂຄງການ"
+        ],
+        "name": "ຄ່າຈ້າງ"
+      },
+      {
+        "subs": [
+          "ຂາຍສິນຄ້າ",
+          "Freelance",
+          "ອື່ນໆ"
+        ],
+        "name": "ລາຍໄດ້ເພີ່ມ"
+      },
+      {
+        "name": "ດອກເບ້ຍ",
+        "subs": [
+          "ດອກເບ້ຍທະນາຄານ",
+          "ດອກເບ້ຍລົງທຶນ"
+        ]
+      },
+      {
+        "name": "ອື່ນໆ",
+        "subs": []
+      },
+      {
+        "name": "ເງິນຄຣີນິກ (ຄ)",
+        "subs": []
+      },
+      {
+        "name": "ເງິນອຶ່ນໆ",
+        "subs": [
+          "ເງິນສັກວັກຊິນ",
+          "ເງິນຄຣີນິກ (ຄ)",
+          "ເງິນກອງເລຂາ",
+          "ເງິນຄຣີນິກ",
+          "ເງິນຍາມ",
+          "ເງິນໂບນັດທ້າຍປີ",
+          "ຄ່າກວດ"
+        ]
+      }
+    ],
+    "expense": [
+      {
+        "subs": [
+          "ອາຫານເຊົ້າ",
+          "ອາຫານທ່ຽງ",
+          "ອາຫານແລງ",
+          "ຊື້ເຄື່ອງກິນ",
+          "ອອກຕະຫຼາດ",
+          "ເຂົ້າສວຍ"
+        ],
+        "name": "ອາຫານ"
+      },
+      {
+        "name": "ຄ່ານ້ຳ-ໄຟ",
+        "subs": [
+          "ຄ່ານ້ຳ",
+          "ຄ່າໄຟ",
+          "ອິນເຕີເນັດ",
+          "ໂທລະສັບ"
+        ]
+      },
+      {
+        "subs": [
+          "ນ້ຳມັນ",
+          "ຄ່າລົດ",
+          "ຄ່າຕົ໋ວ",
+          "ຄ່າທາງ"
+        ],
+        "name": "ຄ່າເດີນທາງ"
+      },
+      {
+        "name": "ສຸຂະພາບ",
+        "subs": [
+          "ຄ່າຢາ",
+          "ຄ່າໝໍ",
+          "ຄ່າໂຮງໝໍ",
+          "ຕັດຜົມ",
+          "ຄ່າກວດສຸຂະພາບ"
+        ]
+      },
+      {
+        "name": "ການສຶກສາ",
+        "subs": [
+          "ຄ່າຮຽນ",
+          "ຊື້ປຶ້ມ",
+          "ອຸປະກອນ"
+        ]
+      },
+      {
+        "name": "ບັນເທິງ",
+        "subs": [
+          "ຮ້ານອາຫານ",
+          "ທ່ອງທ່ຽວ",
+          "ຮູບເງົາ"
+        ]
+      },
+      {
+        "name": "ເຄື່ອງນຸ່ງ",
+        "subs": [
+          "ເສື້ອຜ້າ",
+          "ເກີບ",
+          "ກະເປົ໋າ"
+        ]
+      },
+      {
+        "name": "ອື່ນໆ",
+        "subs": [
+          "ຄ່າດ່ານ",
+          "ຊື້ເລກ",
+          "ຕັດຜົມ",
+          "ເສຍຄ່າທາງ"
+        ]
+      },
+      {
+        "subs": [
+          "ນ້ຳມັນເຄື່ອງ",
+          "ນ້ຳມັນລົດ prado",
+          "ນ້ຳມັນລົດຄັນຟ້າ",
+          "ນ້ຳມັນລົດ 0546"
+        ],
+        "name": "ນ້ຳມັນ"
+      },
+      {
+        "subs": [
+          "ນ້ຳດື່ມ",
+          "ເບຍ",
+          "ກາເຟດຳ ຜົງ"
+        ],
+        "name": "ເຄື່ອງດື່ມ"
+      },
+      {
+        "subs": [
+          "ສ້ອມແປງເຄື່ອງສຽງ",
+          "ລົດຈັກຄັນຟ້າ",
+          "ໂທລະສັບ",
+          "ນ້ຳມັນເຄື່ອງລົດຈັກ",
+          "ແປງລົດໃຫ້ນ້ອງ"
+        ],
+        "name": "ສ້ອມແປງ"
+      },
+      {
+        "name": "ອິນເຕີເນັດ",
+        "subs": [
+          "ເນັດໂທລະສັບ",
+          "ອິນເຕີເນັດບ້ານ"
+        ]
+      },
+      {
+        "subs": [
+          "ກ້ອງວົງຈອນປິດ",
+          "ເກີບມື 2"
+        ],
+        "name": "ອຸປະກອນເຄື່ອງໃຊ້"
+      },
+      {
+        "name": "ຄ່າຂົນສົ່ງ",
+        "subs": [
+          "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
+          "ຂົນສົ່ງ ລາວ - ຈີນ"
+        ]
+      },
+      {
+        "subs": [],
+        "name": "ເຂົ້າສານ"
+      },
+      {
+        "name": "ອຸປະກອນກໍ່ສ້າງ",
+        "subs": [
+          "ດິນບ໋ອກ",
+          "ເຫຼັກ",
+          "ໄມ້"
+        ]
+      }
+    ]
+  }
+};
+// EMBEDDED_DATA_END
+
+/* ===================== FIREBASE INIT ===================== */
 const firebaseConfig = {
-  apiKey: "AIzaSyAXWM7zZ_LCRnKoktEQmMyq0FhPbQ6nJl0",
+  apiKey: "AIzaSyAXWM7zZ_lCRnKoktEQmMyq0FhPbQ6nJl0",
   authDomain: "khen-finance-tracker.firebaseapp.com",
   projectId: "khen-finance-tracker",
   storageBucket: "khen-finance-tracker.firebasestorage.app",
@@ -261,95 +4683,235 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const fdb = firebase.firestore();
-const auth = firebase.auth();
+const auth = firebase.auth(); // ເອີ້ນໃຊ້ລະບົບລັອກອິນ
 const DB_DOC = fdb.collection("finance").doc("mainDB");
 
+/* ===================== FIREBASE loadDB / saveDB ===================== */
 async function loadDB(){
   try {
     const snap = await DB_DOC.get();
     if(snap.exists){
       const d = snap.data();
-      if(d && d.transactions){ try{localStorage.setItem(SK, JSON.stringify(d));}catch{} return d; }
+      if(d && d.users && d.transactions){
+        if(!d.savings) d.savings={kip:[],thb:[],usd:[]};
+        try{localStorage.setItem(SK, JSON.stringify(d));}catch{}
+        return d;
+      }
     }
-  } catch(err){}
-  try{const r=localStorage.getItem(SK);if(r){return JSON.parse(r);}}catch{}
-  return defData();
+    let seedData = null;
+    try{const r=localStorage.getItem(SK);if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};seedData=d;}}}catch{}
+    if(!seedData && EMBEDDED_DB && EMBEDDED_DB.users && EMBEDDED_DB.transactions){
+      seedData = JSON.parse(JSON.stringify(EMBEDDED_DB));
+      if(!seedData.savings) seedData.savings={kip:[],thb:[],usd:[]};
+    }
+    if(!seedData) seedData = defData();
+    await DB_DOC.set(seedData);
+    try{localStorage.setItem(SK, JSON.stringify(seedData));}catch{}
+    showToast("☁️ ອັບໂຫລດຂໍ້ມູນຂຶ້ນ Firebase ສຳເລັດ!","#15803d");
+    return seedData;
+  } catch(err){
+    console.warn("Firestore loadDB error:", err);
+    try{const r=localStorage.getItem(SK);if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}}catch{}
+    try{const r=localStorage.getItem("fin_v6");if(r){const d=JSON.parse(r);if(d&&d.users&&d.transactions){if(!d.savings)d.savings={kip:[],thb:[],usd:[]};return d;}}}catch{}
+    if(EMBEDDED_DB && EMBEDDED_DB.users){
+      const d=JSON.parse(JSON.stringify(EMBEDDED_DB));
+      if(!d.savings)d.savings={kip:[],thb:[],usd:[]};
+      return d;
+    }
+    return defData();
+  }
 }
+
 function saveDB(){
   try{localStorage.setItem(SK,JSON.stringify(DB));}catch{}
-  DB_DOC.set(DB).catch(err=>console.warn(err));
+  DB_DOC.set(DB).catch(err=>console.warn("Firestore saveDB error:", err));
 }
 
-/* ===================== AUTH ===================== */
-function showReg(v){document.getElementById("form-login").style.display=v?"none":"block";document.getElementById("form-reg").style.display=v?"block":"none";}
-function setErr(id,msg,green){const el=document.getElementById(id);el.textContent=msg;el.style.display=msg?"block":"none";el.style.color=green?"#15803d":"#dc2626";}
-
-function doLogin(){
-  const u = document.getElementById("l-user").value.trim();
-  const p = document.getElementById("l-pass").value;
-  if(!u || !p) return setErr("l-err","ກະລຸນາໃສ່ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ");
-  const email = u.includes("@") ? u : u + "@finance.com";
-  auth.signInWithEmailAndPassword(email, p).catch((error) => {
-    setErr("l-err", "ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ (ຫຼື ຍັງບໍ່ທັນສະໝັກ)");
-  });
+/* ===================== EXPORT HTML (ຝັງຂໍ້ມູນ) ===================== */
+function exportHTMLFile(){
+  const xhr = new XMLHttpRequest();
+  fetch(window.location.href)
+    .then(r=>r.text())
+    .then(html=>{ _doExportHTML(html); })
+    .catch(()=>{ _doExportHTML(document.documentElement.outerHTML); });
 }
 
-function doRegister(){
-  const name = document.getElementById("r-name").value.trim();
-  const user = document.getElementById("r-user").value.trim();
-  const pass = document.getElementById("r-pass").value;
-  if(!name || !user || !pass) return setErr("r-err","ກະລຸນາຕື່ມຂໍ້ມູນໃຫ້ຄົບ");
-  if(pass.length < 6) return setErr("r-err","ລະຫັດຜ່ານຕ້ອງ 6 ຕົວອັກສອນຂຶ້ນໄປ");
-  const email = user.includes("@") ? user : user + "@finance.com";
-  auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
-    cred.user.updateProfile({ displayName: name }).then(() => {
-      showReg(false); setErr("l-err","ສ້າງບັນຊີສຳເລັດ! ລະບົບກຳລັງພາເຂົ້າໜ້າຫຼັກ...", true);
+function _doExportHTML(html){
+  const dbJson = JSON.stringify(DB, null, 2);
+  const newBlock = "// EMBEDDED_DATA_START\nvar EMBEDDED_DB = "+dbJson+";\n// EMBEDDED_DATA_END";
+  let updated = html.replace(/\/\/ EMBEDDED_DATA_START[\s\S]*?\/\/ EMBEDDED_DATA_END/, newBlock);
+  if(updated === html){ updated = html.replace("var EMBEDDED_DB = null;", "var EMBEDDED_DB = "+dbJson+";"); }
+  const blob = new Blob([updated], {type:"text/html;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const d = new Date().toISOString().slice(0,10);
+  a.href=url; a.download="finance_"+d+".html";
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast("✅ Export HTML ສຳເລັດ! ກ໋ອບປີ້ finance_"+d+".html ໄປໃຊ້ອຸປະກອນໃໝ່ໄດ້ເລີຍ","#15803d");
+}
+
+/* ===================== EXPORT PDF ===================== */
+function exportPDF(txsIn, labelIn){
+  const txs = txsIn || [...getAllUserTxs()].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const label = labelIn || "ທຸກລາຍການ";
+  const inc = txs.filter(t=>t.type==="income").reduce((s,t)=>s+t.amount,0);
+  const exp = txs.filter(t=>t.type==="expense").reduce((s,t)=>s+t.amount,0);
+  const bal = inc-exp;
+  const tE = getTopList(txs,"expense"), tI = getTopList(txs,"income");
+  const w = window.open("","_blank","width=900,height=700");
+  if(!w){alert("ກະລຸນາອະນຸຍາດ Popup ໃນ Browser ກ່ອນ");return;}
+
+  var topExpHtml="", topIncHtml="";
+  if(tE.length){
+    topExpHtml='<div><h2 style="color:#dc2626">🏆 Top ລາຍຈ່າຍ (ສັດສ່ວນ %)</h2><table><tr><th>#</th><th>ໝວດໝູ່</th><th>ຈຳນວນ</th><th style="text-align:center">%</th><th>ສັດສ່ວນ</th></tr>';
+    tE.forEach(function(item,i){
+      var pct=exp>0?(item[1]/exp*100).toFixed(1):"0.0";
+      var barW=exp>0?Math.round(item[1]/exp*100):0;
+      topExpHtml+='<tr><td>'+(i+1)+'</td><td>'+esc(item[0])+'</td><td class="r" style="font-weight:bold;text-align:right">'+fmt(item[1])+'</td>'
+        +'<td style="text-align:center;font-weight:bold;color:#dc2626">'+pct+'%</td>'
+        +'<td style="min-width:80px"><div style="background:#fecaca;border-radius:4px;height:10px"><div style="background:#dc2626;border-radius:4px;height:10px;width:'+barW+'%"></div></div></td>'
+        +'</tr>';
     });
-  }).catch((error) => setErr("r-err", error.message));
-}
-
-function doLogout(){
-  auth.signOut().then(() => {
-    CU = null;
-    document.getElementById("app").style.display="none";
-    document.getElementById("login-wrap").style.display="flex";
-  });
-}
-
-// ຕິດຕາມສະຖານະການລັອກອິນ + MIGRATION ຂໍ້ມູນເກົ່າ
-auth.onAuthStateChanged((user) => {
-  var loginWrap = document.getElementById("login-wrap");
-  var appWrap   = document.getElementById("app");
-  if (user) {
-    CU = { id: user.uid, name: user.displayName || user.email.split("@")[0], role: "user" };
-    
-    // ດຶງຂໍ້ມູນເກົ່າທັງໝົດມາຜູກກັບ Firebase UID ໃໝ່
-    let updated = false;
-    if(DB && DB.transactions){
-      DB.transactions.forEach(t => {
-         if (typeof t.userId === "number" || t.userId === 1779937218244) { t.userId = CU.id; updated = true; }
-      });
-      ["kip","thb","usd"].forEach(cur => {
-          if(DB.savings && DB.savings[cur]) {
-              DB.savings[cur].forEach(s => {
-                  if (typeof s.userId === "number" || s.userId === 1779937218244) { s.userId = CU.id; updated = true; }
-              });
-          }
-      });
-      if(updated) saveDB();
-    }
-
-    if(loginWrap) loginWrap.style.display = "none";
-    if(appWrap)   appWrap.style.display   = "flex";
-    document.getElementById("sb-uname").textContent="👤 "+CU.name;
-    initDates(); goMenu("dashboard");
-  } else {
-    if(loginWrap) loginWrap.style.display = "flex";
-    if(appWrap)   appWrap.style.display   = "none";
+    topExpHtml+='</table></div>';
   }
-});
+  if(tI.length){
+    topIncHtml='<div><h2 style="color:#15803d">🏆 Top ລາຍຮັບ (ສັດສ່ວນ %)</h2><table><tr><th>#</th><th>ໝວດໝູ່</th><th>ຈຳນວນ</th><th style="text-align:center">%</th><th>ສັດສ່ວນ</th></tr>';
+    tI.forEach(function(item,i){
+      var pct=inc>0?(item[1]/inc*100).toFixed(1):"0.0";
+      var barW=inc>0?Math.round(item[1]/inc*100):0;
+      topIncHtml+='<tr><td>'+(i+1)+'</td><td>'+esc(item[0])+'</td><td class="g" style="font-weight:bold;text-align:right">'+fmt(item[1])+'</td>'
+        +'<td style="text-align:center;font-weight:bold;color:#15803d">'+pct+'%</td>'
+        +'<td style="min-width:80px"><div style="background:#bbf7d0;border-radius:4px;height:10px"><div style="background:#15803d;border-radius:4px;height:10px;width:'+barW+'%"></div></div></td>'
+        +'</tr>';
+    });
+    topIncHtml+='</table></div>';
+  }
+  var txRows="";
+  txs.forEach(function(t){
+    txRows+='<tr>'
+      +'<td style="white-space:nowrap">'+fmtD(t.date)+'</td>'
+      +'<td class="'+(t.type==="income"?"g":"r")+'" style="font-weight:bold">'+(t.type==="income"?"ລາຍຮັບ":"ລາຍຈ່າຍ")+'</td>'
+      +'<td>'+esc(t.category)+'</td>'
+      +'<td>'+(esc(t.sub)||"—")+'</td>'
+      +'<td class="'+(t.type==="income"?"g":"r")+'" style="font-weight:bold;text-align:right">'+Number(t.amount).toLocaleString("lo-LA")+'</td>'
+      +'<td>'+(esc(t.note)||"—")+'</td>'
+      +'</tr>';
+  });
+  var printDate = new Date().toLocaleDateString("lo-LA",{year:"numeric",month:"long",day:"numeric"});
+  var html = '<!DOCTYPE html><html><head>'
+    +'<meta charset="UTF-8"/>'
+    +'<title>ລາຍງານການເງິນ</title>'
+    +'<link href="https://fonts.googleapis.com/css2?family=Phetsarath+OT&display=swap" rel="stylesheet"/>'
+    +'<style>'
+    +'@page{size:A4 portrait;margin:15mm 12mm}'
+    +'*{box-sizing:border-box;margin:0;padding:0}'
+    +'body{font-family:"Phetsarath OT",Arial,sans-serif;font-size:10.5pt;color:#111;background:#fff}'
+    +'.page-header{text-align:center;border-bottom:2px solid #1e3a5f;padding-bottom:10px;margin-bottom:14px}'
+    +'.page-header h1{font-size:17pt;color:#1e3a5f;margin-bottom:3px}'
+    +'.page-header p{color:#555;font-size:10pt}'
+    +'.sum-row{display:flex;margin-bottom:14px;border:1.5px solid #1e3a5f;border-radius:8px;overflow:hidden}'
+    +'.sum-row>div{flex:1;padding:10px;text-align:center;border-right:1px solid #c7d8f8}'
+    +'.sum-row>div:last-child{border-right:none}'
+    +'.sum-lbl{font-size:9.5pt;color:#666;margin-bottom:3px}'
+    +'.sum-val{font-size:13pt;font-weight:bold}'
+    +'.g{color:#15803d}.r{color:#dc2626}.b{color:#1d4ed8}'
+    +'h2{font-size:11pt;color:#1e3a5f;margin:12px 0 6px;border-bottom:1px solid #dbeafe;padding-bottom:3px}'
+    +'.top-wrap{display:flex;gap:12px;margin-bottom:12px}'
+    +'.top-wrap>div{flex:1}'
+    +'table{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:9.5pt}'
+    +'th{padding:6px 7px;text-align:left;font-weight:bold;background:#e8f0fe;border:1px solid #c7d8f8;font-size:9pt}'
+    +'td{padding:5px 7px;border:1px solid #e5e7eb}'
+    +'tr:nth-child(even) td{background:#f8faff}'
+    +'.footer{text-align:center;color:#aaa;font-size:8.5pt;margin-top:16px;padding-top:8px;border-top:1px solid #e5e7eb}'
+    +'.no-print{text-align:center;padding:14px;margin-bottom:10px;background:#f8faff;border-radius:8px}'
+    +'.no-print button{padding:10px 24px;border:none;border-radius:8px;cursor:pointer;font-size:12pt;font-family:"Phetsarath OT",Arial,sans-serif;margin:0 5px}'
+    +'@media print{.no-print{display:none}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}'
+    +'</style></head><body>'
+    +'<div class="no-print">'
+    +'<button style="background:#1e3a5f;color:#fff" onclick="window.print()">🖨 ພິມ A4</button>'
+    +'<button style="background:#dc2626;color:#fff" onclick="window.print()">📄 Save as PDF</button>'
+    +'<button style="background:#888;color:#fff" onclick="window.close()">✕ ປິດ</button>'
+    +'<p style="margin-top:8px;font-size:9.5pt;color:#888">ເລືອກ "Save as PDF" ໃນ print dialog ເພື່ອບັນທຶກ PDF</p>'
+    +'</div>'
+    +'<div class="page-header">'
+    +'<h1>💰 ລາຍງານການເງິນ</h1>'
+    +'<p>'+esc(CU.name)+' &nbsp;|&nbsp; '+esc(label)+' &nbsp;|&nbsp; ວັນທີ: '+printDate+'</p>'
+    +'</div>'
+    +'<div class="sum-row">'
+    +'<div><div class="sum-lbl">💚 ລາຍຮັບທັງໝົດ</div><div class="sum-val g">'+fmt(inc)+'</div></div>'
+    +'<div><div class="sum-lbl">❤️ ລາຍຈ່າຍທັງໝົດ</div><div class="sum-val r">'+fmt(exp)+'</div></div>'
+    +'<div><div class="sum-lbl">💰 ຍອດຄົງເຫຼືອ</div><div class="sum-val '+(bal>=0?"b":"r")+'">'+fmt(bal)+'</div></div>'
+    +'<div><div class="sum-lbl">📋 ຈຳນວນ</div><div class="sum-val" style="color:#555">'+txs.length+' ລາຍການ</div></div>'
+    +'</div>'
+    +'<div class="top-wrap">'+topExpHtml+topIncHtml+'</div>'
+    +(function(){
+      function buildGrouped(type){
+        var map={};
+        txs.filter(function(t){return t.type===type;}).forEach(function(t){
+          if(!map[t.category]) map[t.category]={total:0,subs:{}};
+          map[t.category].total+=t.amount;
+          var sk=t.sub||"";
+          if(sk) map[t.category].subs[sk]=(map[t.category].subs[sk]||0)+t.amount;
+        });
+        return Object.entries(map).sort(function(a,b){return b[1].total-a[1].total;});
+      }
+      function buildCatTable(grouped,grandTotal,colorMain,colorBar,colorBarBg){
+        var html='<table><tr><th>ໝວດໝູ່</th><th style="text-align:right">ຈຳນວນ</th><th style="text-align:center">%</th><th>ສັດສ່ວນ</th></tr>';
+        grouped.forEach(function(entry){
+          var cat=entry[0], data=entry[1];
+          var amt=data.total;
+          var pct=grandTotal>0?(amt/grandTotal*100).toFixed(1):"0.0";
+          var barW=grandTotal>0?Math.round(amt/grandTotal*100):0;
+          html+='<tr style="background:#f8f8f8">'
+            +'<td style="font-weight:bold">'+esc(cat)+'</td>'
+            +'<td style="text-align:right;font-weight:bold;color:'+colorMain+'">'+Number(amt).toLocaleString("lo-LA")+'</td>'
+            +'<td style="text-align:center;font-weight:bold;color:'+colorMain+'">'+pct+'%</td>'
+            +'<td style="min-width:70px"><div style="background:'+colorBarBg+';border-radius:4px;height:8px"><div style="background:'+colorMain+';border-radius:4px;height:8px;width:'+barW+'%"></div></div></td>'
+            +'</tr>';
+          var subEntries=Object.entries(data.subs).sort(function(a,b){return b[1]-a[1];});
+          subEntries.forEach(function(se){
+            var sName=se[0], sAmt=se[1];
+            var sPct=amt>0?(sAmt/amt*100).toFixed(1):"0.0";
+            var sBarW=amt>0?Math.round(sAmt/amt*100):0;
+            html+='<tr>'
+              +'<td style="padding-left:18px;color:#555;font-size:8.5pt">› '+esc(sName)+'</td>'
+              +'<td style="text-align:right;color:'+colorBar+';font-size:8.5pt">'+Number(sAmt).toLocaleString("lo-LA")+'</td>'
+              +'<td style="text-align:center;color:'+colorBar+';font-size:8.5pt">'+sPct+'%</td>'
+              +'<td style="min-width:70px"><div style="background:'+colorBarBg+';border-radius:3px;height:5px"><div style="background:'+colorBar+';border-radius:3px;height:5px;width:'+sBarW+'%"></div></div></td>'
+              +'</tr>';
+          });
+        });
+        html+='</table>';
+        return html;
+      }
+      var groupedExp=buildGrouped("expense");
+      var groupedInc=buildGrouped("income");
+      var sectHtml='<div class="top-wrap">';
+      if(groupedExp.length){
+        sectHtml+='<div><h2 style="color:#dc2626">📊 ລາຍຈ່າຍແຕ່ລະໝວດ</h2>';
+        sectHtml+=buildCatTable(groupedExp,exp,"#dc2626","#ef4444","#fecaca");
+        sectHtml+='</div>';
+      }
+      if(groupedInc.length){
+        sectHtml+='<div><h2 style="color:#15803d">📊 ລາຍຮັບແຕ່ລະໝວດ</h2>';
+        sectHtml+=buildCatTable(groupedInc,inc,"#15803d","#16a34a","#bbf7d0");
+        sectHtml+='</div>';
+      }
+      sectHtml+='</div>';
+      return sectHtml;
+    })()
+    +'<h2>📋 ລາຍລະອຽດທຸລະກຳ</h2>'
+    +'<table><tr><th>ວັນທີ</th><th>ປະເພດ</th><th>ໝວດໝູ່</th><th>ໝວດຍ່ອຍ</th><th>ຈຳນວນ (ກີບ)</th><th>ໝາຍເຫດ</th></tr>'
+    +txRows
+    +'</table>'
+    +'<div class="footer">ລາຍງານນີ້ສ້າງໂດຍ ລະບົບລາຍຮັບ-ລາຍຈ່າຍ &nbsp;|&nbsp; '+new Date().toLocaleString("lo-LA")+'</div>'
+    +'</body></html>';
+  w.document.write(html);
+  w.document.close();
+}
 
-/* ===================== UTILS ===================== */
+/* ===================== IMPORT HTML or JSON ===================== */
 const today=()=>new Date().toISOString().split("T")[0];
 const fmt=n=>Number(n).toLocaleString("lo-LA")+" ກີບ";
 const fmtShort=n=>{const v=Number(n);if(v>=1000000)return (v/1000000).toFixed(1)+"M";if(v>=1000)return (v/1000).toFixed(0)+"K";return v.toLocaleString();}
@@ -361,11 +4923,86 @@ function isoDate(d){return d.toISOString().split("T")[0];}
 function getCats(t){return DB.categories[t]||[];}
 function getSubs(t,n){const c=getCats(t).find(c=>c.name===n);return c?c.subs:[];}
 
+/* ===================== AUTH (ອັບເດດແລ້ວ) ===================== */
+function showReg(v){
+  document.getElementById("form-login").style.display=v?"none":"block";
+  document.getElementById("form-reg").style.display=v?"block":"none";
+}
+function setErr(id,msg,green){
+  const el=document.getElementById(id);
+  el.textContent=msg;el.style.display=msg?"block":"none";
+  el.style.color=green?"#15803d":"#dc2626";
+}
+
+function doLogin(){
+  const u = document.getElementById("l-user").value.trim();
+  const p = document.getElementById("l-pass").value;
+  
+  if(!u || !p) return setErr("l-err","ກະລຸນາໃສ່ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ");
+  
+  // ແປງຊື່ຜູ້ໃຊ້ໃຫ້ກາຍເປັນອີເມວ ເພື່ອເຂົ້າກັບລະບົບ Firebase
+  const email = u.includes("@") ? u : u + "@finance.com";
+  
+  auth.signInWithEmailAndPassword(email, p)
+    .then((userCredential) => {
+      // ດຽວ onAuthStateChanged ຈະພາເຂົ້າໜ້າຫຼັກເອງ
+    })
+    .catch((error) => {
+      setErr("l-err", "ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ (ຖ້າເຂົ້າເທື່ອທຳອິດໃຫ້ສ້າງບັນຊີກ່ອນ)");
+      console.error(error);
+    });
+}
+
+function doRegister(){
+  const name = document.getElementById("r-name").value.trim();
+  const user = document.getElementById("r-user").value.trim();
+  const pass = document.getElementById("r-pass").value;
+  
+  if(!name || !user || !pass) return setErr("r-err","ກະລຸນາຕື່ມຂໍ້ມູນໃຫ້ຄົບ");
+  if(pass.length < 6) return setErr("r-err","ລະຫັດຜ່ານຕ້ອງມີຢ່າງໜ້ອຍ 6 ຕົວອັກສອນ");
+  
+  const email = user.includes("@") ? user : user + "@finance.com";
+
+  auth.createUserWithEmailAndPassword(email, pass)
+    .then((userCredential) => {
+      userCredential.user.updateProfile({ displayName: name }).then(() => {
+        showReg(false); 
+        setErr("l-err","ສ້າງບັນຊີສຳເລັດ! ລະບົບກຳລັງພາທ່ານເຂົ້າສູ່ໜ້າຫຼັກ...", true);
+      });
+    })
+    .catch((error) => {
+      if(error.code === 'auth/email-already-in-use'){
+          setErr("r-err", "ຊື່ຜູ້ໃຊ້ນີ້ມີຄົນໃຊ້ແລ້ວ (ຫຼື ທ່ານເຄີຍສະໝັກແລ້ວ)");
+      } else {
+          setErr("r-err", error.message);
+      }
+    });
+}
+
+function doLogout(){
+  auth.signOut().then(() => {
+    CU = null;
+    document.getElementById("app").style.display="none";
+    document.getElementById("login-wrap").style.display="flex";
+    document.getElementById("l-user").value="";
+    document.getElementById("l-pass").value="";
+    setErr("l-err","");
+  });
+}
+
+/* ===================== SIDEBAR / NAV ===================== */
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");}
 function closeSidebar(){document.getElementById("sidebar").classList.remove("open");}
 function openMore(){document.getElementById("more-menu").style.display="block";document.getElementById("more-overlay").style.display="block";}
 function closeMore(){document.getElementById("more-menu").style.display="none";document.getElementById("more-overlay").style.display="none";}
-function toggleSec(id){const el=document.getElementById(id),arr=document.getElementById("arr-"+id);if(!el)return;const hidden=el.style.display==="none";el.style.display=hidden?"":"none";if(arr)arr.textContent=hidden?"▼":"▶";}
+
+function toggleSec(id){
+  const el=document.getElementById(id),arr=document.getElementById("arr-"+id);
+  if(!el) return;
+  const hidden=el.style.display==="none";
+  el.style.display=hidden?"":"none";
+  if(arr) arr.textContent=hidden?"▼":"▶";
+}
 
 function goMenu(m){
   curMenu=m;
@@ -373,106 +5010,60 @@ function goMenu(m){
   document.querySelectorAll(".bnav-item").forEach(el=>el.classList.remove("active"));
   const bnMap={dashboard:"bn-dashboard",add_tx:"bn-add_tx",month:"bn-month",report:"bn-report"};
   if(bnMap[m]) document.getElementById(bnMap[m])?.classList.add("active");
-  const titles={dashboard:"📊 Dashboard ລວມ",dashboard_month:"📊 Dashboard ປະຈຳເດືອນ",add_tx:"➕ ເພີ່ມລາຍການ",week:"📅 ສະຫຼຸບອາທິດ",month:"📆 ສະຫຼຸບເດືອນ",year:"🗃 ສະຫຼຸບປີ",report:"📑 ສ້າງລາຍງານ",exchange:"💱 ຄຳນວນອັດຕາແລກປ່ຽນ"};
-  document.getElementById("topbar-title").textContent=titles[m]||"📋 ລາຍການ";
+  const titles={
+    dashboard:"📊 Dashboard ລວມ",dashboard_month:"📊 Dashboard ປະຈຳເດືອນ",
+    add_tx:"➕ ເພີ່ມລາຍການ",week:"📅 ສະຫຼຸບອາທິດ",
+    month:"📆 ສະຫຼຸບເດືອນ",year:"🗃 ສະຫຼຸບປີ",
+    report:"📑 ສ້າງລາຍງານ",
+    admin_users:"👥 ຈັດການຜູ້ໃຊ້",admin_cats:"🏷 ຈັດການໝວດໝູ່",
+    exchange:"💱 ຄຳນວນອັດຕາແລກປ່ຽນ"
+  };
+  document.getElementById("topbar-title").textContent=titles[m]||"📋 "+getLabel();
   renderContent();
 }
 
+/* ===================== DATES ===================== */
 function initDates(){
   const n=new Date();weekDate=today();monthDate=n.toISOString().slice(0,7);yearDate=String(n.getFullYear());
-  document.getElementById("inp-week").value=weekDate; document.getElementById("inp-month").value=monthDate; document.getElementById("inp-year").value=yearDate;
+  const w=document.getElementById("inp-week"),mo=document.getElementById("inp-month"),y=document.getElementById("inp-year");
+  if(w) w.value=weekDate;
+  if(mo) mo.value=monthDate;
+  if(y) y.value=yearDate;
+  reportFilter.monthVal=monthDate; reportFilter.yearVal=yearDate;
   updateWeekLabel();updateMonthLabel();updateYearLabel();
 }
 function onWeekChange(){weekDate=document.getElementById("inp-week").value;updateWeekLabel();if(curMenu==="week")goMenu("week");}
 function onMonthChange(){monthDate=document.getElementById("inp-month").value;updateMonthLabel();if(curMenu==="month")goMenu("month");}
 function onYearChange(){yearDate=document.getElementById("inp-year").value;updateYearLabel();if(curMenu==="year")goMenu("year");}
-function updateWeekLabel(){if(!weekDate)return;const mon=getMonday(weekDate),sun=getSunday(mon);document.getElementById("lbl-week").textContent="🗓 "+fmtD(isoDate(mon))+" – "+fmtD(isoDate(sun));}
-function updateMonthLabel(){if(!monthDate)return;const[y,m]=monthDate.split("-").map(Number);document.getElementById("lbl-month").textContent="📌 "+MONTHS[m-1]+" "+y;}
-function updateYearLabel(){document.getElementById("lbl-year").textContent="📂 ປີ "+yearDate;}
+function updateWeekLabel(){
+  if(!weekDate)return;
+  const mon=getMonday(weekDate),sun=getSunday(mon);
+  const el=document.getElementById("lbl-week");
+  if(el) el.textContent="🗓 "+fmtD(isoDate(mon))+" – "+fmtD(isoDate(sun));
+}
+function updateMonthLabel(){
+  if(!monthDate)return;
+  const[y,m]=monthDate.split("-").map(Number);
+  const el=document.getElementById("lbl-month");
+  if(el) el.textContent="📌 "+MONTHS[m-1]+" "+y;
+}
+function updateYearLabel(){const el=document.getElementById("lbl-year");if(el) el.textContent="📂 ປີ "+yearDate;}
+function getLabel(){
+  if(curMenu==="dashboard"){const n=new Date();return "ທຸກຂໍ້ມູນ";}
+  if(curMenu==="week"){const mon=getMonday(weekDate),sun=getSunday(weekDate);return "ອາທິດ "+fmtD(isoDate(mon))+" – "+fmtD(isoDate(sun));}
+  if(curMenu==="month"){const[y,m]=monthDate.split("-").map(Number);return "ເດືອນ "+MONTHS[m-1]+" "+y;}
+  if(curMenu==="year") return "ປີ "+yearDate;
+  return "";
+}
 
+/* ===================== FILTER ===================== */
 function filterTxsByMenu(txs,menu,wd,md,yd){
   return txs.filter(t=>{
     const d=new Date(t.date);
     if(menu==="week"){const mon=getMonday(wd),sun=getSunday(mon);return d>=mon&&d<=sun;}
     if(menu==="month"){const[y,m]=md.split("-").map(Number);return d.getFullYear()===y&&d.getMonth()===m-1;}
     if(menu==="year"){return d.getFullYear()===parseInt(yd);}
-    return true;
+    return true; // dashboard = all
   });
 }
-function filterTxs(txs){return filterTxsByMenu(txs,curMenu,weekDate,monthDate,yearDate);}
-function getViewTxs(){return filterTxs(DB.transactions.filter(t=>t.userId===CU.id));}
-function getAllUserTxs(){return DB.transactions.filter(t=>t.userId===CU.id);}
-function getTopList(txs,type){
-  const map={};
-  txs.filter(t=>t.type===type).forEach(t=>{const k=t.sub?t.category+" › "+t.sub:t.category;map[k]=(map[k]||0)+t.amount;});
-  return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5);
-}
-
-/* ===================== RENDER ===================== */
-function renderDashboardAll(){
-  const myTxs=getAllUserTxs();
-  const n=new Date(), todayStr=today(), thisMonth=n.toISOString().slice(0,7), thisYear=String(n.getFullYear());
-  const monStart=getMonday(todayStr), monEnd=getSunday(monStart);
-  function sumType(arr,t){return arr.filter(x=>x.type===t).reduce((s,x)=>s+x.amount,0);}
-  const periods=[
-    {lbl:"ວັນນີ້",icon:"📅",arr:myTxs.filter(t=>t.date===todayStr)},
-    {lbl:"ອາທິດນີ້",icon:"🗓",arr:myTxs.filter(t=>{const d=new Date(t.date);return d>=monStart&&d<=monEnd;})},
-    {lbl:"ເດືອນນີ້",icon:"📆",arr:myTxs.filter(t=>{const d=new Date(t.date);const[y,m]=thisMonth.split("-").map(Number);return d.getFullYear()===y&&d.getMonth()===m-1;})},
-    {lbl:"ປີນີ້",icon:"🗃",arr:myTxs.filter(t=>new Date(t.date).getFullYear()===parseInt(thisYear))},
-    {lbl:"ທັງໝົດ",icon:"💰",arr:myTxs},
-  ];
-  const totalInc=sumType(myTxs,"income"),totalExp=sumType(myTxs,"expense"),totalBal=totalInc-totalExp;
-  let pHtml=periods.map(p=>{
-    const inc=sumType(p.arr,"income"),exp=sumType(p.arr,"expense"),bal=inc-exp;
-    return `<div class="card" style="margin-bottom:10px"><div style="font-weight:bold;color:#1e3a5f;margin-bottom:10px;font-size:14px">${p.icon} ສະຫຼຸບ${p.lbl} (${p.arr.length} ລາຍການ)</div><div style="display:flex;gap:8px;flex-wrap:wrap"><div style="flex:1;min-width:80px;background:#f0fdf4;border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:#15803d">💚 ລາຍຮັບ</div><div style="font-weight:bold;color:#15803d;font-size:13px;margin-top:3px">${fmtShort(inc)} ກີບ</div></div><div style="flex:1;min-width:80px;background:#fff5f5;border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:#dc2626">❤️ ລາຍຈ່າຍ</div><div style="font-weight:bold;color:#dc2626;font-size:13px;margin-top:3px">${fmtShort(exp)} ກີບ</div></div><div style="flex:1;min-width:80px;background:${bal>=0?"#eff6ff":"#fffbeb"};border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:${bal>=0?"#1d4ed8":"#92400e"}">💰 ຍອດ</div><div style="font-weight:bold;color:${bal>=0?"#1d4ed8":"#d97706"};font-size:13px;margin-top:3px">${fmtShort(bal)} ກີບ</div></div></div></div>`;
-  }).join("");
-
-  return `<div class="grid3"><div class="sum-card" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"><div class="lbl" style="color:#15803d">💚 ລາຍຮັບລວມ</div><div class="val" style="color:#15803d">${fmt(totalInc)}</div></div><div class="sum-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca)"><div class="lbl" style="color:#dc2626">❤️ ລາຍຈ່າຍລວມ</div><div class="val" style="color:#dc2626">${fmt(totalExp)}</div></div><div class="sum-card" style="background:${totalBal>=0?"linear-gradient(135deg,#dbeafe,#bfdbfe)":"linear-gradient(135deg,#fef3c7,#fde68a)"}"><div class="lbl" style="color:${totalBal>=0?"#1d4ed8":"#92400e"}">💰 ຍອດລວມ</div><div class="val" style="color:${totalBal>=0?"#1d4ed8":"#d97706"}">${fmt(totalBal)}</div></div></div><h3 style="font-size:14px;color:#1e3a5f;margin-bottom:10px">📊 ສະຫຼຸບແຕ່ລະໄລຍະ</h3>${pHtml}<div class="grid2"><div class="card"><h3 style="font-size:14px;color:#dc2626;margin-bottom:10px">🏆 Top ລາຍຈ່າຍ</h3>${renderTop(getTopList(myTxs,"expense"),"expense")}</div><div class="card"><h3 style="font-size:14px;color:#15803d;margin-bottom:10px">🏆 Top ລາຍຮັບ</h3>${renderTop(getTopList(myTxs,"income"),"income")}</div></div>`;
-}
-
-function renderTop(list,type){
-  const color=type==="expense"?"#dc2626":"#15803d";
-  if(!list.length) return '<p style="color:#aaa;text-align:center;font-size:13px">ຍັງບໍ່ມີຂໍ້ມູນ</p>';
-  const max=list[0][1];
-  return list.map(([cat,amt],i)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>#${i+1} ${esc(cat)}</span><span style="color:${color};font-weight:bold">${fmt(amt)}</span></div><div class="bar-wrap"><div class="bar-fill" style="background:${color};width:${max>0?(amt/max*100).toFixed(0):0}%"></div></div></div>`).join("");
-}
-
-function renderContent(){
-  const el=document.getElementById("content");
-  if(!el) return;
-  if(curMenu==="dashboard"){el.innerHTML=renderDashboardAll();return;}
-  if(curMenu==="add_tx"){el.innerHTML=`<div class="card"><h3>➕ ເພີ່ມລາຍການໃໝ່</h3><br>`+txFormHTML("add")+`</div>`;return;}
-  // Default fallback for week/month/year
-  const txs=getViewTxs();
-  el.innerHTML=`<div class="card"><h3 style="margin-bottom:10px">📋 ລາຍການທັງໝົດ (${txs.length})</h3>${renderTxTable(txs,true)}</div>`;
-}
-
-const txState={add:{type:"expense"}};
-function txFormHTML(prefix){
-  const type=txState[prefix].type; const cats=getCats(type);
-  return `<div style="display:flex;gap:6px;margin-bottom:10px"><button class="type-btn" onclick="txState['${prefix}'].type='income';renderContent()" style="background:${type==="income"?"#15803d":"#e2e8f0"};color:${type==="income"?"#fff":"#333"}">💚 ລາຍຮັບ</button><button class="type-btn" onclick="txState['${prefix}'].type='expense';renderContent()" style="background:${type==="expense"?"#dc2626":"#e2e8f0"};color:${type==="expense"?"#fff":"#333"}">❤️ ລາຍຈ່າຍ</button></div><label class="fl">ຈຳນວນເງິນ (ກີບ)</label><input type="number" id="${prefix}-amount" placeholder="0"><label class="fl">ໝວດໝູ່</label><select id="${prefix}-cat" onchange="onCatChange('${prefix}')"><option value="">-- ເລືອກໝວດໝູ່ --</option>${cats.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join("")}</select><label class="fl">ໝວດຍ່ອຍ</label><select id="${prefix}-sub" class="sub-select"><option value="">-- ໝວດຍ່ອຍ --</option></select><label class="fl">ວັນທີ</label><input type="date" id="${prefix}-date" value="${today()}"><label class="fl">ໝາຍເຫດ</label><input type="text" id="${prefix}-note" placeholder="ໝາຍເຫດ"><p id="${prefix}-err" class="err" style="display:none"></p><button class="btn-primary" onclick="doAddTx('${prefix}')">✅ ບັນທຶກ</button>`;
-}
-function onCatChange(p){
-  const cat=document.getElementById(p+"-cat").value, subs=getSubs(txState[p].type,cat);
-  document.getElementById(p+"-sub").innerHTML='<option value="">-- ໝວດຍ່ອຍ --</option>'+subs.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("");
-}
-function doAddTx(p){
-  const amt=parseFloat(document.getElementById(p+"-amount").value), cat=document.getElementById(p+"-cat").value;
-  if(!cat||!amt) return setErr(p+"-err","ກະລຸນາຕື່ມຂໍ້ມູນໃຫ້ຄົບ");
-  DB.transactions.push({id:DB.nextId++,userId:CU.id,type:txState[p].type,amount:amt,category:cat,sub:document.getElementById(p+"-sub").value,note:document.getElementById(p+"-note").value,date:document.getElementById(p+"-date").value});
-  saveDB(); alert("ບັນທຶກສຳເລັດ!"); goMenu("dashboard");
-}
-
-function renderTxTable(txs,act){
-  if(!txs.length) return '<p style="text-align:center;padding:20px;color:#aaa">ຍັງບໍ່ມີລາຍການ</p>';
-  return `<div class="ovx"><table><thead><tr><th>ວັນທີ</th><th>ປະເພດ</th><th>ໝວດໝູ່</th><th>ຈຳນວນ</th><th></th></tr></thead><tbody>${txs.map(t=>`<tr><td style="white-space:nowrap">${fmtD(t.date)}</td><td><span style="color:${t.type==="income"?"#15803d":"#dc2626"}">${t.type==="income"?"💚":"❤️"}</span></td><td>${esc(t.category)} ${t.sub?`› ${esc(t.sub)}`:''}</td><td style="font-weight:bold;color:${t.type==="income"?"#15803d":"#dc2626"}">${fmt(t.amount)}</td><td><button class="btn-icon btn-red" onclick="delTx(${t.id})">🗑</button></td></tr>`).join("")}</tbody></table></div>`;
-}
-function delTx(id){if(confirm("ລຶບ?")){DB.transactions=DB.transactions.filter(t=>t.id!==id);saveDB();renderContent();}}
-
-(async function(){
-  var loadDiv = document.createElement("div"); loadDiv.style.cssText="position:fixed;inset:0;background:#1e3a5f;z-index:9999;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px"; loadDiv.innerHTML="ກຳລັງໂຫຼດ..."; document.body.appendChild(loadDiv);
-  try{ DB = await loadDB(); }catch(e){ DB = defData(); }
-  loadDiv.remove();
-})();
-</script>
-</body></html>
+function filterTxs(txs){return filterTxs
