@@ -5,17 +5,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Phetsarath+OT&amp;display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f0f4f8;--sidebar:#1e2d45;--primary:#2563eb;--green:#15803d;--red:#dc2626;
-  --purple:#7c3aed;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;
-  --card:#fff;--topbar:#fff;--shadow:0 2px 8px rgba(0,0,0,.08);
-}
+:root{--bg:#f0f4f8;--sidebar:#1e2d45;--primary:#2563eb;--green:#15803d;--red:#dc2626;--purple:#7c3aed;--text:#1e293b;--border:#e2e8f0;--card:#fff;--topbar:#fff;--shadow:0 2px 8px rgba(0,0,0,.08);}
 body{font-family:'Phetsarath OT',Arial,sans-serif;background:var(--bg);min-height:100vh;font-size:15px;color:var(--text)}
 input,select,button,textarea{font-family:'Phetsarath OT',Arial,sans-serif}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px}
-
-/* ---- LAYOUT ---- */
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px}
 #app{display:flex;min-height:100vh;position:relative}
 #sidebar{width:240px;min-width:240px;background:var(--sidebar);color:#fff;display:flex;flex-direction:column;transition:transform .28s ease,width .28s ease;z-index:200}
 #sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199}
@@ -23,169 +16,80 @@ input,select,button,textarea{font-family:'Phetsarath OT',Arial,sans-serif}
 #main{flex:1;display:flex;flex-direction:column;min-width:0;max-width:100%}
 #topbar{background:var(--topbar);padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,.1);position:sticky;top:0;z-index:10}
 #content{padding:14px;flex:1;overflow-y:auto}
-
-/* ---- SIDEBAR ---- */
 .sb-brand{padding:16px 14px 12px;border-bottom:1px solid #2d4060}
 .sb-brand h2{font-size:16px;font-weight:bold}
 .sb-brand p{font-size:12px;color:#94a3b8;margin-top:3px}
 .sb-body{flex:1;padding-bottom:10px;overflow-y:auto}
-.sb-sec-head{padding:10px 14px 4px;font-size:11px;color:#64748b;font-weight:bold;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;user-select:none;text-transform:uppercase;letter-spacing:.5px}
-.sb-item{padding:9px 14px;cursor:pointer;border-left:3px solid transparent;font-size:13px;
-  display:flex;align-items:center;gap:7px;transition:background .15s;white-space:nowrap}
+.sb-sec-head{padding:10px 14px 4px;font-size:11px;color:#64748b;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;text-transform:uppercase;letter-spacing:.5px}
+.sb-item{padding:9px 14px;cursor:pointer;border-left:3px solid transparent;font-size:13px;display:flex;align-items:center;gap:7px;transition:background .15s;white-space:nowrap}
 .sb-item:hover{background:rgba(255,255,255,.07)}
 .sb-item.active{background:#2563eb;border-left-color:#60a5fa}
 .sb-footer{padding:10px;border-top:1px solid #2d4060}
-.dk-inp{width:100%;background:#2d3f58;border:1px solid #3d5070;border-radius:7px;color:#fff;
-  padding:7px 9px;font-size:13px;box-sizing:border-box}
-
-/* ---- CARDS ---- */
+.dk-inp{width:100%;background:#2d3f58;border:1px solid #3d5070;border-radius:7px;color:#fff;padding:7px 9px;font-size:13px;box-sizing:border-box}
 .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .sum-card{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);text-align:center}
 .sum-card .lbl{font-size:12px}
 .sum-card .val{font-size:17px;font-weight:bold;margin-top:4px}
-
-/* ---- FORM ---- */
 label.fl{font-size:13px;color:#555;display:block;margin-bottom:3px}
-input[type=text],input[type=number],input[type=password],input[type=date],input[type=month],select{
-  display:block;width:100%;padding:9px 11px;border-radius:8px;border:1px solid var(--border);
-  margin-bottom:10px;font-size:14px;background:#fff;-webkit-appearance:none;appearance:none}
-input[type=number]{-moz-appearance:textfield}
-.btn-primary{display:block;width:100%;padding:11px;background:var(--primary);color:#fff;border:none;
-  border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:4px;transition:background .15s}
-.btn-primary:hover,.btn-primary:active{background:#1d4ed8}
-.btn-secondary{display:block;width:100%;padding:10px;background:#e2e8f0;color:#333;border:none;
-  border-radius:8px;cursor:pointer;font-size:14px;transition:background .15s}
-.btn-secondary:active{background:#cbd5e1}
-.btn-icon{border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;touch-action:manipulation}
-.btn-red{background:#fee2e2;color:#dc2626}
-.btn-blue{background:#dbeafe;color:#1d4ed8}
-.type-btn{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer;font-size:13px;transition:background .15s;touch-action:manipulation}
+input[type=text],input[type=number],input[type=password],input[type=date],input[type=month],select{display:block;width:100%;padding:9px 11px;border-radius:8px;border:1px solid var(--border);margin-bottom:10px;font-size:14px;background:#fff;-webkit-appearance:none;appearance:none}
+.btn-primary{display:block;width:100%;padding:11px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:4px}
+.btn-secondary{display:block;width:100%;padding:10px;background:#e2e8f0;color:#333;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+.btn-icon{border:none;border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px}
+.btn-red{background:#fee2e2;color:#dc2626}.btn-blue{background:#dbeafe;color:#1d4ed8}
+.type-btn{flex:1;padding:10px;border:none;border-radius:8px;cursor:pointer;font-size:13px}
 .sub-select{border-color:#a5b4fc!important;background:#f5f3ff!important}
 .err{color:#dc2626;font-size:13px;margin-bottom:6px}
-
-/* ---- TABLE ---- */
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{padding:9px 10px;text-align:left;font-weight:bold;border:1px solid #e5e7eb;background:#e8f0fe}
 td{padding:8px 10px;border:1px solid #f3f4f6}
 .ovx{overflow-x:auto;-webkit-overflow-scrolling:touch}
-
-/* ---- BADGES ---- */
-.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:12px}
 .badge-sub{background:#ede9fe;color:#7c3aed;padding:2px 9px;border-radius:10px;font-size:12px}
 .tag{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;border-radius:16px;font-size:13px}
 .bar-wrap{background:#f0f0f0;border-radius:6px;height:7px;margin-top:4px}
 .bar-fill{border-radius:6px;height:7px;transition:width .5s}
-
-/* ---- MODAL ---- */
-.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);
-  display:flex;align-items:flex-end;justify-content:center;z-index:400;padding:0}
-.modal-box{background:#fff;border-radius:18px 18px 0 0;padding:22px 20px;width:100%;max-width:520px;
-  max-height:92vh;overflow-y:auto;box-shadow:0 -4px 30px rgba(0,0,0,.2);animation:slideUp .25s ease}
+.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:400}
+.modal-box{background:#fff;border-radius:14px;padding:22px 20px;width:100%;max-width:440px;max-height:92vh;overflow-y:auto;box-shadow:0 4px 30px rgba(0,0,0,.2);animation:slideUp .25s ease}
 @keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-handle{width:40px;height:4px;background:#d1d5db;border-radius:4px;margin:0 auto 16px}
-@media(min-width:600px){
-  .modal-bg{align-items:center}
-  .modal-box{border-radius:14px;max-width:440px}
-}
-
-/* ---- CAT MANAGER ---- */
 .cat-box{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
 .cat-head{display:flex;align-items:center;padding:10px 13px;cursor:pointer}
 .cat-body{padding:11px 14px;background:#fafafa}
 .add-row{display:flex;gap:8px;margin-bottom:12px;padding:10px 12px;background:#f8faff;border-radius:9px;align-items:center}
 .add-row input{margin:0;flex:1;font-size:13px}
-.add-row button{margin:0;padding:8px 12px;font-size:13px;white-space:nowrap;width:auto}
-.tab-btn{flex:1;padding:9px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;transition:background .15s;touch-action:manipulation}
-
-/* ---- CAT QUICK-ADD ---- */
+.add-row button{margin:0;padding:8px 12px;font-size:13px;width:auto}
 .cat-add-inline{display:flex;gap:6px;margin-bottom:10px}
 .cat-add-inline input{margin:0;flex:1;font-size:13px;padding:8px 10px}
-.cat-add-inline button{margin:0;padding:8px 12px;font-size:13px;width:auto;white-space:nowrap;border-radius:8px;border:none;cursor:pointer}
-
-/* ---- LOGIN ---- */
-#login-wrap{min-height:100vh;background:linear-gradient(135deg,#1e3a5f,#2563eb);
-  display:flex;align-items:center;justify-content:center;padding:16px}
+.cat-add-inline button{margin:0;padding:8px 12px;font-size:13px;width:auto;border-radius:8px;border:none;cursor:pointer}
+#login-wrap{min-height:100vh;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;align-items:center;justify-content:center;padding:16px}
 #login-box{background:#fff;border-radius:18px;padding:30px 24px;width:100%;max-width:380px;box-shadow:0 8px 32px rgba(0,0,0,.25)}
 .login-logo{text-align:center;margin-bottom:20px}
-.hint-box{margin-top:12px;padding:11px;background:#f8faff;border-radius:9px;font-size:13px;color:#666}
-
-/* ---- BOTTOM NAV (Mobile) ---- */
-#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);
-  padding:6px 0 max(6px,env(safe-area-inset-bottom));z-index:150;box-shadow:0 -2px 8px rgba(0,0,0,.08)}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 4px;
-  cursor:pointer;touch-action:manipulation;color:#64748b;font-size:10px;border:none;background:none}
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:6px 0 max(6px,env(safe-area-inset-bottom));z-index:150}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 4px;cursor:pointer;color:#64748b;font-size:10px;border:none;background:none}
 .bnav-item.active{color:var(--primary)}
-.bnav-item svg,.bnav-icon{font-size:20px}
-
-/* ---- BOTTOM MORE MENU ---- */
-#more-menu{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;
-  padding:16px;z-index:350;box-shadow:0 -4px 20px rgba(0,0,0,.15);animation:slideUp .2s ease}
+.bnav-icon{font-size:20px}
+#more-menu{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;padding:16px;z-index:350;animation:slideUp .2s ease}
 #more-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:349}
-.more-item{display:flex;align-items:center;gap:12px;padding:13px 8px;font-size:15px;cursor:pointer;
-  border-radius:10px;transition:background .15s;border-bottom:1px solid #f1f5f9}
-.more-item:last-child{border-bottom:none}
-.more-item:active{background:#f0f4f8}
-
-/* ---- DASHBOARD TABS ---- */
-.dash-tab-bar{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px}
-.dash-tab{padding:7px 16px;border:none;border-radius:20px;cursor:pointer;font-size:13px;
-  background:#e2e8f0;color:#555;white-space:nowrap;transition:all .15s;font-family:'Phetsarath OT',Arial,sans-serif}
-.dash-tab.active{background:var(--primary);color:#fff;font-weight:bold}
-
-/* ---- REPORT FILTER ---- */
+.more-item{display:flex;align-items:center;gap:12px;padding:13px 8px;font-size:15px;cursor:pointer;border-bottom:1px solid #f1f5f9}
 .report-filter{background:#fff;border-radius:12px;padding:14px;box-shadow:var(--shadow);margin-bottom:14px}
-.report-filter select{margin-bottom:6px}
-.filter-row{display:flex;gap:8px;align-items:flex-end}
-.filter-row>*{flex:1;margin-bottom:0}
-
-/* ---- SUMMARY ROWS ---- */
-.sum-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px}
-.sum-row:last-child{border-bottom:none}
-
-/* ---- EXPORT/IMPORT BAR ---- */
 .data-bar{background:#1e2d45;color:#fff;border-radius:10px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .data-bar span{flex:1;font-size:13px}
-.data-bar button{padding:8px 14px;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Phetsarath OT',Arial,sans-serif;white-space:nowrap}
-
-/* ---- MONTHLY DASHBOARD ---- */
+.data-bar button{padding:8px 14px;border:none;border-radius:7px;cursor:pointer;font-size:13px}
 .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:14px}
-.month-tile{background:#fff;border-radius:10px;padding:12px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s}
-.month-tile:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.month-tile{background:#fff;border-radius:10px;padding:12px;box-shadow:var(--shadow);cursor:pointer}
 .month-tile.selected{border:2px solid var(--primary)}
 .month-tile .mt-name{font-size:12px;color:#555;margin-bottom:5px}
 .month-tile .mt-inc{font-size:13px;font-weight:bold;color:var(--green)}
 .month-tile .mt-exp{font-size:13px;font-weight:bold;color:var(--red)}
 .month-tile .mt-bal{font-size:11px;color:#888;margin-top:3px}
-
-/* ---- RESPONSIVE ---- */
 @media(max-width:767px){
   #sidebar{position:fixed;height:100%;transform:translateX(-100%);left:0;top:0}
   #sidebar.open{transform:translateX(0)}
-  #sidebar-overlay{display:block;pointer-events:none;opacity:0;transition:opacity .28s}
-  #sidebar.open~#sidebar-overlay{pointer-events:auto;opacity:1}
+  #sidebar.open~#sidebar-overlay{display:block}
   #main{margin-left:0 !important}
   #bottom-nav{display:flex}
   #content{padding-bottom:80px}
-  .grid3{grid-template-columns:1fr 1fr}
-  .grid2{grid-template-columns:1fr}
-  .sum-card .val{font-size:14px}
-  #topbar{padding:9px 12px}
-  .card{padding:13px}
-}
-@media(min-width:768px){
-  .grid3{grid-template-columns:repeat(3,1fr)}
-  .modal-bg{align-items:center}
-}
-@media(max-width:400px){
-  .grid3{grid-template-columns:1fr}
-  body{font-size:14px}
-}
-/* Safe area for iPhone notch */
-@supports(padding-bottom:env(safe-area-inset-bottom)){
-  #bottom-nav{padding-bottom:max(6px,env(safe-area-inset-bottom))}
+  .grid3,.grid2{grid-template-columns:1fr}
 }
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -194,18 +98,17 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
 </head>
 <body>
 
-<div id="login-wrap" style="display: none;">
+<div id="login-wrap" style="display:none;">
   <div id="login-box">
     <div class="login-logo">
       <div style="font-size:44px">💰</div>
       <h2 style="color:#1e3a5f;font-size:20px;margin:8px 0 4px">ລະບົບລາຍຮັບ-ລາຍຈ່າຍ</h2>
-      <p style="color:#888;font-size:13px">Financial Management System</p>
     </div>
     <div id="form-login">
-      <label class="fl">ຊື່ຜູ້ໃຊ້</label>
-      <input type="text" id="l-user" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+      <label class="fl">ອີເມວ ຫຼື ຊື່ຜູ້ໃຊ້</label>
+      <input type="text" id="l-user" placeholder="username" onkeydown="if(event.key==='Enter')doLogin()">
       <label class="fl">ລະຫັດຜ່ານ</label>
-      <input type="password" id="l-pass" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="l-pass" placeholder="password" onkeydown="if(event.key==='Enter')doLogin()">
       <p id="l-err" class="err" style="display:none"></p>
       <button class="btn-primary" onclick="doLogin()">🔐 ເຂົ້າສູ່ລະບົບ</button>
       <p style="text-align:center;font-size:14px;color:#555;margin-top:14px">
@@ -214,9 +117,9 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
     </div>
     <div id="form-reg" style="display:none">
       <h3 style="color:#1e3a5f;margin-bottom:14px;font-size:17px">ສ້າງບັນຊີໃໝ່</h3>
-      <label class="fl">ຊື່-ນາມສະກຸນ</label><input type="text" id="r-name" placeholder="ຊື່ຂອງທ່ານ">
-      <label class="fl">ຊື່ຜູ້ໃຊ້ (ສຳຄັນ! ໃສ່ khen ຄືເກົ່າເພື່ອດຶງຂໍ້ມູນ)</label><input type="text" id="r-user" placeholder="username" autocomplete="username">
-      <label class="fl">ລະຫັດຜ່ານໃໝ່ (6 ຕົວຂຶ້ນໄປ)</label><input type="password" id="r-pass" placeholder="password" autocomplete="new-password">
+      <label class="fl">ຊື່-ນາມສະກຸນ</label><input type="text" id="r-name">
+      <label class="fl">ຊື່ຜູ້ໃຊ້ (ໃສ່ khen ຫຼື ຊື່ເດີມ)</label><input type="text" id="r-user">
+      <label class="fl">ລະຫັດຜ່ານໃໝ່ (6 ຕົວຂຶ້ນໄປ)</label><input type="password" id="r-pass">
       <p id="r-err" class="err" style="display:none"></p>
       <button class="btn-primary" onclick="doRegister()">✅ ສ້າງບັນຊີ</button>
       <button class="btn-secondary" style="margin-top:8px" onclick="showReg(false)">← ກັບຄືນ</button>
@@ -224,130 +127,95 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
   </div>
 </div>
 
-<div id="app" style="display: flex;">
+<div id="app" style="display:none;">
   <div id="sidebar-overlay" onclick="closeSidebar()"></div>
-
   <div id="sidebar">
     <div id="sb-inner">
-      <div class="sb-brand">
-        <h2>💰 ການເງິນ</h2>
-        <p id="sb-uname">👤 khen</p>
-      </div>
+      <div class="sb-brand"><h2>💰 ການເງິນ</h2><p id="sb-uname">👤 khen</p></div>
       <div class="sb-body">
         <div class="sb-item active" data-menu="dashboard" onclick="goMenu('dashboard');closeSidebar()">🏠 Dashboard ລວມ</div>
         <div class="sb-item" data-menu="dashboard_month" onclick="goMenu('dashboard_month');closeSidebar()">📊 Dashboard ປະຈຳເດືອນ</div>
         <div class="sb-item" data-menu="add_tx" onclick="goMenu('add_tx');closeSidebar()">➕ ເພີ່ມລາຍການ</div>
-
-        <div class="sb-sec-head" onclick="toggleSec('sec-week')">
-          <span>📅 ປະຈຳອາທິດ</span><span id="arr-sec-week">▼</span>
-        </div>
+        
+        <div class="sb-sec-head" onclick="toggleSec('sec-week')"><span>📅 ປະຈຳອາທິດ</span><span id="arr-sec-week">▼</span></div>
         <div id="sec-week" style="padding:6px 14px 7px">
           <input type="date" class="dk-inp" id="inp-week" oninput="onWeekChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="week" onclick="goMenu('week');closeSidebar()" id="lbl-week" style="padding-left:8px;font-size:12px">🗓 5/31/2026 – 6/7/2026</div>
+          <div class="sb-item" data-menu="week" onclick="goMenu('week');closeSidebar()" id="lbl-week" style="padding-left:8px;font-size:12px">🗓</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-month')">
-          <span>📆 ປະຈຳເດືອນ</span><span id="arr-sec-month">▼</span>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-month')"><span>📆 ປະຈຳເດືອນ</span><span id="arr-sec-month">▼</span></div>
         <div id="sec-month" style="padding:6px 14px 7px">
           <input type="month" class="dk-inp" id="inp-month" oninput="onMonthChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="month" onclick="goMenu('month');closeSidebar()" id="lbl-month" style="padding-left:8px;font-size:12px">📌 ມິຖຸນາ 2026</div>
+          <div class="sb-item" data-menu="month" onclick="goMenu('month');closeSidebar()" id="lbl-month" style="padding-left:8px;font-size:12px">📌</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-year')">
-          <span>🗃 ປະຈຳປີ</span><span id="arr-sec-year">▼</span>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-year')"><span>🗃 ປະຈຳປີ</span><span id="arr-sec-year">▼</span></div>
         <div id="sec-year" style="padding:6px 14px 7px">
-          <input type="number" class="dk-inp" id="inp-year" min="2000" max="2099" oninput="onYearChange()" style="margin-bottom:7px">
-          <div class="sb-item" data-menu="year" onclick="goMenu('year');closeSidebar()" id="lbl-year" style="padding-left:8px;font-size:12px">📂 ປີ 2026</div>
+          <input type="number" class="dk-inp" id="inp-year" oninput="onYearChange()" style="margin-bottom:7px">
+          <div class="sb-item" data-menu="year" onclick="goMenu('year');closeSidebar()" id="lbl-year" style="padding-left:8px;font-size:12px">📂</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-report')">
-          <span>📑 ລາຍງານ</span><span id="arr-sec-report">▼</span>
-        </div>
-        <div id="sec-report">
-          <div class="sb-item" data-menu="report" onclick="goMenu('report');closeSidebar()">🔍 ສ້າງລາຍງານ</div>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-report')"><span>📑 ລາຍງານ</span><span id="arr-sec-report">▼</span></div>
+        <div id="sec-report"><div class="sb-item" data-menu="report" onclick="goMenu('report');closeSidebar()">🔍 ສ້າງລາຍງານ</div></div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-data')">
-          <span>💾 ຂໍ້ມູນ</span><span id="arr-sec-data">▼</span>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-data')"><span>💾 ຂໍ້ມູນ</span><span id="arr-sec-data">▼</span></div>
         <div id="sec-data">
           <div class="sb-item" onclick="exportHTMLFile();closeSidebar()">📤 Export HTML (ຍ້າຍເຄື່ອງ)</div>
-          <div class="sb-item" onclick="document.getElementById('import-file').click();closeSidebar()">📥 📥 Import ຂໍ້ມູນ</div>
+          <div class="sb-item" onclick="document.getElementById('import-file').click();closeSidebar()">📥 Import ຂໍ້ມູນ</div>
         </div>
 
         <div id="sb-admin-sec" style="display:none">
-          <div class="sb-sec-head" onclick="toggleSec('sec-admin')">
-            <span>👑 Admin</span><span id="arr-sec-admin">▼</span>
-          </div>
+          <div class="sb-sec-head" onclick="toggleSec('sec-admin')"><span>👑 Admin</span><span id="arr-sec-admin">▼</span></div>
           <div id="sec-admin">
             <div class="sb-item" data-menu="admin_users" onclick="goMenu('admin_users');closeSidebar()">👥 ຈັດການຜູ້ໃຊ້</div>
             <div class="sb-item" data-menu="admin_cats" onclick="goMenu('admin_cats');closeSidebar()">🏷 ຈັດການໝວດໝູ່</div>
           </div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-savings')">
-          <span>🏦 ເງິນອອມ</span><span id="arr-sec-savings">▼</span>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-savings')"><span>🏦 ເງິນອອມ</span><span id="arr-sec-savings">▼</span></div>
         <div id="sec-savings">
           <div class="sb-item" data-menu="savings_kip" onclick="goMenu('savings_kip');closeSidebar()">🇱🇦 ເງິນກີບ</div>
           <div class="sb-item" data-menu="savings_thb" onclick="goMenu('savings_thb');closeSidebar()">🇹🇭 ເງິນບາດ</div>
           <div class="sb-item" data-menu="savings_usd" onclick="goMenu('savings_usd');closeSidebar()">🇺🇸 ເງິນໂດລາ</div>
         </div>
 
-        <div class="sb-sec-head" onclick="toggleSec('sec-exchange')">
-          <span>💱 ອັດຕາແລກປ່ຽນ</span><span id="arr-sec-exchange">▼</span>
-        </div>
-        <div id="sec-exchange">
-          <div class="sb-item" data-menu="exchange" onclick="goMenu('exchange');closeSidebar()">🔄 ຄຳນວນອັດຕາແລກປ່ຽນ</div>
-        </div>
+        <div class="sb-sec-head" onclick="toggleSec('sec-exchange')"><span>💱 ອັດຕາແລກປ່ຽນ</span><span id="arr-sec-exchange">▼</span></div>
+        <div id="sec-exchange"><div class="sb-item" data-menu="exchange" onclick="goMenu('exchange');closeSidebar()">🔄 ຄຳນວນອັດຕາແລກປ່ຽນ</div></div>
       </div>
       <div class="sb-footer">
-        <button onclick="doLogout()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px;cursor:pointer;font-size:14px;font-family:'Phetsarath OT',Arial,sans-serif">🚪 ອອກຈາກລະບົບ</button>
+        <button onclick="doLogout()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px;cursor:pointer">🚪 ອອກຈາກລະບົບ</button>
       </div>
     </div>
   </div>
 
   <div id="main">
     <div id="topbar">
-      <button onclick="toggleSidebar()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#1e3a5f;padding:2px 6px;touch-action:manipulation">☰</button>
+      <button onclick="toggleSidebar()" style="background:none;border:none;font-size:24px;cursor:pointer">☰</button>
       <span id="topbar-title" style="font-weight:bold;color:#1e3a5f;font-size:15px;flex:1">📊 Dashboard ລວມ</span>
-      <button onclick="goMenu('add_tx')" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;font-family:'Phetsarath OT',Arial,sans-serif;touch-action:manipulation">➕</button>
+      <button onclick="goMenu('add_tx')" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:7px 12px;cursor:pointer">➕</button>
     </div>
     <div id="content"></div>
   </div>
 
   <nav id="bottom-nav">
-    <button class="bnav-item active" id="bn-dashboard" onclick="goMenu('dashboard')">
-      <span class="bnav-icon">🏠</span><span>Dashboard</span>
-    </button>
-    <button class="bnav-item" id="bn-add_tx" onclick="goMenu('add_tx')">
-      <span class="bnav-icon">➕</span><span>ເພີ່ມ</span>
-    </button>
-    <button class="bnav-item" id="bn-month" onclick="goMenu('month')">
-      <span class="bnav-icon">📆</span><span>ເດືອນ</span>
-    </button>
-    <button class="bnav-item" id="bn-report" onclick="goMenu('report')">
-      <span class="bnav-icon">📑</span><span>ລາຍງານ</span>
-    </button>
-    <button class="bnav-item" id="bn-more" onclick="openMore()">
-      <span class="bnav-icon">⋯</span><span>ເພີ່ມເຕີມ</span>
-    </button>
+    <button class="bnav-item active" id="bn-dashboard" onclick="goMenu('dashboard')"><span class="bnav-icon">🏠</span><span>Dashboard</span></button>
+    <button class="bnav-item" id="bn-add_tx" onclick="goMenu('add_tx')"><span class="bnav-icon">➕</span><span>ເພີ່ມ</span></button>
+    <button class="bnav-item" id="bn-month" onclick="goMenu('month')"><span class="bnav-icon">📆</span><span>ເດືອນ</span></button>
+    <button class="bnav-item" id="bn-report" onclick="goMenu('report')"><span class="bnav-icon">📑</span><span>ລາຍງານ</span></button>
+    <button class="bnav-item" id="bn-more" onclick="openMore()"><span class="bnav-icon">⋯</span><span>ເພີ່ມເຕີມ</span></button>
   </nav>
 </div>
 
 <input type="file" id="import-file" accept=".html,.json" style="display:none" onchange="importData(event)">
 
-<div id="edit-modal" class="modal-bg" style="display:none">
+<div id="edit-modal" class="modal-bg">
   <div class="modal-box">
-    <div class="modal-handle"></div>
-    <h3 style="color:#1e3a5f;margin-bottom:14px;font-size:16px">✏️ ແກ້ໄຂລາຍການ</h3>
-    <label class="fl">ຈຳນວນເງິນ</label><input type="number" id="e-amount" inputmode="decimal">
+    <h3 style="color:#1e3a5f;margin-bottom:14px">✏️ ແກ້ໄຂລາຍການ</h3>
+    <label class="fl">ຈຳນວນເງິນ</label><input type="number" id="e-amount">
     <label class="fl">ໝວດໝູ່</label><select id="e-cat" onchange="renderEditSub()"></select>
     <label class="fl">ໝວດຍ່ອຍ</label><select id="e-sub" class="sub-select"></select>
     <label class="fl">ວັນທີ</label><input type="date" id="e-date">
-    <label class="fl">ໝາຍເຫດ</label><input type="text" id="e-note" placeholder="ໝາຍເຫດ">
+    <label class="fl">ໝາຍເຫດ</label><input type="text" id="e-note">
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn-primary" onclick="saveEdit()">💾 ບັນທຶກ</button>
       <button class="btn-secondary" onclick="closeEdit()">ຍົກເລີກ</button>
@@ -357,496 +225,258 @@ td{padding:8px 10px;border:1px solid #f3f4f6}
 
 <div id="more-overlay" onclick="closeMore()"></div>
 <div id="more-menu">
-  <div style="font-weight:bold;color:#1e3a5f;margin-bottom:12px;font-size:15px">⋯ ເພີ່ມເຕີມ</div>
+  <div style="font-weight:bold;color:#1e3a5f;margin-bottom:12px">⋯ ເພີ່ມເຕີມ</div>
   <div class="more-item" onclick="goMenu('dashboard_month');closeMore()">📊 Dashboard ປະຈຳເດືອນ</div>
   <div class="more-item" onclick="goMenu('week');closeMore()">📅 ສະຫຼຸບປະຈຳອາທິດ</div>
   <div class="more-item" onclick="goMenu('year');closeMore()">🗃 ສະຫຼຸບປະຈຳປີ</div>
-  <div class="more-item" onclick="exportHTMLFile();closeMore()">📤 Export HTML (ຍ້າຍເຄື່ອງ)</div>
-  <div class="more-item" onclick="document.getElementById('import-file').click();closeMore()">📥 📥 Import ຂໍ້ມູນ</div>
+  <div class="more-item" onclick="exportHTMLFile();closeMore()">📤 Export HTML</div>
+  <div class="more-item" onclick="document.getElementById('import-file').click();closeMore()">📥 Import ຂໍ້ມູນ</div>
   <div id="more-admin-item" style="display:none">
     <div class="more-item" onclick="goMenu('admin_users');closeMore()">👥 ຈັດການຜູ້ໃຊ້</div>
     <div class="more-item" onclick="goMenu('admin_cats');closeMore()">🏷 ຈັດການໝວດໝູ່</div>
   </div>
-  <div class="more-item" onclick="goMenu('savings_kip');closeMore()">🏦🇱🇦 ເງິນອອມ (ກີບ)</div>
-  <div class="more-item" onclick="goMenu('savings_thb');closeMore()">🏦🇹🇭 ເງິນອອມ (ບາດ)</div>
-  <div class="more-item" onclick="goMenu('savings_usd');closeMore()">🏦🇺🇸 ເງິນອອມ (ໂດລາ)</div>
-  <div class="more-item" onclick="goMenu('exchange');closeMore()">💱 ຄຳນວນອັດຕາແລກປ່ຽນ</div>
-  <div style="margin-top:10px"><button onclick="doLogout();closeMore()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:11px;cursor:pointer;font-size:14px;font-family:'Phetsarath OT',Arial,sans-serif">🚪 ອອກຈາກລະບົບ</button></div>
+  <div style="margin-top:10px"><button onclick="doLogout();closeMore()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:11px">🚪 ອອກຈາກລະບົບ</button></div>
 </div>
 
 <script>
-/* ===================== DATA ===================== */
+/* ===================== INIT & FIREBASE ===================== */
 const SK="fin_v7";
 const MONTHS=["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ"];
-
 function defData(){
   return {
-    users:[],
-    categories:{income:[],expense:[]},
-    transactions:[],
-    nextId:1,
-    savings:{kip:[],thb:[],usd:[]}
+    users:[], categories:{income:[{name:"ເງິນເດືອນ",subs:[]},{name:"ເງິນອຶ່ນໆ",subs:[]}],expense:[{name:"ອາຫານ",subs:[]},{name:"ອຸປະກອນເຄື່ອງໃຊ້",subs:[]}]},
+    transactions:[], nextId:1, savings:{kip:[],thb:[],usd:[]}
   };
 }
+let DB, CU, curMenu="dashboard", weekDate="", monthDate="", yearDate="", topTab="expense", editId=null, catExpand={}, reportFilter={type:"",cat:"",sub:"",period:"month",monthVal:"",yearVal:""};
 
-let DB, CU, curMenu="dashboard";
-let weekDate="", monthDate="", yearDate="";
-let topTab="expense", editId=null;
-let catExpand={};
-let dashTab="all";
-let reportFilter={type:"",cat:"",sub:"",period:"month",monthVal:"",yearVal:""};
+const firebaseConfig = {
+  apiKey: "AIzaSyAXWM7zZ_LCRnKoktEQmMyq0FhPbQ6nJl0",
+  authDomain: "khen-finance-tracker.firebaseapp.com",
+  projectId: "khen-finance-tracker",
+  storageBucket: "khen-finance-tracker.firebasestorage.app",
+  messagingSenderId: "1044841991005",
+  appId: "1:1044841991005:web:b2912acf251cfc71bcb6b4",
+  measurementId: "G-N708BKVCE0"
+};
+firebase.initializeApp(firebaseConfig);
+const fdb = firebase.firestore();
+const auth = firebase.auth();
+const DB_DOC = fdb.collection("finance").doc("mainDB");
 
-// EMBEDDED_DATA_START
-var EMBEDDED_DB = {
-  "transactions": [
-    {
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-01",
-      "type": "expense",
-      "amount": 80000,
-      "id": 1,
-      "sub": "",
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດ 0546"
-    },
-    {
-      "note": "ຄ່າເຮັດ passport",
-      "userId": 1779937218244,
-      "id": 2,
-      "sub": "",
-      "category": "ອື່ນໆ",
-      "date": "2026-04-01",
-      "type": "expense",
-      "amount": 860000
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
-      "type": "expense",
-      "amount": 136000,
-      "date": "2026-04-03",
-      "category": "ນ້ຳມັນ",
-      "sub": "",
-      "id": 3
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ເງິນສັກວັກຊິນ",
-      "amount": 340000,
-      "type": "income",
-      "date": "2026-04-03",
-      "category": "ເງິນອຶ່ນໆ",
-      "sub": "ເງິນສັກວັກຊິນ",
-      "id": 4
-    },
-    {
-      "note": "ເງິນຄຣິິນິກ (ຄ)",
-      "userId": 1779937218244,
-      "id": 5,
-      "sub": "ເງິນຄຣີນິກ (ຄ)",
-      "date": "2026-04-03",
-      "category": "ເງິນອຶ່ນໆ",
-      "type": "income",
-      "amount": 80000
-    },
-    {
-      "category": "ເງິນອຶ່ນໆ",
-      "date": "2026-04-03",
-      "amount": 500000,
-      "type": "income",
-      "id": 6,
-      "sub": "ເງິນສັກວັກຊິນ",
-      "userId": 1779937218244,
-      "note": "ເງິນສັກວັກຊິນ"
-    },
-    {
-      "id": 7,
-      "sub": "ນ້ຳດື່ມ",
-      "date": "2026-04-04",
-      "category": "ເຄື່ອງດື່ມ",
-      "amount": 10000,
-      "type": "expense",
-      "note": "ນ້ຳດື່ມ",
-      "userId": 1779937218244
-    },
-    {
-      "date": "2026-04-04",
-      "category": "ຄ່າເດີນທາງ",
-      "amount": 301200,
-      "type": "expense",
-      "id": 8,
-      "sub": "ຄ່າທາງ",
-      "userId": 1779937218244,
-      "note": "ເສຍຄ່າທາງລົດ Prado"
-    },
-    {
-      "id": 9,
-      "sub": "ນ້ຳມັນເຄື່ອງ",
-      "date": "2026-04-04",
-      "category": "ນ້ຳມັນ",
-      "amount": 840000,
-      "type": "expense",
-      "note": "ນ້ຳມັນເຄື່ອງລົດ Prado",
-      "userId": 1779937218244
-    },
-    {
-      "id": 10,
-      "sub": "ສ້ອມແປງເຄື່ອງສຽງ",
-      "category": "ສ້ອມແປງ",
-      "date": "2026-04-04",
-      "type": "expense",
-      "amount": 2500000,
-      "note": "ສ້ອມແປງແອັມ",
-      "userId": 1779937218244
-    },
-    {
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້ ເດີນທາງກັບບາ້ນ",
-      "userId": 1779937218244,
-      "sub": "ນ້ຳມັນລົດ prado",
-      "id": 11,
-      "type": "expense",
-      "amount": 2500000,
-      "date": "2026-04-04",
-      "category": "ນ້ຳມັນ"
-    },
-    {
-      "note": "່ປ່ຽນຢາງໃນ",
-      "userId": 1779937218244,
-      "sub": "ລົດຈັກຄັນຟ້າ",
-      "id": 12,
-      "type": "expense",
-      "amount": 90000,
-      "date": "2026-04-04",
-      "category": "ສ້ອມແປງ"
-    },
-    {
-      "amount": 110000,
-      "type": "expense",
-      "category": "ເຄື່ອງດື່ມ",
-      "date": "2026-04-04",
-      "sub": "ນ້ຳດື່ມ",
-      "id": 13,
-      "userId": 1779937218244,
-      "note": "ນ້ຳດື່ມຕຸກ 20 ລິດ"
-    },
-    {
-      "id": 14,
-      "sub": "ນ້ຳມັນລົດ prado",
-      "date": "2026-04-05",
-      "category": "ນ້ຳມັນ",
-      "type": "expense",
-      "amount": 1000000,
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
-      "userId": 1779937218244
-    },
-    {
-      "note": "ສົ້ມປາໂດ + ປາແຫ້ງ",
-      "userId": 1779937218244,
-      "sub": "ຊື້ເຄື່ອງກິນ",
-      "id": 15,
-      "amount": 350000,
-      "type": "expense",
-      "date": "2026-04-05",
-      "category": "ອາຫານ"
-    },
-    {
-      "note": "ຄ່າເບຍ",
-      "userId": 1779937218244,
-      "sub": "ເບຍ",
-      "id": 16,
-      "amount": 150000,
-      "type": "expense",
-      "category": "ເຄື່ອງດື່ມ",
-      "date": "2026-04-07"
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
-      "type": "expense",
-      "amount": 500000,
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-08",
-      "sub": "ນ້ຳມັນລົດ prado",
-      "id": 17
-    },
-    {
-      "sub": "ກາເຟດຳ ຜົງ",
-      "id": 18,
-      "amount": 100000,
-      "type": "expense",
-      "category": "ເຄື່ອງດື່ມ",
-      "date": "2026-04-08",
-      "note": "ຊື້ກາເຟດຳ ຖົງ",
-      "userId": 1779937218244
-    },
-    {
-      "sub": "ຄ່າດ່ານ",
-      "id": 19,
-      "amount": 140000,
-      "type": "expense",
-      "date": "2026-04-08",
-      "category": "ອື່ນໆ",
-      "note": "ເສຍຄ່າດ່ານ ໄປ - ກັບ",
-      "userId": 1779937218244
-    },
-    {
-      "note": "ຊ່ວຍເບຍຄຳແມ້ວ ຕ້ອນຮັບ",
-      "userId": 1779937218244,
-      "id": 20,
-      "sub": "ເບຍ",
-      "category": "ເຄື່ອງດື່ມ",
-      "date": "2026-04-09",
-      "type": "expense",
-      "amount": 500000
-    },
-    {
-      "sub": "",
-      "id": 21,
-      "amount": 525000,
-      "type": "expense",
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-10",
-      "note": "ຊື້ນ້ຳມັນໃຫ້ພໍ່",
-      "userId": 1779937218244
-    },
-    {
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
-      "userId": 1779937218244,
-      "id": 22,
-      "sub": "ນ້ຳມັນລົດ prado",
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-10",
-      "type": "expense",
-      "amount": 1500000
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ເຕີມເນັດໂທລະສັບ",
-      "type": "expense",
-      "amount": 50000,
-      "date": "2026-04-10",
-      "category": "ອິນເຕີເນັດ",
-      "sub": "ເນັດໂທລະສັບ",
-      "id": 23
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
-      "date": "2026-04-12",
-      "category": "ນ້ຳມັນ",
-      "type": "expense",
-      "amount": 1500000,
-      "id": 24,
-      "sub": "ນ້ຳມັນລົດ prado"
-    },
-    {
-      "note": "ຊື້ເລກ",
-      "userId": 1779937218244,
-      "id": 25,
-      "sub": "ຊື້ເລກ",
-      "date": "2026-04-13",
-      "category": "ອື່ນໆ",
-      "type": "expense",
-      "amount": 22000
-    },
-    {
-      "note": "ເງິນອຸດໜູນກອງເລຂາ",
-      "userId": 1779937218244,
-      "sub": "ເງິນກອງເລຂາ",
-      "id": 26,
-      "amount": 700000,
-      "type": "income",
-      "date": "2026-04-13",
-      "category": "ເງິນອຶ່ນໆ"
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດ ປຣາໂດ້",
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-15",
-      "type": "expense",
-      "amount": 300000,
-      "id": 27,
-      "sub": "ນ້ຳມັນລົດ prado"
-    },
-    {
-      "note": "ຊື້ 3 ຊັ້ນໄປກິນຄຣີນິກເມຍ",
-      "userId": 1779937218244,
-      "id": 28,
-      "sub": "ອາຫານແລງ",
-      "date": "2026-04-15",
-      "category": "ອາຫານ",
-      "amount": 347000,
-      "type": "expense"
-    },
-    {
-      "userId": 1779937218244,
-      "note": "",
-      "date": "2026-04-15",
-      "category": "ອຸປະກອນເຄື່ອງໃຊ້",
-      "type": "expense",
-      "amount": 230000,
-      "id": 29,
-      "sub": ""
-    },
-    {
-      "note": "ເບຍ + ເປັດເຮືອນອ້າຍຕຸ້ຍ",
-      "userId": 1779937218244,
-      "id": 30,
-      "sub": "ເບຍ",
-      "category": "ເຄື່ອງດື່ມ",
-      "date": "2026-04-17",
-      "type": "expense",
-      "amount": 460000
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ອາຫານກວາງ",
-      "amount": 60000,
-      "type": "expense",
-      "date": "2026-04-18",
-      "category": "ອື່ນໆ",
-      "sub": "",
-      "id": 31
-    },
-    {
-      "category": "ອາຫານ",
-      "date": "2026-04-18",
-      "amount": 210000,
-      "type": "expense",
-      "id": 32,
-      "sub": "ອອກຕະຫຼາດ",
-      "userId": 1779937218244,
-      "note": "ຊື້ແນວກິນອອກຕະຫຼາດ"
-    },
-    {
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-21",
-      "type": "expense",
-      "amount": 100000,
-      "id": 33,
-      "sub": "ນ້ຳມັນລົດຄັນຟ້າ",
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດຄັນຟ້າ"
-    },
-    {
-      "sub": "ອອກຕະຫຼາດ",
-      "id": 34,
-      "amount": 200000,
-      "type": "expense",
-      "category": "ອາຫານ",
-      "date": "2026-04-21",
-      "note": "ອອກຕະຫຼາດ",
-      "userId": 1779937218244
-    },
-    {
-      "note": "ເງິນຄຣີນິກ (ຄ)",
-      "userId": 1779937218244,
-      "sub": "ເງິນຄຣີນິກ (ຄ)",
-      "id": 35,
-      "amount": 80000,
-      "type": "income",
-      "date": "2026-04-22",
-      "category": "ເງິນອຶ່ນໆ"
-    },
-    {
-      "id": 36,
-      "sub": "ນ້ຳມັນລົດ 0546",
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-22",
-      "amount": 80000,
-      "type": "expense",
-      "note": "ນ້ຳມັນລົດ 0546",
-      "userId": 1779937218244
-    },
-    {
-      "date": "2026-04-23",
-      "category": "ຄ່ານ້ຳ-ໄຟ",
-      "amount": 376338,
-      "type": "expense",
-      "id": 37,
-      "sub": "ຄ່າໄຟ",
-      "userId": 1779937218244,
-      "note": "ຄ່າໄຟຟ້າເດືອນ 03/2026"
-    },
-    {
-      "date": "2026-04-23",
-      "category": "ຄ່າຂົນສົ່ງ",
-      "amount": 64000,
-      "type": "expense",
-      "id": 38,
-      "sub": "ມີໄຊ ຂົນສົ່ງ ໄທ - ລາວ",
-      "userId": 1779937218244,
-      "note": "ຄ່າຂົນສົ່ງມີໄຊມາແຕ່ໄທ"
-    },
-    {
-      "note": "ຊື້ເລກ",
-      "userId": 1779937218244,
-      "sub": "ຊື້ເລກ",
-      "id": 39,
-      "amount": 20000,
-      "type": "expense",
-      "date": "2026-04-23",
-      "category": "ອື່ນໆ"
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ເງິນອ້າຍຕຽນໃຫ້",
-      "type": "income",
-      "amount": 200000,
-      "category": "ເງິນອຶ່ນໆ",
-      "date": "2026-04-23",
-      "sub": "",
-      "id": 40
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ນ້ຳມັນລົດຄັນຟ້າ",
-      "category": "ນ້ຳມັນ",
-      "date": "2026-04-24",
-      "amount": 138000,
-      "type": "expense",
-      "id": 41,
-      "sub": "ນ້ຳມັນລົດຄັນຟ້າ"
-    },
-    {
-      "type": "expense",
-      "amount": 30000,
-      "date": "2026-04-24",
-      "category": "ອື່ນໆ",
-      "sub": "ຕັດຜົມ",
-      "id": 42,
-      "userId": 1779937218244,
-      "note": "ຄ່າຕັດຜົມ"
-    },
-    {
-      "date": "2026-04-24",
-      "category": "ເງິນອຶ່ນໆ",
-      "type": "income",
-      "amount": 200000,
-      "id": 43,
-      "sub": "ເງິນຄຣີນິກ",
-      "userId": 1779937218244,
-      "note": "ເງິນຄຣີນິກ"
-    },
-    {
-      "userId": 1779937218244,
-      "note": "ເຕີມເນັດໂທລະສັບ",
-      "category": "ອິນເຕີເນັດ",
-      "date": "2026-04-24",
-      "amount": 50000,
-      "type": "expense",
-      "id": 44,
-      "sub": "ເນັດໂທລະສັບ"
-    },
-    {
-      "sub": "ເງິນຄຣີນິກ (ຄ)",
-      "id": 45,
-      "type": "income",
-      "amount": 3000000,
-      "date": "2026-04-24",
-      "category": "ເງິນອຶ່ນໆ",
-      "note": "ເງິນຄຣີນິກ (ຄ)",
+async function loadDB(){
+  try {
+    const snap = await DB_DOC.get();
+    if(snap.exists){
+      const d = snap.data();
+      if(d && d.transactions){ try{localStorage.setItem(SK, JSON.stringify(d));}catch{} return d; }
+    }
+  } catch(err){}
+  try{const r=localStorage.getItem(SK);if(r){return JSON.parse(r);}}catch{}
+  return defData();
+}
+function saveDB(){
+  try{localStorage.setItem(SK,JSON.stringify(DB));}catch{}
+  DB_DOC.set(DB).catch(err=>console.warn(err));
+}
+
+/* ===================== AUTH ===================== */
+function showReg(v){document.getElementById("form-login").style.display=v?"none":"block";document.getElementById("form-reg").style.display=v?"block":"none";}
+function setErr(id,msg,green){const el=document.getElementById(id);el.textContent=msg;el.style.display=msg?"block":"none";el.style.color=green?"#15803d":"#dc2626";}
+
+function doLogin(){
+  const u = document.getElementById("l-user").value.trim();
+  const p = document.getElementById("l-pass").value;
+  if(!u || !p) return setErr("l-err","ກະລຸນາໃສ່ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ");
+  const email = u.includes("@") ? u : u + "@finance.com";
+  auth.signInWithEmailAndPassword(email, p).catch((error) => {
+    setErr("l-err", "ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ (ຫຼື ຍັງບໍ່ທັນສະໝັກ)");
+  });
+}
+
+function doRegister(){
+  const name = document.getElementById("r-name").value.trim();
+  const user = document.getElementById("r-user").value.trim();
+  const pass = document.getElementById("r-pass").value;
+  if(!name || !user || !pass) return setErr("r-err","ກະລຸນາຕື່ມຂໍ້ມູນໃຫ້ຄົບ");
+  if(pass.length < 6) return setErr("r-err","ລະຫັດຜ່ານຕ້ອງ 6 ຕົວອັກສອນຂຶ້ນໄປ");
+  const email = user.includes("@") ? user : user + "@finance.com";
+  auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
+    cred.user.updateProfile({ displayName: name }).then(() => {
+      showReg(false); setErr("l-err","ສ້າງບັນຊີສຳເລັດ! ລະບົບກຳລັງພາເຂົ້າໜ້າຫຼັກ...", true);
+    });
+  }).catch((error) => setErr("r-err", error.message));
+}
+
+function doLogout(){
+  auth.signOut().then(() => {
+    CU = null;
+    document.getElementById("app").style.display="none";
+    document.getElementById("login-wrap").style.display="flex";
+  });
+}
+
+// ຕິດຕາມສະຖານະການລັອກອິນ + MIGRATION ຂໍ້ມູນເກົ່າ
+auth.onAuthStateChanged((user) => {
+  var loginWrap = document.getElementById("login-wrap");
+  var appWrap   = document.getElementById("app");
+  if (user) {
+    CU = { id: user.uid, name: user.displayName || user.email.split("@")[0], role: "user" };
+    
+    // ດຶງຂໍ້ມູນເກົ່າທັງໝົດມາຜູກກັບ Firebase UID ໃໝ່
+    let updated = false;
+    if(DB && DB.transactions){
+      DB.transactions.forEach(t => {
+         if (typeof t.userId === "number" || t.userId === 1779937218244) { t.userId = CU.id; updated = true; }
+      });
+      ["kip","thb","usd"].forEach(cur => {
+          if(DB.savings && DB.savings[cur]) {
+              DB.savings[cur].forEach(s => {
+                  if (typeof s.userId === "number" || s.userId === 1779937218244) { s.userId = CU.id; updated = true; }
+              });
+          }
+      });
+      if(updated) saveDB();
+    }
+
+    if(loginWrap) loginWrap.style.display = "none";
+    if(appWrap)   appWrap.style.display   = "flex";
+    document.getElementById("sb-uname").textContent="👤 "+CU.name;
+    initDates(); goMenu("dashboard");
+  } else {
+    if(loginWrap) loginWrap.style.display = "flex";
+    if(appWrap)   appWrap.style.display   = "none";
+  }
+});
+
+/* ===================== UTILS ===================== */
+const today=()=>new Date().toISOString().split("T")[0];
+const fmt=n=>Number(n).toLocaleString("lo-LA")+" ກີບ";
+const fmtShort=n=>{const v=Number(n);if(v>=1000000)return (v/1000000).toFixed(1)+"M";if(v>=1000)return (v/1000).toFixed(0)+"K";return v.toLocaleString();}
+const fmtD=d=>new Date(d).toLocaleDateString("lo-LA");
+function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML;}
+function getMonday(d){const dt=new Date(d),day=dt.getDay();dt.setDate(dt.getDate()-(day===0?6:day-1));dt.setHours(0,0,0,0);return dt;}
+function getSunday(m){const d=new Date(m);d.setDate(d.getDate()+6);d.setHours(23,59,59,999);return d;}
+function isoDate(d){return d.toISOString().split("T")[0];}
+function getCats(t){return DB.categories[t]||[];}
+function getSubs(t,n){const c=getCats(t).find(c=>c.name===n);return c?c.subs:[];}
+
+function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");}
+function closeSidebar(){document.getElementById("sidebar").classList.remove("open");}
+function openMore(){document.getElementById("more-menu").style.display="block";document.getElementById("more-overlay").style.display="block";}
+function closeMore(){document.getElementById("more-menu").style.display="none";document.getElementById("more-overlay").style.display="none";}
+function toggleSec(id){const el=document.getElementById(id),arr=document.getElementById("arr-"+id);if(!el)return;const hidden=el.style.display==="none";el.style.display=hidden?"":"none";if(arr)arr.textContent=hidden?"▼":"▶";}
+
+function goMenu(m){
+  curMenu=m;
+  document.querySelectorAll(".sb-item").forEach(el=>el.classList.toggle("active",el.dataset.menu===m));
+  document.querySelectorAll(".bnav-item").forEach(el=>el.classList.remove("active"));
+  const bnMap={dashboard:"bn-dashboard",add_tx:"bn-add_tx",month:"bn-month",report:"bn-report"};
+  if(bnMap[m]) document.getElementById(bnMap[m])?.classList.add("active");
+  const titles={dashboard:"📊 Dashboard ລວມ",dashboard_month:"📊 Dashboard ປະຈຳເດືອນ",add_tx:"➕ ເພີ່ມລາຍການ",week:"📅 ສະຫຼຸບອາທິດ",month:"📆 ສະຫຼຸບເດືອນ",year:"🗃 ສະຫຼຸບປີ",report:"📑 ສ້າງລາຍງານ",exchange:"💱 ຄຳນວນອັດຕາແລກປ່ຽນ"};
+  document.getElementById("topbar-title").textContent=titles[m]||"📋 ລາຍການ";
+  renderContent();
+}
+
+function initDates(){
+  const n=new Date();weekDate=today();monthDate=n.toISOString().slice(0,7);yearDate=String(n.getFullYear());
+  document.getElementById("inp-week").value=weekDate; document.getElementById("inp-month").value=monthDate; document.getElementById("inp-year").value=yearDate;
+  updateWeekLabel();updateMonthLabel();updateYearLabel();
+}
+function onWeekChange(){weekDate=document.getElementById("inp-week").value;updateWeekLabel();if(curMenu==="week")goMenu("week");}
+function onMonthChange(){monthDate=document.getElementById("inp-month").value;updateMonthLabel();if(curMenu==="month")goMenu("month");}
+function onYearChange(){yearDate=document.getElementById("inp-year").value;updateYearLabel();if(curMenu==="year")goMenu("year");}
+function updateWeekLabel(){if(!weekDate)return;const mon=getMonday(weekDate),sun=getSunday(mon);document.getElementById("lbl-week").textContent="🗓 "+fmtD(isoDate(mon))+" – "+fmtD(isoDate(sun));}
+function updateMonthLabel(){if(!monthDate)return;const[y,m]=monthDate.split("-").map(Number);document.getElementById("lbl-month").textContent="📌 "+MONTHS[m-1]+" "+y;}
+function updateYearLabel(){document.getElementById("lbl-year").textContent="📂 ປີ "+yearDate;}
+
+function filterTxsByMenu(txs,menu,wd,md,yd){
+  return txs.filter(t=>{
+    const d=new Date(t.date);
+    if(menu==="week"){const mon=getMonday(wd),sun=getSunday(mon);return d>=mon&&d<=sun;}
+    if(menu==="month"){const[y,m]=md.split("-").map(Number);return d.getFullYear()===y&&d.getMonth()===m-1;}
+    if(menu==="year"){return d.getFullYear()===parseInt(yd);}
+    return true;
+  });
+}
+function filterTxs(txs){return filterTxsByMenu(txs,curMenu,weekDate,monthDate,yearDate);}
+function getViewTxs(){return filterTxs(DB.transactions.filter(t=>t.userId===CU.id));}
+function getAllUserTxs(){return DB.transactions.filter(t=>t.userId===CU.id);}
+function getTopList(txs,type){
+  const map={};
+  txs.filter(t=>t.type===type).forEach(t=>{const k=t.sub?t.category+" › "+t.sub:t.category;map[k]=(map[k]||0)+t.amount;});
+  return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5);
+}
+
+/* ===================== RENDER ===================== */
+function renderDashboardAll(){
+  const myTxs=getAllUserTxs();
+  const n=new Date(), todayStr=today(), thisMonth=n.toISOString().slice(0,7), thisYear=String(n.getFullYear());
+  const monStart=getMonday(todayStr), monEnd=getSunday(monStart);
+  function sumType(arr,t){return arr.filter(x=>x.type===t).reduce((s,x)=>s+x.amount,0);}
+  const periods=[
+    {lbl:"ວັນນີ້",icon:"📅",arr:myTxs.filter(t=>t.date===todayStr)},
+    {lbl:"ອາທິດນີ້",icon:"🗓",arr:myTxs.filter(t=>{const d=new Date(t.date);return d>=monStart&&d<=monEnd;})},
+    {lbl:"ເດືອນນີ້",icon:"📆",arr:myTxs.filter(t=>{const d=new Date(t.date);const[y,m]=thisMonth.split("-").map(Number);return d.getFullYear()===y&&d.getMonth()===m-1;})},
+    {lbl:"ປີນີ້",icon:"🗃",arr:myTxs.filter(t=>new Date(t.date).getFullYear()===parseInt(thisYear))},
+    {lbl:"ທັງໝົດ",icon:"💰",arr:myTxs},
+  ];
+  const totalInc=sumType(myTxs,"income"),totalExp=sumType(myTxs,"expense"),totalBal=totalInc-totalExp;
+  let pHtml=periods.map(p=>{
+    const inc=sumType(p.arr,"income"),exp=sumType(p.arr,"expense"),bal=inc-exp;
+    return `<div class="card" style="margin-bottom:10px"><div style="font-weight:bold;color:#1e3a5f;margin-bottom:10px;font-size:14px">${p.icon} ສະຫຼຸບ${p.lbl} (${p.arr.length} ລາຍການ)</div><div style="display:flex;gap:8px;flex-wrap:wrap"><div style="flex:1;min-width:80px;background:#f0fdf4;border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:#15803d">💚 ລາຍຮັບ</div><div style="font-weight:bold;color:#15803d;font-size:13px;margin-top:3px">${fmtShort(inc)} ກີບ</div></div><div style="flex:1;min-width:80px;background:#fff5f5;border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:#dc2626">❤️ ລາຍຈ່າຍ</div><div style="font-weight:bold;color:#dc2626;font-size:13px;margin-top:3px">${fmtShort(exp)} ກີບ</div></div><div style="flex:1;min-width:80px;background:${bal>=0?"#eff6ff":"#fffbeb"};border-radius:9px;padding:10px;text-align:center"><div style="font-size:11px;color:${bal>=0?"#1d4ed8":"#92400e"}">💰 ຍອດ</div><div style="font-weight:bold;color:${bal>=0?"#1d4ed8":"#d97706"};font-size:13px;margin-top:3px">${fmtShort(bal)} ກີບ</div></div></div></div>`;
+  }).join("");
+
+  return `<div class="grid3"><div class="sum-card" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"><div class="lbl" style="color:#15803d">💚 ລາຍຮັບລວມ</div><div class="val" style="color:#15803d">${fmt(totalInc)}</div></div><div class="sum-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca)"><div class="lbl" style="color:#dc2626">❤️ ລາຍຈ່າຍລວມ</div><div class="val" style="color:#dc2626">${fmt(totalExp)}</div></div><div class="sum-card" style="background:${totalBal>=0?"linear-gradient(135deg,#dbeafe,#bfdbfe)":"linear-gradient(135deg,#fef3c7,#fde68a)"}"><div class="lbl" style="color:${totalBal>=0?"#1d4ed8":"#92400e"}">💰 ຍອດລວມ</div><div class="val" style="color:${totalBal>=0?"#1d4ed8":"#d97706"}">${fmt(totalBal)}</div></div></div><h3 style="font-size:14px;color:#1e3a5f;margin-bottom:10px">📊 ສະຫຼຸບແຕ່ລະໄລຍະ</h3>${pHtml}<div class="grid2"><div class="card"><h3 style="font-size:14px;color:#dc2626;margin-bottom:10px">🏆 Top ລາຍຈ່າຍ</h3>${renderTop(getTopList(myTxs,"expense"),"expense")}</div><div class="card"><h3 style="font-size:14px;color:#15803d;margin-bottom:10px">🏆 Top ລາຍຮັບ</h3>${renderTop(getTopList(myTxs,"income"),"income")}</div></div>`;
+}
+
+function renderTop(list,type){
+  const color=type==="expense"?"#dc2626":"#15803d";
+  if(!list.length) return '<p style="color:#aaa;text-align:center;font-size:13px">ຍັງບໍ່ມີຂໍ້ມູນ</p>';
+  const max=list[0][1];
+  return list.map(([cat,amt],i)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>#${i+1} ${esc(cat)}</span><span style="color:${color};font-weight:bold">${fmt(amt)}</span></div><div class="bar-wrap"><div class="bar-fill" style="background:${color};width:${max>0?(amt/max*100).toFixed(0):0}%"></div></div></div>`).join("");
+}
+
+function renderContent(){
+  const el=document.getElementById("content");
+  if(!el) return;
+  if(curMenu==="dashboard"){el.innerHTML=renderDashboardAll();return;}
+  if(curMenu==="add_tx"){el.innerHTML=`<div class="card"><h3>➕ ເພີ່ມລາຍການໃໝ່</h3><br>`+txFormHTML("add")+`</div>`;return;}
+  // Default fallback for week/month/year
+  const txs=getViewTxs();
+  el.innerHTML=`<div class="card"><h3 style="margin-bottom:10px">📋 ລາຍການທັງໝົດ (${txs.length})</h3>${renderTxTable(txs,true)}</div>`;
+}
+
+const txState={add:{type:"expense"}};
+function txFormHTML(prefix){
+  const type=txState[prefix].type; const cats=getCats(type);
+  return `<div style="display:flex;gap:6px;margin-bottom:10px"><button class="type-btn" onclick="txState['${prefix}'].type='income';renderContent()" style="background:${type==="income"?"#15803d":"#e2e8f0"};color:${type==="income"?"#fff":"#333"}">💚 ລາຍຮັບ</button><button class="type-btn" onclick="txState['${prefix}'].type='expense';renderContent()" style="background:${type==="expense"?"#dc2626":"#e2e8f0"};color:${type==="expense"?"#fff":"#333"}">❤️ ລາຍຈ່າຍ</button></div><label class="fl">ຈຳນວນເງິນ (ກີບ)</label><input type="number" id="${prefix}-amount" placeholder="0"><label class="fl">ໝວດໝູ່</label><select id="${prefix}-cat" onchange="onCatChange('${prefix}')"><option value="">-- ເລືອກໝວດໝູ່ --</option>${cats.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join("")}</select><label class="fl">ໝວດຍ່ອຍ</label><select id="${prefix}-sub" class="sub-select"><option value="">-- ໝວດຍ່ອຍ --</option></select><label class="fl">ວັນທີ</label><input type="date" id="${prefix}-date" value="${today()}"><label class="fl">ໝາຍເຫດ</label><input type="text" id="${prefix}-note" placeholder="ໝາຍເຫດ"><p id="${prefix}-err" class="err" style="display:none"></p><button class="btn-primary" onclick="doAddTx('${prefix}')">✅ ບັນທຶກ</button>`;
+}
+function onCatChange(p){
+  const cat=document.getElementById(p+"-cat").value, subs=getSubs(txState[p].type,cat);
+  document.getElementById(p+"-sub").innerHTML='<option value="">-- ໝວດຍ່ອຍ --</option>'+subs.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("");
+}
+function doAddTx(p){
+  const amt=parseFloat(document.getElementById(p+"-amount").value), cat=document.getElementById(p+"-cat").value;
+  if(!cat||!amt) return setErr(p+"-err","ກະລຸນາຕື່ມຂໍ້ມູນໃຫ້ຄົບ");
+  DB.transactions.push({id:DB.nextId++,userId:CU.id,type:txState[p].type,amount:amt,category:cat,sub:document.getElementById(p+"-sub").value,note:document.getElementById(p+"-note").value,date:document.getElementById(p+"-date").value});
+  saveDB(); alert("ບັນທຶກສຳເລັດ!"); goMenu("dashboard");
+}
+
+function renderTxTable(txs,act){
+  if(!txs.length) return '<p style="text-align:center;padding:20px;color:#aaa">ຍັງບໍ່ມີລາຍການ</p>';
+  return `<div class="ovx"><table><thead><tr><th>ວັນທີ</th><th>ປະເພດ</th><th>ໝວດໝູ່</th><th>ຈຳນວນ</th><th></th></tr></thead><tbody>${txs.map(t=>`<tr><td style="white-space:nowrap">${fmtD(t.date)}</td><td><span style="color:${t.type==="income"?"#15803d":"#dc2626"}">${t.type==="income"?"💚":"❤️"}</span></td><td>${esc(t.category)} ${t.sub?`› ${esc(t.sub)}`:''}</td><td style="font-weight:bold;color:${t.type==="income"?"#15803d":"#dc2626"}">${fmt(t.amount)}</td><td><button class="btn-icon btn-red" onclick="delTx(${t.id})">🗑</button></td></tr>`).join("")}</tbody></table></div>`;
+}
+function delTx(id){if(confirm("ລຶບ?")){DB.transactions=DB.transactions.filter(t=>t.id!==id);saveDB();renderContent();}}
+
+(async function(){
+  var loadDiv = document.createElement("div"); loadDiv.style.cssText="position:fixed;inset:0;background:#1e3a5f;z-index:9999;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px"; loadDiv.innerHTML="ກຳລັງໂຫຼດ..."; document.body.appendChild(loadDiv);
+  try{ DB = await loadDB(); }catch(e){ DB = defData(); }
+  loadDiv.remove();
+})();
+</script>
+</body></html>
+��ິກ (ຄ)",
       "userId": 1779937218244
     },
     {
